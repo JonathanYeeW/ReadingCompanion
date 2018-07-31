@@ -1,0 +1,53 @@
+
+/* App.js */
+
+#app-wrapper {
+  background-color:#657287;
+  min-height: 1000px;
+}
+
+/* Navbar.js */
+
+#navbar-wrapper {
+  padding-bottom: 2%;
+}
+
+/* Login.js */
+
+#login-wrapper {
+  padding-left: 2%
+}
+
+/* Dashboard.js */
+
+#dashboard-explore-container{
+  /* min-height: 200px; */
+}
+
+.dashboard-width-fill{
+  width: 100%;
+}
+
+.dashboard-height-fill{
+  height: 100%;
+}
+
+.dashboard-card-min-height{
+  min-height: 200px;
+}
+
+/* ETC */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#dashboard-container{
+  padding: 2%;
+}
+
+#dashboard-my-books {
+  min-height: 300px;
+}
