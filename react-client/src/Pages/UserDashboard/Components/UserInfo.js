@@ -11,11 +11,6 @@ import React, { Component } from 'react';
 // - userid: string
 
 export class UserInfo extends Component {
-    constructor(props){
-        super(props);
-        console.log(this.props)
-    }
-
     render() {
         return (
             <div className="card bg-light dashboard-height-fill">

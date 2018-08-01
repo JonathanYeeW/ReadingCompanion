@@ -18,8 +18,6 @@ export class GoogleSearch extends Component {
     }
 
     makeAPICall = async (searchParams, searchTerms) => {
-        console.log("I'm searching with params", searchParams, "the term", searchTerms)
-
         //MARK: Prepare for the API Call
         this.setState({
             error: "Fetching data now..."

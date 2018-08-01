@@ -1,23 +1,22 @@
 console.log("app.js")
-console.log("# app.js # 2")
+console.log("# app.js # CONNECT MIDDLEWARE")
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-console.log("# app.js # 8")
 var indexRouter = require('./routes/index');
-console.log("# app.js # 10")
 var usersRouter = require('./routes/users');
-var booksRouter = require('./routes/books')
+var booksRouter = require('./routes/books');
+var postRouter = require('./routes/posts');
 var bodyParser = require('body-parser');
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-console.log("# app.js # 13")
 // view engine setup
+console.log("# app.js # VIEW ENGINE SETUP")
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -27,9 +26,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Routes
+console.log("# app.js # ROUTES")
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
+app.use('/posts', postRouter);
+
+console.log("# app.js # ELSE")
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

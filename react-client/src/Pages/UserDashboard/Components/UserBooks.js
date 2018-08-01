@@ -11,7 +11,6 @@ export class UserBooks extends Component {
         this.state = {
             toggle: false,
         }
-        console.log(this.props)
     }
 
     switchToggle = () => {
@@ -28,18 +27,20 @@ export class UserBooks extends Component {
         if (this.state.toggle) {
             body =
                 <div className="card-body">
-                    {
-                        this.props.books.map(book => {
-                            return(
-                                <div>
-                                    <Book 
-                                        book={book}
-                                        removeBook={this.props.removeBook}
-                                    />
-                                </div>
-                            )
-                        })
-                    }
+                    <div className="row">
+                        {
+                            this.props.books.map(book => {
+                                return (
+                                    <div className="col-4 pb-4">
+                                        <Book
+                                            book={book}
+                                            removeBook={this.props.removeBook}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
         } else {
             body = <div></div>
@@ -47,7 +48,6 @@ export class UserBooks extends Component {
 
         return (
             <div className="card bg-light">
-                {/* <div id="dashboard-my-books" className="card bg-light"> */}
                 <div className="card-header">
                     <div className="row">
                         <div className="col-6 d-flex justify-content-start">
@@ -69,13 +69,15 @@ export default UserBooks;
 export class Book extends Component {
     render() {
         return (
-            <div className="card">
-                <div className="card-header">
-                    <p className="card-text">{this.props.book.title}</p>
-                </div>
-                <div className="card-body">
-                    <p className="card-text text-muted">{this.props.book.author}</p>
-                    <button className="btn" onClick={() => this.props.removeBook(this.props.book._id)}>Delete</button>
+            <div>
+                <div className="card bg-info border-dark text-white">
+                    <div className="card-header">
+                        <p className="card-text">{this.props.book.title}</p>
+                    </div>
+                    <div className="card-body">
+                        <p className="card-text text-white">{this.props.book.author}</p>
+                        <button className="btn btn-outline-light" onClick={() => this.props.removeBook(this.props.book._id)}>Delete</button>
+                    </div>
                 </div>
             </div>
         )

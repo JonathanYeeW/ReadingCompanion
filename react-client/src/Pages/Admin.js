@@ -27,7 +27,7 @@ export class Admin extends Component {
     }
 
     getAllBooks = () => {
-        fetch('/users/books')
+        fetch('/books')
             .then(res => res.json())
             .then(res => this.setState({
                 books: res["books"]
@@ -43,8 +43,6 @@ export class Admin extends Component {
     }
 
     createNewUser = (name) => {
-        console.log("Create User", name)
-
         const temp = { "name": name }
         fetch('/users/create', {
             method: "POST",
@@ -60,7 +58,6 @@ export class Admin extends Component {
     }
 
     deleteAllUsers = () => {
-        console.log("Delete All users")
         fetch('/users/deleteAll')
             .then(res => res.json())
             .then(res =>
@@ -69,16 +66,13 @@ export class Admin extends Component {
     }
 
     deleteAllBooks = () => {
-        console.log("Delete ALl Books")
-        fetch('/users/deleteAllBooks')
+        fetch('/books/deleteAll')
             .then(res => res.json())
             .then(res => console.log(res))
     }
 
     submitNewUserForm = (event) => {
         event.preventDefault()
-        console.log("Submit new user form")
-        console.log(event.target.username.value)
         this.createNewUser(event.target.username.value)
     }
 

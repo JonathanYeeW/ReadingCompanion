@@ -8,6 +8,7 @@ import { UserBooks } from './Components/UserBooks';
 import { Discover } from './Components/Discover';
 import { CreateBook } from './Components/CreateBook';
 import { GoogleSearch } from './Components/GoogleSearch';
+import { Blog } from './Components/Blog';
 
 export class Dashboard extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export class Dashboard extends Component {
         }
         this.fetchUserData()
         this.fetchUserBooks()
-        console.log(this.state.newBook)
     }
 
     fetchUserData = () => {
@@ -43,9 +43,9 @@ export class Dashboard extends Component {
     }
 
     fetchUserBooks = () => {
-        console.log("Fetching User Books")
         const temp = { userid: this.props.userid }
-        fetch('/users/getuserbooks', {
+        fetch('/books/usercollection', {
+            // fetch('/users/getuserbooks', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -60,9 +60,8 @@ export class Dashboard extends Component {
     }
 
     createBook = (data) => {
-        console.log("Create book with title", data.title, "and author", data.author)
         data["userid"] = this.state.userid
-        fetch('/users/createBook', {
+        fetch('/books/create', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -75,8 +74,7 @@ export class Dashboard extends Component {
     }
 
     deleteBook = (data) => {
-        console.log("I want to delete a book with id", data)
-        fetch('/users/deleteBook', {
+        fetch('/books/delete', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -89,8 +87,7 @@ export class Dashboard extends Component {
     }
 
     removeBook = (data) => {
-        console.log("I want to delete a book with id", data)
-        fetch('/users/removeBook', {
+        fetch('/books/remove', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -105,7 +102,7 @@ export class Dashboard extends Component {
     }
 
     discoverBook = () => {
-        fetch('/users/discoverBook', {
+        fetch('/books/discover', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -120,8 +117,7 @@ export class Dashboard extends Component {
     }
 
     addBookFromDiscover = () => {
-        console.log("addBookFromDiscover")
-        fetch('/users/addBook', {
+        fetch('/books/add', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -180,7 +176,7 @@ export class Dashboard extends Component {
                                         />
                                     </div>
                                     <div className="col-4">
-                                        <GoogleSearch 
+                                        <GoogleSearch
                                             createBook={this.createBook}
                                         />
                                     </div>
@@ -203,6 +199,17 @@ export class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="row mb-4">
+                    <div className="col-12">
+                        <div className="card bg-dark dashboard-width-fill">
+                            <div className="card-body">
+                                <Blog />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }

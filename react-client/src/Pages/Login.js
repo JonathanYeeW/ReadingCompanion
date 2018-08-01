@@ -19,12 +19,6 @@ export class Login extends Component {
         })
     }
 
-    bookstest = () => {
-        fetch('/books/allBooks')
-            .then(res => res.json())
-            .then(res => console.log(res))
-    }
-
     render() {
         let body;
         if (this.state.signIn === true) {
@@ -300,6 +294,7 @@ export class SignUp extends Component {
                         <h5>Sign Up</h5>
                     </div>
                     <div className="card-body bg-white">
+                        {submissionerror}
                         <form onSubmit={(event)=> event.preventDefault()}>
                             <div className="form-group">
                                 <input type="text" className="form-control" value={this.state.email} placeholder="Email" name="email" onChange={this.emailChange} />
