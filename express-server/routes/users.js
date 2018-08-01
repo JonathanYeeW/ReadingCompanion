@@ -76,4 +76,16 @@ router.get('/deleteAll', function (req, res, next) {
   })
 })
 
+//DELETE USER BY ID
+router.post('/delete', function (request, response, next) {
+  console.log("delete the user", request.body)
+  User.remove({ _id: request.body.userid }, function (err) {
+    if (err) {
+      response.json({ message: "There was an error deleting user by id", error: true })
+    } else {
+      response.json({ message: "success", error: false })
+    }
+  })
+})
+
 module.exports = router;

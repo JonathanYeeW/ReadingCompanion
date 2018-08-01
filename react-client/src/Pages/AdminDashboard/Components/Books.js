@@ -11,6 +11,22 @@ export class Books extends Component {
         })
     }
 
+    deleteBook = (bookid) => {
+        console.log("Delete the book with id", bookid)
+        fetch('/books/delete', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({id: bookid})
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            this.props.getAllBook()
+        })
+    }
+
     render() {
         let body;
         if (this.state.expansion) {
@@ -25,6 +41,7 @@ export class Books extends Component {
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>All Users Count</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +53,7 @@ export class Books extends Component {
                                             <td>{book.title}</td>
                                             <td>{book.author}</td>
                                             <td>{book.allusers.length}</td>
+                                            <td><button className="btn btn-danger" onClick = {() => this.deleteBook(book._id)}>Delete</button></td>
                                         </tr>
                                     })
                                 }

@@ -22,11 +22,11 @@ export class AdminPosts extends Component {
         fetch('/posts/')
             .then(res => res.json())
             .then(res => {
+                console.log(res)
                 this.setState({
                     posts: res.posts
                 })
             })
-            .then(console.log(this.state.posts))
     }
 
     render() {

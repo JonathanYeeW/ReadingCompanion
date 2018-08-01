@@ -11,6 +11,23 @@ export class Users extends Component {
         })
     }
 
+    deleteUser = (event) => {
+        let data = { userid: event }
+        console.log("delete the user", data)
+        fetch('/users/delete', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.props.getAllUsers()
+            })
+    }
+
     render() {
         let body;
         if (this.state.expansion) {
@@ -26,6 +43,7 @@ export class Users extends Component {
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Password</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +56,13 @@ export class Users extends Component {
                                             <td>{user.firstname}</td>
                                             <td>{user.lastname}</td>
                                             <td>{user.password}</td>
+                                            <td>
+                                                <div className="btn-toolbar">
+                                                    <div className="btn-group">
+                                                        <button className="btn btn-danger" onClick={() => this.deleteUser(user._id)}>Delete</button>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     })
                                 }

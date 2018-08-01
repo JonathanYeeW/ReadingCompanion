@@ -23,7 +23,7 @@ export class Admin extends Component {
     }
 
     getAllUsers = () => {
-        fetch('/users')
+        fetch('/users/')
             .then(res => res.json())
             .then(res => this.setState({
                 users: res["users"]
@@ -32,7 +32,7 @@ export class Admin extends Component {
     }
 
     getAllBooks = () => {
-        fetch('/books')
+        fetch('/books/')
             .then(res => res.json())
             .then(res => this.setState({
                 books: res["books"]
