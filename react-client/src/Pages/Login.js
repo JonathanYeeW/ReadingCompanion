@@ -40,7 +40,6 @@ export class Login extends Component {
                         {body}
                     </div>
                 </div>
-
             </div>
         )
     }
@@ -281,7 +280,7 @@ export class SignUp extends Component {
         }
 
         //Check submission error
-        if( this.state.submissionerror){
+        if (this.state.submissionerror) {
             submissionerror = <p className="text-danger">There was an error creating your account</p>
         } else {
             submissionerror = undefined
@@ -295,7 +294,7 @@ export class SignUp extends Component {
                     </div>
                     <div className="card-body bg-white">
                         {submissionerror}
-                        <form onSubmit={(event)=> event.preventDefault()}>
+                        <form onSubmit={(event) => event.preventDefault()}>
                             <div className="form-group">
                                 <input type="text" className="form-control" value={this.state.email} placeholder="Email" name="email" onChange={this.emailChange} />
                             </div>

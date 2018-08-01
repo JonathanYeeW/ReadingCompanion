@@ -134,7 +134,6 @@ export class Dashboard extends Component {
     render() {
         return (
             <div id="dashboard-container" className="container">
-
                 <div className="row pb-4">
                     <div className="col-6">
                         <div className="card bg-dark dashboard-width-fill dashboard-height-fill">
@@ -153,10 +152,8 @@ export class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="row mb-4">
                     <div className="col-12">
-
                         <div className="card bg-dark dashboard-width-fill">
                             <div className="card-body ">
                                 <div className="row">
@@ -185,7 +182,6 @@ export class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="row mb-4">
                     <div className="col-12">
                         <div className="card bg-dark dashboard-width-fill">
@@ -199,17 +195,18 @@ export class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="row mb-4">
                     <div className="col-12">
                         <div className="card bg-dark dashboard-width-fill">
                             <div className="card-body">
-                                <Blog />
+                                <Blog 
+                                    userid={this.state.userid}
+                                    username={this.state.firstname + " " + this.state.lastname}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         )
     }

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Navbar } from './Pages/Navbar';
-import { Admin } from './Pages/Admin';
+import { Admin } from './Pages/AdminDashboard/Admin';
 import { Dashboard } from './Pages/UserDashboard/Dashboard';
 import { Login } from './Pages/Login';
 

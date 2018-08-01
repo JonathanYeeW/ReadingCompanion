@@ -31,6 +31,7 @@ mongoose.model('Book', BookSchema);
 var PostSchema = new mongoose.Schema({
   title: String,
   userid: String,
+  username: String,
   post: String,
   created_At: Date,
 })

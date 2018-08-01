@@ -6,6 +6,21 @@ import React, { Component } from 'react';
 //THIS IS IMPORTED TO DASHBOARD
 
 export class Blog extends Component {
+    
+    createBlogPost = (event) => {
+        event.preventDefault()
+        const data = {title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value}
+        fetch('/posts/create', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }
+    
     render() {
         return (
             <div className="card-body bg-dark">
@@ -14,12 +29,12 @@ export class Blog extends Component {
                         <h4>Blog</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit = {(event)=>event.preventDefault()}>
+                        <form onSubmit = {(event)=>this.createBlogPost(event)}>
                             <div className="form-group">
                                 <input type="text" className="form-control" placeholder="Title" name="title"/>
                             </div>
                             <div className="form-group">
-                            <textarea class="form-control" placeholder="Blog Post" rows="10"></textarea>
+                            <textarea class="form-control" placeholder="Blog Post" rows="10" name="post"></textarea>
                             </div>
                             <input type="submit" className="btn btn-outline-info" />
                         </form>

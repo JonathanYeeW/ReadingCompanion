@@ -76,7 +76,7 @@ export class Book extends Component {
                     </div>
                     <div className="card-body">
                         <p className="card-text text-white">{this.props.book.author}</p>
-                        <button className="btn btn-outline-light" onClick={() => this.props.removeBook(this.props.book._id)}>Delete</button>
+                        <button className="btn btn-outline-light" onClick={() => this.props.removeBook(this.props.book._id)}>Remove</button>
                     </div>
                 </div>
             </div>

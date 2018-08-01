@@ -36,6 +36,24 @@
   min-height: 200px;
 }
 
+/* Newsfeed.js */
+
+#newsfeed-wrapper{
+  /* background: red; */
+  max-height: 500px;
+  width: 100%;
+  overflow: scroll;
+  padding: 2%;
+}
+
+/* Data.js */
+
+#data-wrapper{
+  height: 500px;
+  width: 100%;
+  padding: 2%;
+}
+
 /* ETC */
 
 body {
