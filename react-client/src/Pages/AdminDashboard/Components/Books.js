@@ -18,13 +18,13 @@ export class Books extends Component {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({id: bookid})
+            body: JSON.stringify({ id: bookid })
         })
-        .then(res => res.json())
-        .then(res => {
-            console.log(res)
-            this.props.getAllBook()
-        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.props.getAllBook()
+            })
     }
 
     render() {
@@ -37,7 +37,7 @@ export class Books extends Component {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>id</th>
+                                    {/* <th>id</th> */}
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>All Users Count</th>
@@ -49,11 +49,11 @@ export class Books extends Component {
                                     this.props.books.length > 0 &&
                                     this.props.books.map(book => {
                                         return <tr key={book._id}>
-                                            <td>{book._id}</td>
+                                            {/* <td>{book._id}</td> */}
                                             <td>{book.title}</td>
                                             <td>{book.author}</td>
                                             <td>{book.allusers.length}</td>
-                                            <td><button className="btn btn-danger" onClick = {() => this.deleteBook(book._id)}>Delete</button></td>
+                                            <td><button className="btn btn-danger" onClick={() => this.deleteBook(book._id)}>Delete</button></td>
                                         </tr>
                                     })
                                 }
@@ -61,17 +61,7 @@ export class Books extends Component {
                         </table>
                     </div>
                     <div className="card-footer">
-                        <div className="btn-toolbar">
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.getAllBook}>Refresh All Books</button>
-                            </div>
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.showBooks}>Console.Log All Books</button>
-                            </div>
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.deleteAllBooks}>Delete All Books</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
         } else {
@@ -82,11 +72,21 @@ export class Books extends Component {
             <div className="card">
                 <div className="card-header">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-4">
                             <h4>Books</h4>
                         </div>
-                        <div className="col-6 d-flex justify-content-end">
-                            <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
+                        <div className="col-8 d-flex justify-content-end">
+                            <div className="btn-toolbar">
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-info" onClick={this.props.getAllBook}>Refresh</button>
+                                </div>
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-info" onClick={this.props.deleteAllBooks}>Delete All</button>
+                                </div>
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

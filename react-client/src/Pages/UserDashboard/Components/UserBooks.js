@@ -20,12 +20,15 @@ export class UserBooks extends Component {
     }
 
     render() {
-        let body;
-
-        // MARK: Toggles when the expand button is clicked. True shows the users library,
-        // false hides the library
-        if (this.state.toggle) {
-            body =
+        return (
+            <div className="card bg-light">
+                <div className="card-header">
+                    <div className="row">
+                        <div className="col-6 d-flex justify-content-start">
+                            <h4>User Books</h4>
+                        </div>
+                    </div>
+                </div>
                 <div className="card-body">
                     <div className="row">
                         {
@@ -42,23 +45,6 @@ export class UserBooks extends Component {
                         }
                     </div>
                 </div>
-        } else {
-            body = <div></div>
-        }
-
-        return (
-            <div className="card bg-light">
-                <div className="card-header">
-                    <div className="row">
-                        <div className="col-6 d-flex justify-content-start">
-                            <h4>User Books</h4>
-                        </div>
-                        <div className="col-6 d-flex justify-content-end">
-                            <button className="btn btn-outline-secondary" onClick={() => this.switchToggle()}>Expand</button>
-                        </div>
-                    </div>
-                </div>
-                {body}
             </div>
         )
     }

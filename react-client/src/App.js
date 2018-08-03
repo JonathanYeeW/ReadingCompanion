@@ -47,6 +47,7 @@ class App extends Component {
   render() {
     return (
       <div id="app-wrapper">
+        {/* <Dashboard /> */}
         <Navbar
           navigationSwitch={this.navigationSwitch}
         />

@@ -41,7 +41,7 @@ export class Post extends Component {
                 <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
-                                <p>POST: {this.props.post.username}</p>
+                                <p> {this.props.post.title}</p>
                             </div>
                             <div className="col-6 d-flex justify-content-end">
                                 <button className="btn btn-outline-secondary" onClick={() => this.expand()}>Expand</button>

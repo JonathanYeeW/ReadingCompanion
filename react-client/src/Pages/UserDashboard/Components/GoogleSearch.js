@@ -185,7 +185,7 @@ export class GoogleSearch extends Component {
         }
 
         return (
-            <div className="card">
+            <div className="card dashboard-width-fill">
                 <div className="card-header">
                     <h4>Google Search</h4>
                 </div>

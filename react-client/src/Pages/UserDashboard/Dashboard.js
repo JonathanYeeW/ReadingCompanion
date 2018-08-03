@@ -9,6 +9,7 @@ import { Discover } from './Components/Discover';
 import { CreateBook } from './Components/CreateBook';
 import { GoogleSearch } from './Components/GoogleSearch';
 import { Blog } from './Components/Blog';
+import { Newsfeed } from '../Newsfeed';
 
 export class Dashboard extends Component {
     constructor(props) {
@@ -19,8 +20,10 @@ export class Dashboard extends Component {
             newBook: undefined,
             firstname: "",
             lastname: "",
-            createBook: false,
-            discover: true,
+            explore: true,
+            library: false,
+            reviews: false,
+            friends: false,
         }
         this.fetchUserData()
         this.fetchUserBooks()
@@ -131,79 +134,112 @@ export class Dashboard extends Component {
             })
     }
 
+    mainNavigation = (pass) => {
+        console.log(pass)
+        if (pass === 0) {
+            // 0: Discover
+            this.setState({
+                explore: true,
+                library: false,
+                reviews: false,
+                friends: false,
+            })
+        } else if (pass === 1) {
+            // 1: Library
+            this.setState({
+                explore: false,
+                library: true,
+                reviews: false,
+                friends: false,
+            })
+        } else if (pass === 2) {
+            // 2: Reviews
+            this.setState({
+                explore: false,
+                library: false,
+                reviews: true,
+                friends: false,
+            })
+        } else if (pass === 3) {
+            // 3: Friends
+            this.setState({
+                explore: false,
+                library: false,
+                reviews: false,
+                friends: true,
+            })
+        }
+    }
+
     render() {
+        let exploreButton;
+        let libraryButton;
+        let reviewsButton;
+        let friendsButton;
+        let body;
+
+        if (this.state.explore) {
+            exploreButton = <button className="btn btn-light" onClick={() => this.mainNavigation(0)}>Explore</button>
+            body =
+                <Explore
+                    discoverBook={this.discoverBook}
+                    addBook={this.addBookFromDiscover}
+                    newBook={this.state.newBook}
+                    appstate={this.state}
+                    createBook={this.createBook}
+                    appstate={this.state}
+                />
+        } else {
+            exploreButton = <button className="btn btn-outline-light" onClick={() => this.mainNavigation(0)}>Explore</button>
+        }
+
+        if (this.state.library) {
+            libraryButton = <button className="btn btn-light" onClick={() => this.mainNavigation(1)}>My Library</button>
+            body = 
+            <Library 
+                books={this.state.books}
+                removeBook={this.removeBook}
+            />
+        } else {
+            libraryButton = <button className="btn btn-outline-light" onClick={() => this.mainNavigation(1)}>My Library</button>
+        }
+
+        if (this.state.reviews) {
+            reviewsButton = <button className="btn btn-light" onClick={() => this.mainNavigation(2)}>My Reviews</button>
+            body = <Reviews />
+        } else {
+            reviewsButton = <button className="btn btn-outline-light" onClick={() => this.mainNavigation(2)}>My Reviews</button>
+        }
+
+        if (this.state.friends) {
+            friendsButton = <button className="btn btn-light" onClick={() => this.mainNavigation(3)}>Friends</button>
+            body = <Friends />
+        } else {
+            friendsButton = <button className="btn btn-outline-light" onClick={() => this.mainNavigation(3)}>Friends</button>
+        }
+
         return (
-            <div id="dashboard-container" className="container">
-                <div className="row pb-4">
-                    <div className="col-6">
-                        <div className="card bg-dark dashboard-width-fill dashboard-height-fill">
-                            <div className="card-body dashboard-height-fill">
-                                <UserInfo
-                                    appstate={this.state}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-6">
-                        <div className="card bg-dark dashboard-width-fill dashboard-height-fill">
-                            <div className="card-body dashboard-height-fill">
-                                <Spotlight />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row mb-4">
-                    <div className="col-12">
-                        <div className="card bg-dark dashboard-width-fill">
-                            <div className="card-body ">
-                                <div className="row">
-                                    <div className="col-4">
-                                        <CreateBook
-                                            appstate={this.state}
-                                            createBook={this.createBook}
-                                        />
-                                    </div>
-                                    <div className="col-4">
-                                        <Discover
-                                            discoverBook={this.discoverBook}
-                                            addBook={this.addBookFromDiscover}
-                                            newBook={this.state.newBook}
-                                            appstate={this.state}
-                                            createBook={this.createBook}
-                                        />
-                                    </div>
-                                    <div className="col-4">
-                                        <GoogleSearch
-                                            createBook={this.createBook}
-                                        />
-                                    </div>
+            <div id="dashboard-container" className="p-5">
+                <div id="dashboard-main" className="dashboard-width-fill row">
+                    <div className="card bg-dark dashboard-width-fill">
+                        <div className="card-body">
+                            <div className="btn-toolbar">
+                                <div className="btn-group mr-2">
+                                    {exploreButton}
+                                </div>
+                                <div className="btn-group mr-2">
+                                    {libraryButton}
+                                </div>
+                                <div className="btn-group mr-2">
+                                    {reviewsButton}
+                                </div>
+                                <div className="btn-group mr-2">
+                                    {friendsButton}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="row mb-4">
-                    <div className="col-12">
-                        <div className="card bg-dark dashboard-width-fill">
-                            <div className="card-body">
-                                <UserBooks
-                                    books={this.state.books}
-                                    deleteBook={this.deleteBook}
-                                    removeBook={this.removeBook}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row mb-4">
-                    <div className="col-12">
-                        <div className="card bg-dark dashboard-width-fill">
-                            <div className="card-body">
-                                <Blog 
-                                    userid={this.state.userid}
-                                    username={this.state.firstname + " " + this.state.lastname}
-                                />
-                            </div>
+                        <div className="card-body">
+                            {body}
                         </div>
                     </div>
                 </div>
@@ -213,3 +249,68 @@ export class Dashboard extends Component {
 }//End Dashboard
 
 export default Dashboard;
+
+export class Explore extends Component {
+    render() {
+        return (
+            <div className="row">
+                <div className="col-4">
+                    <div className="mb-4">
+                        <Discover
+                            discoverBook={this.props.discoverBook}
+                            addBook={this.props.addBook}
+                            newBook={this.props.appstate.newBook}
+                            appstate={this.props.appstate}
+                            createBook={this.props.createBook}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <GoogleSearch
+                            createBook={this.props.createBook}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <CreateBook
+                            appstate={this.props.appstate}
+                            createBook={this.props.createBook}
+                        />
+                    </div>
+                </div>
+                <div className="col-8">
+                    <div className="dashboard-height-fill">
+                        <Newsfeed />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class Library extends Component {
+    render() {
+        return (
+            <div>
+                <UserBooks 
+                books = {this.props.books}
+                removeBook = {this.props.removeBook}
+                />
+            </div>
+        )
+    }
+}
+
+export class Reviews extends Component {
+    render() {
+        return (
+            <h1>Reviews</h1>
+        )
+    }
+}
+
+export class Friends extends Component {
+    render() {
+        return (
+            <h1>Friends</h1>
+        )
+    }
+}

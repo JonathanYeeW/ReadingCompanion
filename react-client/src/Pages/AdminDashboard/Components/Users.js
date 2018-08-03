@@ -38,7 +38,7 @@ export class Users extends Component {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>id</th>
+                                    {/* <th>id</th> */}
                                     <th>Email</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -51,7 +51,7 @@ export class Users extends Component {
                                     this.props.users.length > 0 &&
                                     this.props.users.map(user => {
                                         return <tr key={user._id}>
-                                            <td>{user._id}</td>
+                                            {/* <td>{user._id}</td> */}
                                             <td>{user.email}</td>
                                             <td>{user.firstname}</td>
                                             <td>{user.lastname}</td>
@@ -69,19 +69,6 @@ export class Users extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <div className="card-footer">
-                        <div className="btn-toolbar">
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.getAllUsers}>Refresh All Users</button>
-                            </div>
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.showUsers}>Console.Log All Users</button>
-                            </div>
-                            <div className="btn-group mr-2">
-                                <button className="btn btn-info" onClick={this.props.deleteAllUsers}>Delete All Users</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
         } else {
             body = undefined
@@ -91,11 +78,21 @@ export class Users extends Component {
             <div className="card">
                 <div className="card-header">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-4">
                             <h4>Users</h4>
                         </div>
-                        <div className="col-6 d-flex justify-content-end">
-                            <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
+                        <div className="col-8 d-flex justify-content-end">
+                            <div className="btn-toolbar">
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-info" onClick={this.props.getAllUsers}>Refresh</button>
+                                </div>
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-info" onClick={this.props.deleteAllUsers}>Delete All</button>
+                                </div>
+                                <div className="btn-group mr-2">
+                                    <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

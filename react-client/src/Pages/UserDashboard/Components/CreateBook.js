@@ -37,7 +37,7 @@ export class CreateBook extends Component {
         
         
         return (
-            <div className="card">
+            <div className="card dashboard-width-fill">
                 <div className="card-header">
                     <h4>Create Book</h4>
                 </div>

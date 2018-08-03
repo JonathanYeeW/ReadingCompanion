@@ -36,11 +36,16 @@
   min-height: 200px;
 }
 
+#dashboard-main {
+  min-height: 1100px;
+}
+
 /* Newsfeed.js */
 
 #newsfeed-wrapper{
   /* background: red; */
-  max-height: 500px;
+  max-height: 840px;
+  height: 100%;
   width: 100%;
   overflow: scroll;
   padding: 2%;

@@ -19,6 +19,7 @@ export class Newsfeed extends Component {
             fetch('/posts/')
                 .then(res => res.json())
                 .then(res => {
+                    console.log(res.posts)
                     this.setState({
                         posts: res.posts
                     })
@@ -30,9 +31,9 @@ export class Newsfeed extends Component {
 
     render() {
         return (
-            <div id="newsfeed-wrapper" className="card">
+            <div id="newsfeed-wrapper" className="card dashboard-height-fill">
                 {/* <button className="btn" onClick={() => this.getPostsForUser()}> get Posts For User FUnction</button> */}
-                <div className="card-body bg-white">
+                <div className="card-body bg-white dashboard-height-fill">
                     {
                         this.state.posts.map(post => {
                             return (

@@ -9,9 +9,9 @@ export class Data extends Component {
             <div id="data-wrapper" className="card bg-white">
                 <div className="card-header"><h4>Data Feed</h4></div>
                 <div className="card-body">
-                    <p className="card-text">Total Users</p>
-                    <p className="card-text">Total Books</p>
-                    <p className="card-text">Total Posts</p>
+                    <p className="card-text">Total Users: {this.props.totalUsers}</p>
+                    <p className="card-text">Total Books: {this.props.totalBooks}</p>
+                    <p className="card-text">Total Posts: {this.props.totalPosts}</p>
                     <p className="card-text">Total Page Views</p>
                 </div>
             </div>
