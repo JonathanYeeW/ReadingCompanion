@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CreateBook } from './CreateBook';
 
 // Props (from UserDashboard.js):
 // userid
@@ -43,10 +44,16 @@ export class UserBooks extends Component {
         if (this.state.books.length !== 0) {
             body =
                 <div className="row">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3 library-card">
+                        <CreateBook
+                            userid={this.props.userid}
+                            fetchUserBooks = {this.fetchUserBooks}
+                        />
+                    </div>
                     {
                         this.state.books.map(book => {
                             return (
-                                <div className="col-4 pb-3">
+                                <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
                                     <Book
                                         book={book}
                                     />
@@ -58,7 +65,15 @@ export class UserBooks extends Component {
         } else {
             body =
                 <div>
-                    <h5>You have no books! Go Add Some!</h5>
+                    <div className="col-4">
+                        <CreateBook
+                            userid={this.props.userid}
+                            fetchUserBooks = {this.fetchUserBooks}
+                        />
+                    </div>
+                    <div className="col-8">
+                        <h5>You have no books! Go Add Some!</h5>
+                    </div>
                 </div>
         }
 
@@ -73,9 +88,9 @@ export class UserBooks extends Component {
                         </div>
                     </div>
                     <div className="card-body dashboard-width-fill">
-                        <div className="row">
-                            {body}
-                        </div>
+                        {/* <div className="row"> */}
+                        {body}
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
@@ -88,14 +103,12 @@ export default UserBooks;
 export class Book extends Component {
     render() {
         return (
-            <div>
-                <div className="card bg-info border-dark text-white">
-                    <div className="card-header">
-                        <p className="card-text">{this.props.book.title}</p>
-                    </div>
-                    <div className="card-body">
-                        <p className="card-text text-white">{this.props.book.author}</p>
-                    </div>
+            <div className="card bg-info border-dark text-white library-card">
+                <div className="card-header">
+                    <p className="card-text">{this.props.book.title}</p>
+                </div>
+                <div className="card-body">
+                    <p className="card-text text-white">{this.props.book.author}</p>
                 </div>
             </div>
         )
