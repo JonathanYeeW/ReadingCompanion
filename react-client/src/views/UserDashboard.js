@@ -97,9 +97,10 @@ export class User extends Component {
                             />
                         </div>
                         <div className="mb-3">
-                            <GoogleSearch
+                            <h4>Google Search Goes Here. I don't want to do it right now</h4>
+                            {/* <GoogleSearch
                                 userid={this.state.userid}
-                            />
+                            /> */}
                         </div>
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">

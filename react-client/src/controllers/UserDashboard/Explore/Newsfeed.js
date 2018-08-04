@@ -34,7 +34,7 @@ export class Newsfeed extends Component {
 
                 <h1>Newfeed will be here</h1>
 
-                {/* <div className="card-body bg-white dashboard-height-fill">
+                <div className="card-body bg-white dashboard-height-fill">
                     {
                         this.state.posts.map(post => {
                             return (
@@ -46,10 +46,68 @@ export class Newsfeed extends Component {
                             )
                         })
                     }
-                </div> */}
+                </div>
             </div>
         )
     }
 }
 
 export default Newsfeed;
+
+export class Post extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            expansion: false
+        }
+    }
+
+    expand = () => {
+        this.setState({
+            expansion: !this.state.expansion
+        })
+    }
+
+    render() {
+        let body;
+        if (this.state.expansion) {
+            body =
+                <div>
+                    <div className="card-header">
+                        <div className="row">
+                            <div className="col-6 d-flex justify-content-start">
+                                <p>{this.props.post.title}</p>
+                            </div>
+                            <div className="col-6 d-flex justify-content-end">
+                                <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <p className="card-text text-muted">{this.props.post.username}</p>
+                        <p className="card-text text-muted">{this.props.post.created_At}</p>
+                        <p className="card-text">{this.props.post.post}</p>
+                    </div>
+                </div>
+        } else {
+            body =
+                <div>
+                <div className="card-header">
+                        <div className="row">
+                            <div className="col-6 d-flex justify-content-start">
+                                <p> {this.props.post.title}</p>
+                            </div>
+                            <div className="col-6 d-flex justify-content-end">
+                                <button className="btn btn-outline-secondary" onClick={() => this.expand()}>Expand</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+        return (
+            <div className="card bg-info">
+                {body}
+            </div>
+        )
+    }
+}

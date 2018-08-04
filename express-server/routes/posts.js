@@ -9,6 +9,7 @@ router.get('/', function (request, response) {
         if (err) {
             response.json({ message: "There was an error getting all posts", error: true })
         } else {
+            posts.reverse()
             response.json({ message: "success", error: false, posts: posts })
         }
     })
