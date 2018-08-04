@@ -22,12 +22,12 @@ export class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userid: undefined,
-            // userid: this.props.userid,
+            userid: this.props.userid,
             explore: true,
             library: false,
             reviews: false,
         }
+        this.fetchUserData()
     }
 
     // function used by the buttons in the navigation bar
@@ -52,6 +52,24 @@ export class User extends Component {
                 reviews: true,
             })
         }
+    }
+
+    fetchUserData = () => {
+        const temp = { id: this.props.userid }
+        fetch('/users/getuserinfo', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(temp)
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    firstname: res.firstname,
+                    lastname: res.lastname,
+                })
+            })
     }
 
     render() {
@@ -108,6 +126,7 @@ export class User extends Component {
             <div>
                 <Navbar
                     toggleNavigation={this.toggleNavigation}
+                    username = {this.state.firstname + " " + this.state.lastname}
                 />
                 {body}
             </div>// End

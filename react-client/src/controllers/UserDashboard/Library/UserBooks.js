@@ -1,20 +1,69 @@
 import React, { Component } from 'react';
 
+// Props (from UserDashboard.js):
+// userid
+
+// Todos
+// - create a fetch all user books function that fires
+//   in the contructor
+// - create a remove book function that i add to the book
+
 export class UserBooks extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            toggle: false,
-        }
+        this.setState({
+            books: [1,2,3,4],
+        })
+        console.log(this.state)
+        // fetchAllUserBooks
     }
 
-    switchToggle = () => {
-        this.setState({
-            toggle: !this.state.toggle
+    state = {
+        books: []
+    }
+
+    fetchUserBooks = () => {
+        const temp = { userid: this.props.userid }
+        fetch('/books/usercollection', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(temp)
         })
+            .then(res => res.json())
+            .then(res => this.setState({
+                books: res["books"]
+            })
+            )
     }
 
     render() {
+        let body;
+        console.log(this.state)
+        console.log(this.state.books.length)
+        if (this.state.books.length !== 0) {
+            body =
+                <div>
+                    {/* {
+                        this.state.books.map(book => {
+                            return (
+                                <div className="col-4 pb-4">
+                                    <Book
+                                        book={book}
+                                    />
+                                </div>
+                            )
+                        })
+                    } */}
+                </div>
+        } else {
+            body = 
+            <div>
+                <h5>You have no books! Go get some!</h5>
+            </div>
+        }
+
         return (
             <div>
                 <div className="card bg-light">
@@ -26,20 +75,9 @@ export class UserBooks extends Component {
                         </div>
                     </div>
                     <div className="card-body">
-                        {/* <div className="row">
-                            {
-                                this.props.books.map(book => {
-                                    return (
-                                        <div className="col-4 pb-4">
-                                            <Book
-                                                book={book}
-                                                removeBook={this.props.removeBook}
-                                            />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div> */}
+                        <div className="row">
+                            {body}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,7 +97,6 @@ export class Book extends Component {
                     </div>
                     <div className="card-body">
                         <p className="card-text text-white">{this.props.book.author}</p>
-                        <button className="btn btn-outline-light" onClick={() => this.props.removeBook(this.props.book._id)}>Remove</button>
                     </div>
                 </div>
             </div>

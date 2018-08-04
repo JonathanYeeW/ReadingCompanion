@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { User } from './views/UserDashboard';
+import { Login } from './views/Login';
 
 class App extends Component {
   state = {
@@ -41,9 +42,30 @@ class App extends Component {
   }
 
   render() {
+    let body;
+
+    if (this.state.admin) {
+      body = <h1>Admin Breh</h1>
+    }
+
+    if (this.state.login) {
+      body = 
+      <Login 
+        login = {this.login}
+      />
+    }
+
+    if (this.state.dashboard) {
+      body =
+        <User
+          userid={this.state.userid}
+        />
+    }
+
+
     return (
       <div id="app-wrapper">
-        <User />
+        {body}
       </div>
     )
   }

@@ -4,7 +4,8 @@
 import React, { Component } from 'react';
 
 // Props (from UserDashboard.js):
-// toggleNavigation()
+// - toggleNavigation()
+// - username
 
 export class Navbar extends Component {
     render() {
@@ -12,7 +13,7 @@ export class Navbar extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="row dashboard-width-fill">
                     <div className="col-4 d-flex justify-content-start">
-                        <a className="navbar-brand" href="#">User Name</a>
+                        <a className="navbar-brand" href="#">{this.props.username}</a>
                     </div>
                     <div className="col-4 d-flex justify-content-center">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
