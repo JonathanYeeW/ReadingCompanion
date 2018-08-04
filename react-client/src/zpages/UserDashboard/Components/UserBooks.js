@@ -21,28 +21,36 @@ export class UserBooks extends Component {
 
     render() {
         return (
-            <div className="card bg-light">
-                <div className="card-header">
-                    <div className="row">
-                        <div className="col-6 d-flex justify-content-start">
-                            <h4>User Books</h4>
-                        </div>
+            <div>
+                <div className="card bg-light">
+                    <div className="card-header">
+                        <h4>Top Shelf</h4>
                     </div>
                 </div>
-                <div className="card-body">
-                    <div className="row">
-                        {
-                            this.props.books.map(book => {
-                                return (
-                                    <div className="col-4 pb-4">
-                                        <Book
-                                            book={book}
-                                            removeBook={this.props.removeBook}
-                                        />
-                                    </div>
-                                )
-                            })
-                        }
+
+                <div className="card bg-light">
+                    <div className="card-header">
+                        <div className="row">
+                            <div className="col-6 d-flex justify-content-start">
+                                <h4>User Books</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <div className="row">
+                            {
+                                this.props.books.map(book => {
+                                    return (
+                                        <div className="col-4 pb-4">
+                                            <Book
+                                                book={book}
+                                                removeBook={this.props.removeBook}
+                                            />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

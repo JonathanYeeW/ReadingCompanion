@@ -1,11 +1,7 @@
 //PORT=3001 nodemon bin/www
 
 import React, { Component } from 'react';
-import './App.css';
-import { Navbar } from './Pages/Navbar';
-import { Admin } from './Pages/AdminDashboard/Admin';
-import { Dashboard } from './Pages/UserDashboard/Dashboard';
-import { Login } from './Pages/Login';
+import { User } from './views/UserDashboard';
 
 class App extends Component {
   state = {
@@ -47,17 +43,7 @@ class App extends Component {
   render() {
     return (
       <div id="app-wrapper">
-        {/* <Dashboard /> */}
-        <Navbar
-          navigationSwitch={this.navigationSwitch}
-        />
-        {this.state.admin && <Admin />}
-        {this.state.login && <Login
-          login={this.login}
-        />}
-        {this.state.dashboard && <Dashboard
-          userid={this.state.userid}
-        />}
+        <User />
       </div>
     )
   }

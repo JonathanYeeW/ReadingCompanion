@@ -206,7 +206,11 @@ export class Dashboard extends Component {
 
         if (this.state.reviews) {
             reviewsButton = <button className="btn btn-light" onClick={() => this.mainNavigation(2)}>My Reviews</button>
-            body = <Reviews />
+            body = 
+            <Reviews 
+                userid = {this.state.userid}
+                username = {this.state.firstname + " " + this.state.lastname}
+            />
         } else {
             reviewsButton = <button className="btn btn-outline-light" onClick={() => this.mainNavigation(2)}>My Reviews</button>
         }
@@ -233,9 +237,9 @@ export class Dashboard extends Component {
                                 <div className="btn-group mr-2">
                                     {reviewsButton}
                                 </div>
-                                <div className="btn-group mr-2">
+                                {/* <div className="btn-group mr-2">
                                     {friendsButton}
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="card-body">
@@ -302,7 +306,10 @@ export class Library extends Component {
 export class Reviews extends Component {
     render() {
         return (
-            <h1>Reviews</h1>
+            <Blog 
+            userid = {this.props.userid}
+            username = {this.props.username}
+            />
         )
     }
 }

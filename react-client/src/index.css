@@ -1,9 +1,22 @@
 
+/* USERDASHBOARD */
+
+#userdashboard-newsfeed-container {
+  max-height: 1200px;
+  overflow: scroll;
+}
+
+
+
+
+
+
+
 /* App.js */
 
 #app-wrapper {
-  background-color:#657287;
-  min-height: 1000px;
+  /* background-color:#657287; */
+  /* min-height: 1000px;a */
 }
 
 /* Navbar.js */
