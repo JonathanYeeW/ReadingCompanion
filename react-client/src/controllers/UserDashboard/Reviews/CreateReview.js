@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 export class CreateReview extends Component {
     createBlogPost = (event) => {
         event.preventDefault()
-        const data = {title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value}
+        const data = { title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value }
         fetch('/posts/create', {
             method: "POST",
             headers: {
@@ -18,8 +18,10 @@ export class CreateReview extends Component {
         })
             .then(res => res.json())
             .then(res => console.log(res))
+        event.target.title.value = ""
+        event.target.post.value = ""
     }
-    
+
     render() {
         return (
             <div className="card-body bg-dark">
@@ -28,12 +30,12 @@ export class CreateReview extends Component {
                         <h4>Blog</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit = {(event)=>this.createBlogPost(event)}>
+                        <form onSubmit={(event) => this.createBlogPost(event)}>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="Title" name="title"/>
+                                <input type="text" className="form-control" placeholder="Title" name="title" />
                             </div>
                             <div className="form-group">
-                            <textarea class="form-control" placeholder="Blog Post" rows="10" name="post"></textarea>
+                                <textarea class="form-control" placeholder="Blog Post" rows="10" name="post"></textarea>
                             </div>
                             <input type="submit" className="btn btn-outline-info" />
                         </form>

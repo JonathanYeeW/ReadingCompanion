@@ -58,7 +58,7 @@ export class UserBooks extends Component {
         } else {
             body =
                 <div>
-                    <h5>You have no books! Go get some!</h5>
+                    <h5>You have no books! Go Add Some!</h5>
                 </div>
         }
 
@@ -74,7 +74,6 @@ export class UserBooks extends Component {
                     </div>
                     <div className="card-body dashboard-width-fill">
                         <div className="row">
-
                             {body}
                         </div>
                     </div>
