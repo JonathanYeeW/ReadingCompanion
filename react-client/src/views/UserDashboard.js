@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { Navbar } from '../controllers/UserDashboard/Navbar'
 import { Discover } from '../controllers/UserDashboard/Explore/Discover'
 import { GoogleSearch } from '../controllers/UserDashboard/Explore/GoogleSearch'
-import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed'
+import { Reviews } from '../controllers/UserDashboard/Reviews/Reviews'
 import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
 import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 
@@ -106,7 +106,7 @@ export class User extends Component {
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
                         <div id="userdashboard-newsfeed-container" className="mt-3">
-                            <Newsfeed />
+                            {/* <Newsfeed /> */}
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@ export class User extends Component {
                     </div>
                     <div className="col-7">
                         <h3>My Book Reviews</h3>
-                        <Newsfeed 
+                        <Reviews 
                             userid = {this.props.userid}
                         />
                     </div>

@@ -48,15 +48,4 @@ router.delete('/deleteAll', function(request, response){
     })   
 })
 
-// // DELETE ALL POSTS
-// router.delete('/deleteAll', function (request, response) {
-//     Post.remove({}, function (err) {
-//         if (err) {
-//             response.json({ message: "There was an error deleting all posts", error: true })
-//         } else {
-//             response.json({ message: "success", error: false })
-//         }
-//     })
-// })
-
 module.exports = router;

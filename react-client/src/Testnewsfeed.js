@@ -41,24 +41,6 @@ export class Testnewsfeed extends Component {
             .then(res => console.log(res))
     }
 
-    // fetchUserData = () => {
-    //     const temp = { id: this.props.userid }
-    //     fetch('/users/getuserinfo', {
-    //         method: "POST",
-    //         headers: {
-    //             "content-type": "application/json"
-    //         },
-    //         body: JSON.stringify(temp)
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             this.setState({
-    //                 firstname: res.firstname,
-    //                 lastname: res.lastname,
-    //             })
-    //         })
-    // }
-
     render() {
         return (
             <div className="container">
