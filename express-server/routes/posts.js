@@ -9,6 +9,22 @@ router.get('/', function (request, response) {
         if (err) {
             response.json({ message: "There was an error getting all posts", error: true })
         } else {
+            //Reverse the posts so they're in new -> old order
+            posts.reverse()
+            response.json({ message: "success", error: false, posts: posts })
+        }
+    })
+})
+
+// GET ALL POSTS FOR USER ID
+router.post('/userid', function (request, response) {
+    console.log(request.body.userid)
+    Post.find({ userid: request.body.userid }, function (err, posts) {
+        if (err) {
+            response.json({ message: "There was an error getting all posts for this user", error: true })
+        } else {
+            //Reverse the posts so they're in new -> old order
+            console.log("Your query was successful, found this", posts)
             posts.reverse()
             response.json({ message: "success", error: false, posts: posts })
         }

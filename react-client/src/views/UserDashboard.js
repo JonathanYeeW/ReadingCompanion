@@ -126,10 +126,16 @@ export class User extends Component {
             body =
                 <div className="row p-3">
                     <div className="col-5">
-                        <CreateReview />
+                        <CreateReview 
+                        userid = {this.props.userid}
+                        username = {this.state.firstname + " " + this.state.lastname}
+                        />
                     </div>
                     <div className="col-7">
-                        <Newsfeed />
+                        <h3>My Book Reviews</h3>
+                        <Newsfeed 
+                            userid = {this.props.userid}
+                        />
                     </div>
                 </div>
         }

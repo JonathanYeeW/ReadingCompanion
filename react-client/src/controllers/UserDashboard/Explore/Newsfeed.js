@@ -1,20 +1,23 @@
 // MARK: All Componenets are rendered through the App.js
 // Look there when starting to learn this application
 
+// Props (for Reviews Tab)
+// - userid
+
 import React, { Component } from 'react';
 
 export class Newsfeed extends Component {
     constructor(props) {
         super(props);
+        console.log("## Newsfeed ## props:", this.props)
         this.state = {
             posts: []
         }
-        this.getPostsForUser()
+        this.getPostsForUser(this.props.userid)
     }
 
-    getPostsForUser = (event) => {
-        if (event === undefined) {
-            console.log("get all the posts")
+    getPostsForUser = (data) => {
+        if (data === undefined) {
             fetch('/posts/')
                 .then(res => res.json())
                 .then(res => {
@@ -24,16 +27,26 @@ export class Newsfeed extends Component {
                     })
                 })
         } else {
-            console.log("I'm supposed to get specific posts")
+            const temp = { userid: data }
+            fetch('/posts/userid', {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(temp)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        posts: res.posts
+                    })
+                })
         }
     }
 
     render() {
         return (
             <div id="newsfeed-wrapper" className="card dashboard-height-fill">
-
-                <h1>Newfeed will be here</h1>
-
                 <div className="card-body bg-white dashboard-height-fill">
                     {
                         this.state.posts.map(post => {
@@ -76,7 +89,7 @@ export class Post extends Component {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
-                                <p>{this.props.post.title}</p>
+                                <p>title: {this.props.post.title}</p>
                             </div>
                             <div className="col-6 d-flex justify-content-end">
                                 <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
@@ -84,15 +97,16 @@ export class Post extends Component {
                         </div>
                     </div>
                     <div className="card-body">
-                        <p className="card-text text-muted">{this.props.post.username}</p>
-                        <p className="card-text text-muted">{this.props.post.created_At}</p>
-                        <p className="card-text">{this.props.post.post}</p>
+                        <p className="card-text text-muted">userid: {this.props.post.userid}</p>
+                        <p className="card-text text-muted">username: {this.props.post.username}</p>
+                        <p className="card-text text-muted">created_At: {this.props.post.created_At}</p>
+                        <p className="card-text">post: {this.props.post.post}</p>
                     </div>
                 </div>
         } else {
             body =
                 <div>
-                <div className="card-header">
+                    <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
                                 <p> {this.props.post.title}</p>

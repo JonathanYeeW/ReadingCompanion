@@ -8,6 +8,7 @@ import { CreateBook } from './CreateBook';
 // - create a fetch all user books function that fires
 //   in the contructor
 // - create a remove book function that i add to the book
+// - update the library cards so that you can CRUD them or add ratings or reviews.
 
 export class UserBooks extends Component {
     constructor(props) {
@@ -88,9 +89,7 @@ export class UserBooks extends Component {
                         </div>
                     </div>
                     <div className="card-body dashboard-width-fill">
-                        {/* <div className="row"> */}
                         {body}
-                        {/* </div> */}
                     </div>
                 </div>
             </div>

@@ -3,9 +3,16 @@
 
 import React, { Component } from 'react';
 
-//THIS IS IMPORTED TO DASHBOARD
+// Props:
+// - userid
+// - username
 
 export class CreateReview extends Component {
+    constructor(props){
+        super(props);
+        console.log("## CreateReview ## props:", this.props)
+    }
+    
     createBlogPost = (event) => {
         event.preventDefault()
         const data = { title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value }
