@@ -123,6 +123,7 @@ router.post('/discover', function (req, res) {
             res.json({ message: "There was an error discovering new books", error: true })
         } else {
             const newBook = books[Math.floor(Math.random() * books.length)]
+            console.log("sending over this book", newBook)
             res.json({ message: "success", error: false, newBook: newBook })
         }
     })

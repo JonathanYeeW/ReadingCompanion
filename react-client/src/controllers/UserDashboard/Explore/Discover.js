@@ -6,16 +6,19 @@ import React, { Component } from 'react';
 export class Discover extends Component {
     constructor(props) {
         super(props);
-        this.setState({
-            newbook: undefined,
-        })
+        console.log("## Discover.js ##, props:", this.props)
         this.discoverBook()
+    }
+
+    state = {
+        newBook: undefined,
     }
 
     // function queries the database with the userid
     // and returns all the books that's in the database
     // that this user doesn't have in their library
     discoverBook = () => {
+        console.log("## Discover.js ## discoverBook")
         fetch('/books/discover', {
             method: "POST",
             headers: {
@@ -24,9 +27,11 @@ export class Discover extends Component {
             body: JSON.stringify({ id: this.props.userid })
         })
             .then(res => res.json())
-            .then(res => this.setState({
-                newBook: res.newBook
-            }))
+            .then(res => {
+                this.setState({
+                    newBook: res.newBook
+                })
+            })
     }
 
     // function for when a user likes the book they 
@@ -34,26 +39,27 @@ export class Discover extends Component {
     // add it to their library. Needs the user id as 
     // well as the book id that it's adding.
     addBook = () => {
+        console.log("## Discover.js ## addBook")
         fetch('/books/add', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({ id: this.state.newBook._id, userid: this.prop.userid })
+            body: JSON.stringify({ id: this.state.newBook._id, userid: this.props.userid })
         })
             .then(res => res.json())
             .then(res => {
-                this.fetchUserBooks()
+                console.log(res)
                 this.discoverBook()
             })
     }
 
     render() {
         let body;
-        if (this.props.newBook) {
+        if (this.state.newBook) {
             body = <div>
-                <p>Title: {this.props.newBook.title}</p>
-                <p>Author: {this.props.newBook.author}</p>
+                <p>Title: {this.state.newBook.title}</p>
+                <p>Author: {this.state.newBook.author}</p>
                 <div className="btn-toolbar" role="toolbar">
                     <div className="btn-group mr-2" role="group">
                         <button className="btn btn-outline-info" onClick={() => this.addBook()}>Add</button>

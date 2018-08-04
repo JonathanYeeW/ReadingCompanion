@@ -18,6 +18,11 @@ import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 //   to Discover and GoogleSearch. When they add a book, i want that live updated.
 // - After adding a book i want it added to the newsfeed
 
+
+// Props (from App.js):
+// - userid
+// - navigationSwitch
+
 export class User extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +59,10 @@ export class User extends Component {
         }
     }
 
+    // After a user logs in, they're directed to the 
+    // userdashboard. On construction this function grabs 
+    // the userobject based on the prop.userid so i can 
+    // customize the dashboard with the user data
     fetchUserData = () => {
         const temp = { id: this.props.userid }
         fetch('/users/getuserinfo', {
@@ -127,6 +136,7 @@ export class User extends Component {
                 <Navbar
                     toggleNavigation={this.toggleNavigation}
                     username = {this.state.firstname + " " + this.state.lastname}
+                    navigationSwitch = {this.props.navigationSwitch}
                 />
                 {body}
             </div>// End

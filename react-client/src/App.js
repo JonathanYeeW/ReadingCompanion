@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   navigationSwitch = (value) => {
+    console.log("## App.js ## navigationSwitch")
     if (value === 0) {
       this.setState({
         admin: true,
@@ -35,6 +36,7 @@ class App extends Component {
   }
 
   login = (userid) => {
+    console.log("## App.js ## login")
     this.setState({
       userid: userid,
     })
@@ -49,16 +51,17 @@ class App extends Component {
     }
 
     if (this.state.login) {
-      body = 
-      <Login 
-        login = {this.login}
-      />
+      body =
+        <Login
+          login={this.login}
+        />
     }
 
     if (this.state.dashboard) {
       body =
         <User
           userid={this.state.userid}
+          navigationSwitch = {this.navigationSwitch}
         />
     }
 

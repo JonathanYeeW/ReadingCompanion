@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 // Props (from UserDashboard.js):
 // - toggleNavigation()
 // - username
+// - navigationSwitch
 
 export class Navbar extends Component {
     render() {
@@ -34,7 +35,7 @@ export class Navbar extends Component {
                         </div>
                     </div>
                     <div className="col-4 d-flex justify-content-end">
-                        <button className="btn"> Log Out </button>
+                        <button className="btn" onClick={() => this.props.navigationSwitch(1)}> Log Out </button>
                     </div>
                 </div>
             </nav>
