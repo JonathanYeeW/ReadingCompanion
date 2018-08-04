@@ -42,6 +42,19 @@ var PostSchema = new mongoose.Schema({
 })
 mongoose.model('Post', PostSchema)
 
+//NEWSFEED SCHEMA
+var NewsfeedSchema = new mongoose.Schema({
+  title: String,
+  by_userid: String,
+  by_username: String,
+  type: String,
+  type_id: String,
+  type_title: String,
+  created_at: Date,
+  updated_at: Date,
+})
+mongoose.model('Newsfeed', NewsfeedSchema)
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

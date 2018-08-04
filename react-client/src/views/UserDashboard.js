@@ -19,6 +19,7 @@ import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 // - Flagging Posts for Admin to monitor
 // - Like posts ability
 // - When a user creates a post, it doesn't update the page with the new post.
+// - On the backend, add required to the Schemas
 
 // Props (from App.js):
 // - userid
