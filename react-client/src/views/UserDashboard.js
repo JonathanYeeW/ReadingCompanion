@@ -114,8 +114,10 @@ export class User extends Component {
         if (this.state.library) {
             //LIBRARY
             body =
-                <div>
-                    <UserBooks />
+                <div className="p-3">
+                    <UserBooks
+                        userid={this.props.userid}
+                    />
                 </div>
         }
 
@@ -136,8 +138,8 @@ export class User extends Component {
             <div>
                 <Navbar
                     toggleNavigation={this.toggleNavigation}
-                    username = {this.state.firstname + " " + this.state.lastname}
-                    navigationSwitch = {this.props.navigationSwitch}
+                    username={this.state.firstname + " " + this.state.lastname}
+                    navigationSwitch={this.props.navigationSwitch}
                 />
                 {body}
             </div>// End

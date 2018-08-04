@@ -11,11 +11,8 @@ import React, { Component } from 'react';
 export class UserBooks extends Component {
     constructor(props) {
         super(props);
-        this.setState({
-            books: [1,2,3,4],
-        })
-        console.log(this.state)
-        // fetchAllUserBooks
+        console.log("## UserBooks.js ## props:", this.props)
+        this.fetchUserBooks()
     }
 
     state = {
@@ -23,45 +20,46 @@ export class UserBooks extends Component {
     }
 
     fetchUserBooks = () => {
-        const temp = { userid: this.props.userid }
+        console.log("## UserBooks.js ## fetchUserBooks")
         fetch('/books/usercollection', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(temp)
+            body: JSON.stringify({ userid: this.props.userid })
         })
             .then(res => res.json())
-            .then(res => this.setState({
-                books: res["books"]
-            })
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    books: res["books"]
+                })
+            }
             )
     }
 
     render() {
         let body;
-        console.log(this.state)
-        console.log(this.state.books.length)
         if (this.state.books.length !== 0) {
             body =
-                <div>
-                    {/* {
+                <div className="row">
+                    {
                         this.state.books.map(book => {
                             return (
-                                <div className="col-4 pb-4">
+                                <div className="col-4 pb-3">
                                     <Book
                                         book={book}
                                     />
                                 </div>
                             )
                         })
-                    } */}
+                    }
                 </div>
         } else {
-            body = 
-            <div>
-                <h5>You have no books! Go get some!</h5>
-            </div>
+            body =
+                <div>
+                    <h5>You have no books! Go get some!</h5>
+                </div>
         }
 
         return (
@@ -69,13 +67,14 @@ export class UserBooks extends Component {
                 <div className="card bg-light">
                     <div className="card-header">
                         <div className="row">
-                            <div className="col-6 d-flex justify-content-start">
+                            <div className="d-flex justify-content-start">
                                 <h4>User Books</h4>
                             </div>
                         </div>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body dashboard-width-fill">
                         <div className="row">
+
                             {body}
                         </div>
                     </div>
