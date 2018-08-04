@@ -17,6 +17,7 @@ import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 // - will need to pass a function that causes the overall page to refresh
 //   to Discover and GoogleSearch. When they add a book, i want that live updated.
 // - After adding a book i want it added to the newsfeed
+// - Validation at SignUp for if user already exists
 
 
 // Props (from App.js):
@@ -98,9 +99,9 @@ export class User extends Component {
                         </div>
                         <div className="mb-3">
                             <h4>Google Search Goes Here. I don't want to do it right now</h4>
-                            {/* <GoogleSearch
+                            <GoogleSearch
                                 userid={this.state.userid}
-                            /> */}
+                            />
                         </div>
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">

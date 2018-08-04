@@ -6,7 +6,7 @@ var counter = 0;
 //-update create book
 
 // Props (from UserDashboard.js):
-// userid
+// - userid
 
 export class GoogleSearch extends Component {
     state = {
@@ -53,7 +53,6 @@ export class GoogleSearch extends Component {
         let newBooks = []
         if (data.totalItems !== 0) {
             for (let i = 0; i < data.items.length; i++) {
-                // for(let i=0; i<1; i++){
                 let newBookObject = {}
                 this.createNewBookObject(newBookObject, data.items[i])
                 newBooks.push(newBookObject)
@@ -71,14 +70,20 @@ export class GoogleSearch extends Component {
         }
     }//End makeAPICall()
 
+
+    // this function is part of handling the data from the API call.
+    // what happens is after i grab the data from GoogleBooks, it
+    // comes back in this big chunk. But separating it into 
+    // managable chunks (bookobjects), i can then put them in an array 
+    // that i can use for data manipulation
     createNewBookObject = (bookObject, data) => {
         //Volume Info
         if (data.volumeInfo !== undefined) {
             if (data.volumeInfo.title !== undefined) {
                 bookObject["title"] = data.volumeInfo.title
             }
-            if (data.volumeInfo.author !== undefined) {
-                bookObject["author"] = data.volumeInfo.author
+            if (data.volumeInfo.authors !== undefined) {
+                bookObject["author"] = data.volumeInfo.authors
             }
             if (data.volumeInfo.publisher !== undefined) {
                 bookObject["publisher"] = data.volumeInfo.publisher
@@ -121,7 +126,7 @@ export class GoogleSearch extends Component {
             }
         }
 
-    }//End createNewBookObject()
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -138,6 +143,30 @@ export class GoogleSearch extends Component {
             this.makeAPICall(searchParams, searchTerms);
         }
     }//End handleSubmit()
+
+    // this function creates a book object from this data and adds
+    // it to the users library. I recieved the data from the button pressed 
+    // and the form.
+    createBook = () => {
+        let data = { title: this.state.books[counter].title, author: this.state.books[counter].author[0], userid: this.props.userid }
+        // MARK: What happens if there is no author?
+        fetch('/books/create', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    title: "",
+                    author: ""
+                })
+            })
+    }
+
 
     render() {
         let body;
@@ -169,10 +198,22 @@ export class GoogleSearch extends Component {
                     <div className="row mb-2">
                         <div className="btn-toolbar">
                             <div className="btn-group mr-2">
+
+
+
+
+
                                 <button className="btn btn-info" onClick={() => {
-                                    this.props.createBook({ title: this.state.books[counter].title, author: this.state.books[counter].author })
+                                    this.createBook()
                                     this.increaseCounter()
                                 }}>Add</button>
+
+
+
+
+
+
+
                             </div>
                             <div className="btn-group mr-2">
                                 <button className="btn btn-info" onClick={() => this.increaseCounter()}>Pass {counter + 1}/{this.state.books.length}</button>
