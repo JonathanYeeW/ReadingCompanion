@@ -48,7 +48,8 @@ export class UserBooks extends Component {
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3 library-card">
                         <CreateBook
                             userid={this.props.userid}
-                            fetchUserBooks = {this.fetchUserBooks}
+                            fetchUserBooks={this.fetchUserBooks}
+                            username={this.props.username}
                         />
                     </div>
                     {
@@ -69,7 +70,7 @@ export class UserBooks extends Component {
                     <div className="col-4">
                         <CreateBook
                             userid={this.props.userid}
-                            fetchUserBooks = {this.fetchUserBooks}
+                            fetchUserBooks={this.fetchUserBooks}
                         />
                     </div>
                     <div className="col-8">

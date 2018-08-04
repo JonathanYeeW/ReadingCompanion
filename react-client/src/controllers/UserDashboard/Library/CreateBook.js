@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Props
 // - userid
 // - fetchUserBooks | To reload parent component when i create a new book
+// - username | need to send it with new book for newsfeed
 
 export class CreateBook extends Component {
     constructor(props) {
@@ -28,7 +29,8 @@ export class CreateBook extends Component {
     }
 
     createBook = () => {
-        let data = { title: this.state.title, author: this.state.author, userid: this.props.userid }
+        let data = { title: this.state.title, author: this.state.author, userid: this.props.userid, username: this.props.username }
+        console.log(data, "is the book to make")
         fetch('/books/create', {
             method: "POST",
             headers: {

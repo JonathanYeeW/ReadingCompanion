@@ -197,22 +197,10 @@ export class GoogleSearch extends Component {
                     <div className="row mb-2">
                         <div className="btn-toolbar">
                             <div className="btn-group mr-2">
-
-
-
-
-
                                 <button className="btn btn-info" onClick={() => {
                                     this.createBook()
                                     this.increaseCounter()
                                 }}>Add</button>
-
-
-
-
-
-
-
                             </div>
                             <div className="btn-group mr-2">
                                 <button className="btn btn-info" onClick={() => this.increaseCounter()}>Pass {counter + 1}/{this.state.books.length}</button>

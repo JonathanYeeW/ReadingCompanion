@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Book = mongoose.model('Book')
+var Newsfeed = mongoose.model('Newsfeed')
+
 
 // MARK: This books.js is where all the Books routes need to be 
 // transitioned too. After confirming that they all work i need 
@@ -43,7 +45,29 @@ router.post('/create', function (request, response) {
         if (err) {
             response.json({ message: "There was an error creating a new book", error: true })
         } else {
-            response.json({ message: "success", error: false, book: book })
+           
+
+            // CREATE A NEWSFEED OBJECT
+
+
+            var newsfeed_object = new Newsfeed({
+                title: book.title,
+                by_userid: request.body.userid,
+                by_username: request.body.username,
+                type: "Book",
+                type_id: book._id,
+                type_title: book.title,
+                created_at: Date(),
+                updated_at: Date(),
+            })
+            newsfeed_object.save(function (err) {
+                if (err) {
+                    response.json({ message: "There was an error creating a new newsfeed_object, but the new book is good", error: true })
+                } else {
+                    response.json({ message: "success", error: false })
+                }
+            })
+
         }
     })
 })

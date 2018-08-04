@@ -10,6 +10,7 @@ import { GoogleSearch } from '../controllers/UserDashboard/Explore/GoogleSearch'
 import { Reviews } from '../controllers/UserDashboard/Reviews/Reviews'
 import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
 import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
+import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed';
 
 // TODOS
 // - After adding a book i want it added to the newsfeed
@@ -20,6 +21,7 @@ import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 // - Like posts ability
 // - When a user creates a post, it doesn't update the page with the new post.
 // - On the backend, add required to the Schemas
+// - Update the admin dashboard so i can have a button to delete all objects
 
 // Props (from App.js):
 // - userid
@@ -106,7 +108,7 @@ export class User extends Component {
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
                         <div id="userdashboard-newsfeed-container" className="mt-3">
-                            {/* <Newsfeed /> */}
+                            <Newsfeed />
                         </div>
                     </div>
                 </div>
@@ -118,6 +120,7 @@ export class User extends Component {
                 <div className="p-3">
                     <UserBooks
                         userid={this.props.userid}
+                        username = {this.state.firstname + " " + this.state.lastname}
                     />
                 </div>
         }

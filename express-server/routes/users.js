@@ -53,6 +53,8 @@ router.post('/getuserinfo', function (req, res, next) {
   })
 })
 
+
+
 // CREATE NEW USER
 router.post('/create', function (req, res, next) {
   var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })

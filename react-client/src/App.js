@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { User } from './views/UserDashboard';
 import { Login } from './views/Login';
-import { Testnewsfeed } from './Testnewsfeed';
 
 class App extends Component {
   state = {
@@ -70,7 +69,6 @@ class App extends Component {
     return (
       <div id="app-wrapper">
         {body}
-        {/* <Testnewsfeed /> */}
       </div>
     )
   }
