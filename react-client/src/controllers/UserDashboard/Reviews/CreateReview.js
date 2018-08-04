@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 //THIS IS IMPORTED TO DASHBOARD
 
-export class Blog extends Component {
+export class CreateReview extends Component {
     createBlogPost = (event) => {
         event.preventDefault()
         const data = {title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value}
@@ -44,4 +44,4 @@ export class Blog extends Component {
     }
 }
 
-export default Blog;
+export default CreateReview;

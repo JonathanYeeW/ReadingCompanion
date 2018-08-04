@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-// PROPS:
-// books: array
-// deleteBook: function()
-// removeBook: function()
-
 export class UserBooks extends Component {
     constructor(props) {
         super(props);
@@ -24,12 +19,6 @@ export class UserBooks extends Component {
             <div>
                 <div className="card bg-light">
                     <div className="card-header">
-                        <h4>Top Shelf</h4>
-                    </div>
-                </div>
-
-                <div className="card bg-light">
-                    <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
                                 <h4>User Books</h4>
@@ -37,7 +26,7 @@ export class UserBooks extends Component {
                         </div>
                     </div>
                     <div className="card-body">
-                        <div className="row">
+                        {/* <div className="row">
                             {
                                 this.props.books.map(book => {
                                     return (
@@ -50,7 +39,7 @@ export class UserBooks extends Component {
                                     )
                                 })
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
