@@ -1,22 +1,51 @@
 import React, { Component } from 'react';
 
+// props (from UserDashboard.js):
+// userid
+
 export class Discover extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            newsfeed: false,
-            reviews: false,
-            explore: true
-        }
-        // this.props.discoverBook()
+        this.setState({
+            newbook: undefined,
+        })
+        this.discoverBook()
     }
 
+    // function queries the database with the userid
+    // and returns all the books that's in the database
+    // that this user doesn't have in their library
     discoverBook = () => {
-        this.props.discoverBook()
+        fetch('/books/discover', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ id: this.props.userid })
+        })
+            .then(res => res.json())
+            .then(res => this.setState({
+                newBook: res.newBook
+            }))
     }
 
+    // function for when a user likes the book they 
+    // see through the discover component, they can 
+    // add it to their library. Needs the user id as 
+    // well as the book id that it's adding.
     addBook = () => {
-        this.props.addBook()
+        fetch('/books/add', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ id: this.state.newBook._id, userid: this.prop.userid })
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.fetchUserBooks()
+                this.discoverBook()
+            })
     }
 
     render() {

@@ -3,6 +3,9 @@
 
 import React, { Component } from 'react';
 
+// Props (from UserDashboard.js):
+// toggleNavigation()
+
 export class Navbar extends Component {
     render() {
         return (
@@ -18,13 +21,13 @@ export class Navbar extends Component {
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-secondary">Explore</button>
+                                    <button className="btn btn-outline-secondary" onClick={() => this.props.toggleNavigation(0)}>Explore</button>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-secondary">Library</button>
+                                    <button className="btn btn-outline-secondary" onClick={() => this.props.toggleNavigation(1)}>Library</button>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-secondary">Reviews</button>
+                                    <button className="btn btn-outline-secondary" onClick={() => this.props.toggleNavigation(2)}>Reviews</button>
                                 </li>
                             </ul>
                         </div>

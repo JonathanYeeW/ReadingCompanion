@@ -11,51 +11,94 @@ import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed'
 import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
 import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 
+// TODOS
+// - pass the userid for the login to Discover
+
 export class User extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            explore: true,
+            library: false,
+            reviews: false,
+        }
+    }
+
+    // function used by the buttons in the navigation bar
+    // to change the page that's being viewed by the user
+    toggleNavigation = (data) => {
+        if (data === 0) {
+            this.setState({
+                explore: true,
+                library: false,
+                reviews: false,
+            })
+        } else if (data === 1) {
+            this.setState({
+                explore: false,
+                library: true,
+                reviews: false,
+            })
+        } else if (data === 2) {
+            this.setState({
+                explore: false,
+                library: false,
+                reviews: true,
+            })
+        }
+    }
+
     render() {
         // Variables
         let body;
 
-        // Setting the body depeneding on the navigation
-
-        // //MAIN
-        // body =
-        //     <div className="row p-4">
-        //         <div className="col-xl-4 col-lg-4 col-m-6 col-sm-12 col-xs-12 mt-3">
-        //             <div className="mb-3">
-        //                 <Discover />
-        //             </div>
-        //             <div className="mb-3">
-        //                 <GoogleSearch />
-        //             </div>
-        //         </div>
-        //         <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
-        //             <div id="userdashboard-newsfeed-container" className="mt-3">
-        //                 <Newsfeed />
-        //             </div>
-        //         </div>
-        //     </div>
-
-        // //LIBRARY
-        // body = 
-        //     <div>
-        //         <UserBooks />
-        //     </div>
-
-        //REVIEWS
-        body =
-            <div className="row p-3">
-                <div className="col-5">
-                    <CreateReview />
+        // Depending on the state, will display different pages
+        if (this.state.explore) {
+            //MAIN
+            body =
+                <div className="row p-4">
+                    <div className="col-xl-4 col-lg-4 col-m-6 col-sm-12 col-xs-12 mt-3">
+                        <div className="mb-3">
+                            <Discover />
+                        </div>
+                        <div className="mb-3">
+                            <GoogleSearch />
+                        </div>
+                    </div>
+                    <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
+                        <div id="userdashboard-newsfeed-container" className="mt-3">
+                            <Newsfeed />
+                        </div>
+                    </div>
                 </div>
-                <div className="col-7">
-                    <Newsfeed />
+        }
+
+        if (this.state.library) {
+            //LIBRARY
+            body =
+                <div>
+                    <UserBooks />
                 </div>
-            </div>
+        }
+
+        if (this.state.reviews) {
+            //REVIEWS
+            body =
+                <div className="row p-3">
+                    <div className="col-5">
+                        <CreateReview />
+                    </div>
+                    <div className="col-7">
+                        <Newsfeed />
+                    </div>
+                </div>
+        }
 
         return (
             <div>
-                <Navbar />
+                <Navbar
+                    toggleNavigation={this.toggleNavigation}
+                />
                 {body}
             </div>// End
         )
