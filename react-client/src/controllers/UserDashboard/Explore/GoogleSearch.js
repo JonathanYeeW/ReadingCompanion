@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-var counter = 0;
-
 //TODOS
-//-update create book
 
 // Props (from UserDashboard.js):
 // - userid
+
+var counter = 0;
 
 export class GoogleSearch extends Component {
     state = {
