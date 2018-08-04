@@ -38,7 +38,7 @@ router.post('/usercollection', function (request, response) {
 
 //CREATE BOOK
 router.post('/create', function (request, response) {
-    var book = new Book({ title: request.body.title, author: request.body.author, userid: request.body.userid, allusers: [request.body.userid] })
+    var book = new Book({ title: request.body.title, author: request.body.author, userid: request.body.userid, allusers: [request.body.userid], created_at: Date(), updated_at: Date() })
     book.save(function (err) {
         if (err) {
             response.json({ message: "There was an error creating a new book", error: true })

@@ -34,7 +34,7 @@ router.post('/userid', function (request, response) {
 // CREATE POST
 router.post('/create', function (request, response) {
     console.log(request.body)
-    var post = new Post({ title: request.body.title, userid: request.body.userid, username: request.body.username, post: request.body.post, created_At: Date() })
+    var post = new Post({ title: request.body.title, userid: request.body.userid, username: request.body.username, post: request.body.post, created_at: Date(), updated_at: Date() })
     post.save(function (err) {
         if (err) {
             response.json({ message: "There was an error creating a new post", error: true })

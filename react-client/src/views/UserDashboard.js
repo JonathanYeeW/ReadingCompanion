@@ -12,13 +12,13 @@ import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
 import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 
 // TODOS
-// - pass the userid for the login to Discover
-// - pass the userid to GoogleSearch
-// - will need to pass a function that causes the overall page to refresh
-//   to Discover and GoogleSearch. When they add a book, i want that live updated.
 // - After adding a book i want it added to the newsfeed
 // - Validation at SignUp for if user already exists
-
+// - Add Topshelf to User Library
+// - Create a User Friends Profile Page
+// - Flagging Posts for Admin to monitor
+// - Like posts ability
+// - When a user creates a post, it doesn't update the page with the new post.
 
 // Props (from App.js):
 // - userid

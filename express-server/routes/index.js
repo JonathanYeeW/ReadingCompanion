@@ -12,6 +12,8 @@ var UserSchema = new mongoose.Schema({
   lastname: String,
   email: String,
   password: String,
+  created_at: Date,
+  updated_at: Date,
 })
 mongoose.model('User', UserSchema);
 
@@ -23,7 +25,9 @@ var BookSchema = new mongoose.Schema({
   allusers: [String],
   genre: String,
   description: String,
-  reviews: []
+  reviews: [],
+  created_at: Date,
+  updated_at: Date,
 })
 mongoose.model('Book', BookSchema);
 
@@ -33,7 +37,8 @@ var PostSchema = new mongoose.Schema({
   userid: String,
   username: String,
   post: String,
-  created_At: Date,
+  created_at: Date,
+  updated_at: Date,
 })
 mongoose.model('Post', PostSchema)
 
