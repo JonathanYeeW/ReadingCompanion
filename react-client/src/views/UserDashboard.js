@@ -15,16 +15,18 @@ import { Reader } from '../controllers/UserDashboard/Reader/Reader';
 
 // TODOS
 // - After adding a book i want it added to the newsfeed
-// - Validation at SignUp for if user already exists
+// <X> Validation at SignUp for if user already exists
 // - Add Topshelf to User Library
 // - Create a User Friends Profile Page
 // - Flagging Posts for Admin to monitor
 // - Like posts ability
 // - When a user creates a post, it doesn't update the page with the new post.
-// - On the backend, add required to the Schemas
+// <X> On the backend, add required to the Schemas
 // - Update the admin dashboard so i can have a button to delete all objects
 // - Create CRUD Capabilities for Reviews
 // - Add rating Capabilities to Books
+// - Incorporate Redux
+// - Figure out the async/await so that i can properly setup controllers
 
 // Props (from App.js):
 // - userid
