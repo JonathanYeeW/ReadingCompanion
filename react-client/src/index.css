@@ -15,9 +15,6 @@
 }
 
 
-
-
-
 /* App.js */
 
 #app-wrapper {
@@ -34,7 +31,7 @@
 /* Login.js */
 
 #login-wrapper {
-  padding-left: 2%
+  /* padding-left: 2% */
 }
 
 /* Dashboard.js */

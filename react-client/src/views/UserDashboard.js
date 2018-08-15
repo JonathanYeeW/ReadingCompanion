@@ -22,6 +22,8 @@ import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed';
 // - When a user creates a post, it doesn't update the page with the new post.
 // - On the backend, add required to the Schemas
 // - Update the admin dashboard so i can have a button to delete all objects
+// - Create CRUD Capabilities for Reviews
+// - Add rating Capabilities to Books
 
 // Props (from App.js):
 // - userid

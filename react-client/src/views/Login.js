@@ -2,11 +2,13 @@
 // Look there when starting to learn this application
 
 import React, { Component } from 'react';
+var userManager = require('../controllers/userManager')
 
 export class Login extends Component {
     constructor(props) {
         super(props);
         console.log(this.props.login)
+        // userManager.printHello()
     }
 
     state = {
@@ -34,10 +36,31 @@ export class Login extends Component {
         }
 
         return (
-            <div id="login-wrapper">
-                <div className="row">
-                    <div className="col-4">
-                        {body}
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="col-6 d-flex justify-content-start">
+                        <a className="navbar-brand" href="#">Reading Companion</a>
+                    </div>
+                </nav>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-4">
+                            {body}
+                        </div>
+                        <div className="col-8">
+                            <div className="row">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kW9-vuLf3-w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <div className="row">
+                                <h4>What Is Reading Companion?</h4>
+                            </div>
+                            <div className="row">
+                                <h4>Why Did I Make Reading Companion?</h4>
+                            </div>
+                            <div className="row">
+                                <h4>How Can Reading Companion Connect People</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,30 +184,14 @@ export class SignUp extends Component {
     createNewUser = (event) => {
         event.preventDefault()
         console.log("Create User")
-        const body = {
+        const data = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             email: this.state.email,
             password: this.state.password,
         }
-        fetch('/users/create', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error === false) {
-                    this.props.login(res.newUser._id)
-                } else {
-                    console.log("Hey there was an error making a new user.")
-                    this.setState({
-                        submissionerror: true
-                    })
-                }
-            });
+        let temp = userManager.createNewUser(data)
+        console.log(temp)
     }
 
     checkIfReady = () => {
@@ -259,6 +266,11 @@ export class SignUp extends Component {
         }
     }
 
+    checkUserExists = () => {
+        // userManager.getAllUsers()
+        userManager.createNewUser()
+    }
+
     render() {
         let submissionerror;
         let submitbutton;
@@ -291,6 +303,7 @@ export class SignUp extends Component {
                 <div className="card-body">
                     <div className="card-header bg-light">
                         <h5>Sign Up</h5>
+                        <button onClick={() => this.checkUserExists()}>Check User</button>
                     </div>
                     <div className="card-body bg-white">
                         {submissionerror}

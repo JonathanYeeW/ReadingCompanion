@@ -8,12 +8,12 @@ mongoose.Promise = global.Promise;
 
 // USER SCHEMA
 var UserSchema = new mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  email: String,
-  password: String,
-  created_at: Date,
-  updated_at: Date,
+  firstname: {type: String, required: true},
+  lastname: {type: String, required: true},
+  email: {type: String, required: true},
+  password: {type: String, required: true},
+  created_at: {type: Date, required: true},
+  updated_at: {type: Date, required: true},
 })
 mongoose.model('User', UserSchema);
 

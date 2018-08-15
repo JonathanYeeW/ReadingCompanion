@@ -53,6 +53,11 @@ router.post('/getuserinfo', function (req, res, next) {
   })
 })
 
+// CHECK IF USER EXISTS
+router.post('/checkUserExists', function(request, response){
+  response.json({message: "User Does not exist", error: false})
+})
+
 
 
 // CREATE NEW USER
