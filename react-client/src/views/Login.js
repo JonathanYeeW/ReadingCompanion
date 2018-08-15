@@ -179,19 +179,37 @@ export class SignUp extends Component {
         ready: false,
         passworderror: undefined,
         submissionerror: false,
+        errormessage: "",
     }
 
-    createNewUser = (event) => {
+    createNewUser = async (event) => {
         event.preventDefault()
         console.log("Create User")
-        const data = {
+        const body = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             email: this.state.email,
             password: this.state.password,
         }
-        let temp = userManager.createNewUser(data)
-        console.log(temp)
+        // let temp = await console.log(userManager.createNewUser(body))
+        fetch('/users/create', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error === false) {
+                    this.props.login(res.newUser._id)
+                } else {
+                    this.setState({
+                        submissionerror: true,
+                        errormessage: res.message
+                    })
+                }
+            });
     }
 
     checkIfReady = () => {
@@ -293,7 +311,7 @@ export class SignUp extends Component {
 
         //Check submission error
         if (this.state.submissionerror) {
-            submissionerror = <p className="text-danger">There was an error creating your account</p>
+            submissionerror = <p className="text-danger">{this.state.errormessage}</p>
         } else {
             submissionerror = undefined
         }
@@ -303,7 +321,6 @@ export class SignUp extends Component {
                 <div className="card-body">
                     <div className="card-header bg-light">
                         <h5>Sign Up</h5>
-                        <button onClick={() => this.checkUserExists()}>Check User</button>
                     </div>
                     <div className="card-body bg-white">
                         {submissionerror}

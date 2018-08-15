@@ -58,16 +58,32 @@ router.post('/checkUserExists', function(request, response){
   response.json({message: "User Does not exist", error: false})
 })
 
-
-
 // CREATE NEW USER
 router.post('/create', function (req, res, next) {
-  var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })
-  user.save(function (err) {
-    if (err) {
-      res.json({ message: "error creating new user", error: true })
+  // Using the email, look for if the user exists
+  console.log("## users.js ## /create")
+  console.log("Looking for user with email", req.body.email)
+  User.find({email: req.body.email}, function(err, user){
+    if(err){
+      res.json({message: "Error Searching For User", error: true})
     } else {
-      res.json({ message: "Create New User Successful", newUser: user, error: false })
+      // console.log(user.length)
+      if(user.length == 0){
+        console.log("Create New User")
+        // Create User
+        var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })
+        user.save(function (err) {
+          if (err) {
+            res.json({ message: "error creating new user", error: true })
+          } else {
+            res.json({ message: "Create New User Successful", newUser: user, error: false })
+          }
+        })
+      } else {
+        // User Already Exists
+        console.log("User Already Exists", user)
+        res.json({message: "Email Already In Use", error: true})
+      }
     }
   })
 })

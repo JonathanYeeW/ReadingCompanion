@@ -15,9 +15,11 @@ function getAllUsers() {
 
 // function to create a new user. the data sent over
 // is all the inputs for the new users properties
+// async function createNewUser(data){
 function createNewUser(data){
     console.log("## userManager ## createNewUser()")
     console.log(data)
+    let temp = false;
     fetch('/users/create', {
         method: "POST",
         headers: {
@@ -25,16 +27,12 @@ function createNewUser(data){
         },
         body: JSON.stringify(data)
     })
+    // .then(return() true)
         .then(res => res.json())
         .then(res => {
-            if (res.error === false) {
-                console.log("## userManager ## createNewUser() Success")
-                return {newUserId: res.newUser._id, error: false}
-            } else {
-                console.log("## userManager ## createNewUser() Error")
-                return {error: true}
-            }
+            temp = true
         });
+    return temp
 }
 
 module.exports = {
