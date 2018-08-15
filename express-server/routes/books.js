@@ -98,11 +98,15 @@ router.post('/remove', function (req, res) {
         if (err) {
             res.json({ message: "There was an error finding the user for removing book from user collection", error: true })
         } else {
+            console.log("The book to remove is ", theBook)
+            console.log("The userid is", req.body.userid)
             let temp = theBook[0].allusers
             let newArray = []
             for (let i = 0; i < temp.length; i++) {
                 if (temp[i] != req.body.userid) {
                     newArray.push(temp[i])
+                } else {
+                    console.log("Removed the userid", req.body.userid)
                 }
             }
             Book.update({ _id: theBook[0]._id }, { allusers: newArray }, function (err) {

@@ -11,6 +11,7 @@ import { Reviews } from '../controllers/UserDashboard/Reviews/Reviews'
 import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
 import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
 import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed';
+import { Reader } from '../controllers/UserDashboard/Reader/Reader';
 
 // TODOS
 // - After adding a book i want it added to the newsfeed
@@ -37,6 +38,7 @@ export class User extends Component {
             explore: true,
             library: false,
             reviews: false,
+            reader: false,
         }
         this.fetchUserData()
     }
@@ -49,18 +51,28 @@ export class User extends Component {
                 explore: true,
                 library: false,
                 reviews: false,
+                reader: false,
             })
         } else if (data === 1) {
             this.setState({
                 explore: false,
                 library: true,
                 reviews: false,
+                reader: false,
             })
         } else if (data === 2) {
             this.setState({
                 explore: false,
                 library: false,
                 reviews: true,
+                reader: false,
+            })
+        } else if (data === 3) {
+            this.setState({
+                explore: false,
+                library: false,
+                reviews: false,
+                reader: true,
             })
         }
     }
@@ -122,7 +134,7 @@ export class User extends Component {
                 <div className="p-3">
                     <UserBooks
                         userid={this.props.userid}
-                        username = {this.state.firstname + " " + this.state.lastname}
+                        username={this.state.firstname + " " + this.state.lastname}
                     />
                 </div>
         }
@@ -132,17 +144,24 @@ export class User extends Component {
             body =
                 <div className="row p-3">
                     <div className="col-5">
-                        <CreateReview 
-                        userid = {this.props.userid}
-                        username = {this.state.firstname + " " + this.state.lastname}
+                        <CreateReview
+                            userid={this.props.userid}
+                            username={this.state.firstname + " " + this.state.lastname}
                         />
                     </div>
                     <div className="col-7">
                         <h3>My Book Reviews</h3>
-                        <Reviews 
-                            userid = {this.props.userid}
+                        <Reviews
+                            userid={this.props.userid}
                         />
                     </div>
+                </div>
+        }
+
+        if (this.state.reader) {
+            body =
+                <div className="row p-3">
+                    <Reader />
                 </div>
         }
 

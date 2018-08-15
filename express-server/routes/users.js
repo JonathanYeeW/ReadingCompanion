@@ -69,20 +69,18 @@ router.post('/create', function (req, res, next) {
     } else {
       // console.log(user.length)
       if(user.length == 0){
-        console.log("Create New User")
         // Create User
         var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })
         user.save(function (err) {
           if (err) {
-            res.json({ message: "error creating new user", error: true })
+            res.json({ message: "Please Fill In All Required Fields", error: true })
           } else {
             res.json({ message: "Create New User Successful", newUser: user, error: false })
           }
         })
       } else {
         // User Already Exists
-        console.log("User Already Exists", user)
-        res.json({message: "Email Already In Use", error: true})
+        res.json({message: "Username Already In Use", error: true})
       }
     }
   })

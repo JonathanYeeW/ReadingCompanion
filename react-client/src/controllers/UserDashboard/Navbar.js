@@ -28,6 +28,9 @@ export class Navbar extends Component {
                             <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(2)}>Reviews</a>
                         </li>
                         <li className="nav-item">
+                            <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(3)}>Reader</a>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link disabled" href="#">Friends (Disabled)</a>
                         </li>
                     </ul>

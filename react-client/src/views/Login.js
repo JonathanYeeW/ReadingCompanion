@@ -2,13 +2,12 @@
 // Look there when starting to learn this application
 
 import React, { Component } from 'react';
-var userManager = require('../controllers/userManager')
+// var userManager = require('../controllers/userManager')
 
 export class Login extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.login)
-        // userManager.printHello()
+        console.log("## Login ## props:", this.props)
     }
 
     state = {
@@ -37,7 +36,7 @@ export class Login extends Component {
 
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <div className="col-6 d-flex justify-content-start">
                         <a className="navbar-brand" href="#">Reading Companion</a>
                     </div>
@@ -45,20 +44,45 @@ export class Login extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-4">
-                            {body}
+                                {body}
                         </div>
                         <div className="col-8">
-                            <div className="row">
+                            <div className="row d-flex justify-content-center">
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/kW9-vuLf3-w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
-                            <div className="row">
+                            <div className="row d-flex justify-content-center">
                                 <h4>What Is Reading Companion?</h4>
+                                <p>Reading Companion is a social network for users who want to share their favorite books, discover new books, and celebrate their love for reading</p>
                             </div>
-                            <div className="row">
+                            <div className="row d-flex justify-content-center">
                                 <h4>Why Did I Make Reading Companion?</h4>
+                                <p>Reading Companion was thought of between two friends trying to figure out how best to learn about someone over social media. With pictures, you have a really strong grasp of your image.
+                                    But with books, the types of books that you read and own reflect a lot more about your character than you can convey in words even.
+                                </p>
                             </div>
-                            <div className="row">
+                            <div className="row d-flex justify-content-center">
                                 <h4>How Can Reading Companion Connect People</h4>
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
+
+
+
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
+                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
+                                    would typically over other social networks.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -139,7 +163,7 @@ export class SignIn extends Component {
             error = <div><p className="text-success">Login Success!</p></div>
         }
         return (
-            <div className="card bg-dark">
+            <div className="card bg-dark sticky-top">
                 <div className="card-body">
                     <div className="card-header bg-light">
                         <h5>Sign In</h5>
@@ -182,7 +206,7 @@ export class SignUp extends Component {
         errormessage: "",
     }
 
-    createNewUser = async (event) => {
+    createNewUser = (event) => {
         event.preventDefault()
         console.log("Create User")
         const body = {
@@ -222,11 +246,15 @@ export class SignUp extends Component {
 
             //Validate passwords match
             this.state.password === this.state.confirmpassword
+
         ) {
             this.setState({
                 ready: true
             })
         }
+    }
+
+    isEmail = () => {
     }
 
     confirmStillReady = () => {
@@ -284,11 +312,6 @@ export class SignUp extends Component {
         }
     }
 
-    checkUserExists = () => {
-        // userManager.getAllUsers()
-        userManager.createNewUser()
-    }
-
     render() {
         let submissionerror;
         let submitbutton;
@@ -306,7 +329,8 @@ export class SignUp extends Component {
         if (this.state.password !== this.state.confirmpassword || this.state.password.length === 0) {
             passworderror = <p className="text-danger">Passwords do not match</p>
         } else {
-            passworderror = <p className="text-success">Passwords match</p>
+            // passworderror = <p className="text-success">Passwords match</p>
+            passworderror = undefined
         }
 
         //Check submission error
@@ -317,16 +341,17 @@ export class SignUp extends Component {
         }
 
         return (
-            <div className="card bg-dark">
+            <div className="card bg-dark sticky-top">
                 <div className="card-body">
                     <div className="card-header bg-light">
                         <h5>Sign Up</h5>
                     </div>
                     <div className="card-body bg-white">
+                        {passworderror}
                         {submissionerror}
                         <form onSubmit={(event) => event.preventDefault()}>
                             <div className="form-group">
-                                <input type="text" className="form-control" value={this.state.email} placeholder="Email" name="email" onChange={this.emailChange} />
+                                <input type="text" className="form-control" value={this.state.email} placeholder="Username" name="email" onChange={this.emailChange} />
                             </div>
                             <div className="form-group">
                                 <input type="text" className="form-control" value={this.state.firstname} placeholder="First Name" name="firstname" onChange={this.firstNameChange} />
@@ -340,7 +365,6 @@ export class SignUp extends Component {
                             <div className="form-group">
                                 <input type="password" className="form-control" value={this.state.confirmpassword} placeholder="Confirm Password" name="confirmpassword" onChange={this.confirmPasswordChange} />
                             </div>
-                            {passworderror}
                             {submitbutton}
                         </form>
                     </div>

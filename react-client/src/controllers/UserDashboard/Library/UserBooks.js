@@ -40,6 +40,19 @@ export class UserBooks extends Component {
             )
     }
 
+    removeBookFromUser = (data) => {
+        // data = book._id, the data should be the book id that needs to be removed
+        console.log("## UserBooks ## removeBookFromUser()", data)
+        fetch('/books/remove', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ id: data, userid: this.props.userid })
+        })
+            .then(this.fetchUserBooks())
+    }
+
     render() {
         let body;
         if (this.state.books.length !== 0) {
@@ -58,6 +71,7 @@ export class UserBooks extends Component {
                                 <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
                                     <Book
                                         book={book}
+                                        removeBookFromUser = {this.removeBookFromUser}
                                     />
                                 </div>
                             )
@@ -109,6 +123,9 @@ export class Book extends Component {
                 </div>
                 <div className="card-body">
                     <p className="card-text text-white">{this.props.book.author}</p>
+                </div>
+                <div className="card-footer">
+                    <button className="btn btn-sm" onClick={() => this.props.removeBookFromUser(this.props.book._id)}>Remove</button>
                 </div>
             </div>
         )
