@@ -9,13 +9,12 @@ export class Discover extends Component {
     constructor(props) {
         super(props);
         console.log("## Discover.js ##, props:", this.props)
+        this.state = {
+            newBook: undefined
+        }
         this.discoverBook()
     }
-
-    state = {
-        newBook: undefined,
-    }
-
+    
     // function queries the database with the userid
     // and returns all the books that's in the database
     // that this user doesn't have in their library

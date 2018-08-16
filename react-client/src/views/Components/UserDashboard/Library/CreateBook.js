@@ -11,11 +11,10 @@ export class CreateBook extends Component {
     constructor(props) {
         super(props);
         console.log("## CreateBook.js ## props:", this.props)
-    }
-
-    state = {
-        title: "",
-        author: "",
+        this.state = {
+            title: "",
+            author: "",
+        }
     }
 
     titleChange = (event) => {

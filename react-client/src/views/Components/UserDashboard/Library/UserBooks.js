@@ -16,11 +16,10 @@ export class UserBooks extends Component {
     constructor(props) {
         super(props);
         console.log("## UserBooks.js ## props:", this.props)
+        this.state = {
+            books: []
+        }
         this.fetchUserBooks()
-    }
-
-    state = {
-        books: []
     }
 
     fetchUserBooks = () => {
