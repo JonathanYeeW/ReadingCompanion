@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 // import React, { Component } from 'react';
 
-import { Navbar } from '../controllers/UserDashboard/Navbar'
+import { Navbar } from './Components/UserDashboard/Navbar'
 import { Discover } from '../controllers/UserDashboard/Explore/Discover'
 import { GoogleSearch } from '../controllers/UserDashboard/Explore/GoogleSearch'
 import { Reviews } from '../controllers/UserDashboard/Reviews/Reviews'
