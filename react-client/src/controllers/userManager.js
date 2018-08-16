@@ -8,15 +8,17 @@ function checkForExistingUser(emailAddress) {
 // a function that gets all the users
 function getAllUsers() {
     console.log("## userManager ## getAllUsers()")
-    fetch('/users/')
-        .then(res => res.json())
-        .then(res => console.log(res))
+    return new Promise((resolve, reject) => {
+        fetch('/users/')
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
 }
 
 // function to create a new user. the data sent over
 // is all the inputs for the new users properties
 // async function createNewUser(data){
-function createNewUser(data){
+function createNewUser(data) {
     console.log("## userManager ## createNewUser()")
     console.log(data)
     let temp = false;
@@ -27,7 +29,7 @@ function createNewUser(data){
         },
         body: JSON.stringify(data)
     })
-    // .then(return() true)
+        // .then(return() true)
         .then(res => res.json())
         .then(res => {
             temp = true
@@ -35,8 +37,17 @@ function createNewUser(data){
     return temp
 }
 
+function asyncFunction() {
+    return new Promise((resolve, reject) => {
+        fetch('/users/')
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     checkForExistingUser,
     getAllUsers,
     createNewUser,
+    asyncFunction
 }
