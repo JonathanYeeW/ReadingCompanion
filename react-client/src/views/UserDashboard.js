@@ -26,11 +26,13 @@ import { Reader } from '../controllers/UserDashboard/Reader/Reader';
 // - Create CRUD Capabilities for Reviews
 // - Add rating Capabilities to Books
 // - Incorporate Redux
-// - Figure out the async/await so that i can properly setup controllers
+// <X> Figure out the async/await so that i can properly setup controllers
 
 // Props (from App.js):
 // - userid
 // - navigationSwitch
+
+var userManager = require('../controllers/userManager')
 
 export class User extends Component {
     constructor(props) {
@@ -84,19 +86,12 @@ export class User extends Component {
     // the userobject based on the prop.userid so i can 
     // customize the dashboard with the user data
     fetchUserData = () => {
-        const temp = { id: this.props.userid }
-        fetch('/users/getuserinfo', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(temp)
-        })
-            .then(res => res.json())
+        userManager.fetchUserData(this.props.userid)
             .then(res => {
+                console.log(res)
                 this.setState({
                     firstname: res.firstname,
-                    lastname: res.lastname,
+                    lastname: res.lastname
                 })
             })
     }

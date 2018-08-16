@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 // - fetchUserBooks | To reload parent component when i create a new book
 // - username | need to send it with new book for newsfeed
 
+var bookManager = require('../../bookManager')
+
 export class CreateBook extends Component {
     constructor(props) {
         super(props);
@@ -30,23 +32,12 @@ export class CreateBook extends Component {
 
     createBook = () => {
         let data = { title: this.state.title, author: this.state.author, userid: this.props.userid, username: this.props.username }
-        console.log(data, "is the book to make")
-        fetch('/books/create', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(data)
+        bookManager.createBook(data)
+        this.props.fetchUserBooks()
+        this.setState({
+            title: "",
+            author: ""
         })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.props.fetchUserBooks()
-                this.setState({
-                    title: "",
-                    author: ""
-                })
-            })
     }
 
     render() {

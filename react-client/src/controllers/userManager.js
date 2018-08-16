@@ -5,6 +5,22 @@ function checkForExistingUser(emailAddress) {
     console.log("## userManager ## checkForExistingUser()")
 }
 
+function fetchUserData(userid) {
+    console.log("## userManager ## fetchUserData")
+    return new Promise((resolve, reject) => {
+        const temp = { id: userid }
+        fetch('/users/getuserinfo', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(temp)
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 // a function that gets all the users
 function getAllUsers() {
     console.log("## userManager ## getAllUsers()")
@@ -19,27 +35,16 @@ function getAllUsers() {
 // is all the inputs for the new users properties
 // async function createNewUser(data){
 function createNewUser(data) {
+    // data: complete object with all neccessary user properties
     console.log("## userManager ## createNewUser()")
-    console.log(data)
-    let temp = false;
-    fetch('/users/create', {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        // .then(return() true)
-        .then(res => res.json())
-        .then(res => {
-            temp = true
-        });
-    return temp
-}
-
-function asyncFunction() {
     return new Promise((resolve, reject) => {
-        fetch('/users/')
+        fetch('/users/create', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
             .then(res => res.json())
             .then(res => resolve(res))
     })
@@ -49,5 +54,5 @@ module.exports = {
     checkForExistingUser,
     getAllUsers,
     createNewUser,
-    asyncFunction
+    fetchUserData,
 }

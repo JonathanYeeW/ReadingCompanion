@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { CreateBook } from './CreateBook';
 
+var bookManager = require('../../bookManager')
+
 // Props (from UserDashboard.js):
 // userid
 
@@ -23,34 +25,23 @@ export class UserBooks extends Component {
 
     fetchUserBooks = () => {
         console.log("## UserBooks.js ## fetchUserBooks")
-        fetch('/books/usercollection', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ userid: this.props.userid })
-        })
-            .then(res => res.json())
+        bookManager.getAllUserBooks(this.props.userid)
             .then(res => {
                 console.log(res)
                 this.setState({
                     books: res["books"]
                 })
-            }
-            )
+            })
     }
 
-    removeBookFromUser = (data) => {
-        // data = book._id, the data should be the book id that needs to be removed
-        console.log("## UserBooks ## removeBookFromUser()", data)
-        fetch('/books/remove', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ id: data, userid: this.props.userid })
+    removeBookFromUser = (bookid) => {
+        // bookid = book._id, the bookid should be the book id that needs to be removed
+        console.log("## UserBooks ## removeBookFromUser()", bookid)
+        bookManager.removeBookFromUser(bookid, this.props.userid)
+        .then(res => {
+            console.log(res)
+            this.fetchUserBooks()
         })
-            .then(this.fetchUserBooks())
     }
 
     render() {
@@ -71,7 +62,7 @@ export class UserBooks extends Component {
                                 <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
                                     <Book
                                         book={book}
-                                        removeBookFromUser = {this.removeBookFromUser}
+                                        removeBookFromUser={this.removeBookFromUser}
                                     />
                                 </div>
                             )

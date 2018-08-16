@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // props (from UserDashboard.js):
 // userid
 
+var bookManager = require('../../bookManager')
+
 export class Discover extends Component {
     constructor(props) {
         super(props);
@@ -19,15 +21,9 @@ export class Discover extends Component {
     // that this user doesn't have in their library
     discoverBook = () => {
         console.log("## Discover.js ## discoverBook")
-        fetch('/books/discover', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ id: this.props.userid })
-        })
-            .then(res => res.json())
+        bookManager.discoverBook(this.props.userid)
             .then(res => {
+                console.log(res)
                 this.setState({
                     newBook: res.newBook
                 })
@@ -40,18 +36,9 @@ export class Discover extends Component {
     // well as the book id that it's adding.
     addBook = () => {
         console.log("## Discover.js ## addBook")
-        fetch('/books/add', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ id: this.state.newBook._id, userid: this.props.userid })
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.discoverBook()
-            })
+        let data = { id: this.state.newBook._id, userid: this.props.userid }
+        bookManager.addBook(data)
+            .then(this.discoverBook())
     }
 
     render() {
