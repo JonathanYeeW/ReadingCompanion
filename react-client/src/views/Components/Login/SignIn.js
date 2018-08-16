@@ -21,11 +21,10 @@ export class SignIn extends Component {
     }
 
     validateInputs = () => {
+        console.log("## SignIn ## validateInputs")
         if (this.state.email !== "" && this.state.password !== "") {
-            console.log("Passes validateInputs")
             return true
         } else {
-            console.log("Does not pass validateInputs")
             this.setState({
                 confirm: false
             })
@@ -34,6 +33,7 @@ export class SignIn extends Component {
     }
 
     checkForUser = (event) => {
+        console.log("## SignIn ## checkForUser")
         event.preventDefault()
         if (this.validateInputs() === true) {
             const body = {

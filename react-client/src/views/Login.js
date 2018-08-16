@@ -2,7 +2,6 @@
 // Look there when starting to learn this application
 
 import React, { Component } from 'react';
-
 import { SignIn } from './Components/Login/SignIn'
 import { SignUp } from './Components/Login/SignUp'
 
@@ -12,13 +11,13 @@ export class Login extends Component {
     constructor(props) {
         super(props);
         console.log("## Login ## props:", this.props)
-    }
-
-    state = {
-        signIn: true,
+        this.state = {
+            signIn: true
+        }
     }
 
     signInToggle = () => {
+        console.log("## Login ## signInToggle()")
         this.setState({
             signIn: !this.state.signIn
         })
@@ -66,24 +65,6 @@ export class Login extends Component {
                             </div>
                             <div className="row d-flex justify-content-center">
                                 <h4>How Can Reading Companion Connect People</h4>
-                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
-                                    would typically over other social networks.
-                                </p>
-
-
-
-                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
-                                    would typically over other social networks.
-                                </p>
-                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
-                                    would typically over other social networks.
-                                </p>
-                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
-                                    would typically over other social networks.
-                                </p>
-                                <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
-                                    would typically over other social networks.
-                                </p>
                                 <p>By understanding what other people read and why they read it, you can discover new books and relate to people on a deeper level than you
                                     would typically over other social networks.
                                 </p>

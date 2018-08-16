@@ -37,6 +37,7 @@ var userManager = require('../controllers/userManager')
 export class User extends Component {
     constructor(props) {
         super(props);
+        console.log("## UserDashboard ## props:", this.props)
         this.state = {
             userid: this.props.userid,
             explore: true,
@@ -50,34 +51,43 @@ export class User extends Component {
     // function used by the buttons in the navigation bar
     // to change the page that's being viewed by the user
     toggleNavigation = (data) => {
-        if (data === 0) {
-            this.setState({
-                explore: true,
-                library: false,
-                reviews: false,
-                reader: false,
-            })
-        } else if (data === 1) {
-            this.setState({
-                explore: false,
-                library: true,
-                reviews: false,
-                reader: false,
-            })
-        } else if (data === 2) {
-            this.setState({
-                explore: false,
-                library: false,
-                reviews: true,
-                reader: false,
-            })
-        } else if (data === 3) {
-            this.setState({
-                explore: false,
-                library: false,
-                reviews: false,
-                reader: true,
-            })
+        console.log("## UserDashboard ## toggleNavigation()")
+        switch (data) {
+            case 0:
+                this.setState({
+                    explore: true,
+                    library: false,
+                    reviews: false,
+                    reader: false,
+                })
+                break
+            case 1:
+                this.setState({
+                    explore: false,
+                    library: true,
+                    reviews: false,
+                    reader: false,
+                })
+                break
+            case 2:
+                this.setState({
+                    explore: false,
+                    library: false,
+                    reviews: true,
+                    reader: false,
+                })
+                break
+            case 3:
+                this.setState({
+                    explore: false,
+                    library: false,
+                    reviews: false,
+                    reader: true,
+                })
+                break
+            default:
+                console.log("Error")
+
         }
     }
 
@@ -86,9 +96,9 @@ export class User extends Component {
     // the userobject based on the prop.userid so i can 
     // customize the dashboard with the user data
     fetchUserData = () => {
+        console.log("## UserDashboard ## fetchUserData()")
         userManager.fetchUserData(this.props.userid)
             .then(res => {
-                console.log(res)
                 this.setState({
                     firstname: res.firstname,
                     lastname: res.lastname

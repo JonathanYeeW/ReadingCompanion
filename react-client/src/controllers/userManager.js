@@ -1,6 +1,4 @@
 
-// checks for existing user before allowing registration
-// of new user. Looks using inputted email address
 function checkForExistingUser(emailAddress) {
     console.log("## userManager ## checkForExistingUser()")
 }
@@ -21,7 +19,6 @@ function fetchUserData(userid) {
     })
 }
 
-// a function that gets all the users
 function getAllUsers() {
     console.log("## userManager ## getAllUsers()")
     return new Promise((resolve, reject) => {
@@ -31,9 +28,6 @@ function getAllUsers() {
     })
 }
 
-// function to create a new user. the data sent over
-// is all the inputs for the new users properties
-// async function createNewUser(data){
 function createNewUser(data) {
     // data: complete object with all neccessary user properties
     console.log("## userManager ## createNewUser()")

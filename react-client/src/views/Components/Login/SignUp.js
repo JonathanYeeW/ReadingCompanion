@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+var userManager = require('../../../controllers/userManager')
+
 export class SignUp extends Component {
     state = {
         email: "",
@@ -15,22 +17,13 @@ export class SignUp extends Component {
 
     createNewUser = (event) => {
         event.preventDefault()
-        console.log("Create User")
         const body = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             email: this.state.email,
             password: this.state.password,
         }
-        // let temp = await console.log(userManager.createNewUser(body))
-        fetch('/users/create', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
-            .then(res => res.json())
+        userManager.createNewUser(body)
             .then(res => {
                 if (res.error === false) {
                     this.props.login(res.newUser._id)
