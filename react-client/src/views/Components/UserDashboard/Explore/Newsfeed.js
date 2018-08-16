@@ -6,23 +6,22 @@
 
 import React, { Component } from 'react';
 
+var newsfeedManager = require('../../../../controllers/newsfeedManager')
+
 export class Newsfeed extends Component {
     constructor(props) {
         super(props);
         console.log("## Newsfeed ## props:", this.props)
+        this.state = {
+            newsfeed: []
+        }
         this.fetchAllNewsfeedObjects()
     }
 
-    state = {
-        newsfeed: []
-    }
-
     fetchAllNewsfeedObjects = () => {
-        console.log("Fetch all newsfeed_objects")
-        fetch('/newsfeed')
-            .then(res => res.json())
+        console.log("## Newsfeed ## fetchAllNewsfeedObjects")
+        newsfeedManager.fetchAllNewsfeedObjects()
             .then(res => {
-                console.log(res)
                 this.setState({
                     newsfeed: res.newsfeed_objects
                 })
@@ -30,6 +29,7 @@ export class Newsfeed extends Component {
     }
 
     createNewsfeedObject = () => {
+        console.log("## newsfeedManager ## createNewsfeedObject()")
         const typedict = { 0: "Post", 1: "User", 2: "Book" }
         const data = {
             title: "title1",
@@ -39,33 +39,14 @@ export class Newsfeed extends Component {
             type_id: "type_id1",
             type_title: "type_title1",
         }
-        fetch('/newsfeed/create', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.fetchAllNewsfeedObjects()
-            })
+        newsfeedManager.createNewsfeedObject(data)
+            .then(this.fetchAllNewsfeedObjects())
     }
 
     deleteAllNewsfeedObjects = () => {
-        console.log("deleteAllNewsfeedObjects")
-        fetch('/newsfeed/deleteAll', {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.fetchAllNewsfeedObjects()
-            })
+        console.log("## newsfeedManager ## deleteAllNewsfeedObjects()")
+        newsfeedManager.deleteAllNewsfeedObjects()
+            .then(this.fetchAllNewsfeedObjects())
     }
 
     render() {
@@ -85,7 +66,6 @@ export class Newsfeed extends Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="row">
                     {
                         this.state.newsfeed.map(item => {
