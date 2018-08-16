@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // - fetchUserBooks | To reload parent component when i create a new book
 // - username | need to send it with new book for newsfeed
 
-var bookManager = require('../../bookManager')
+var bookManager = require('../../../../controllers/bookManager')
 
 export class CreateBook extends Component {
     constructor(props) {

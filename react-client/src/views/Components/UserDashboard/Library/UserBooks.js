@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CreateBook } from './CreateBook';
 
-var bookManager = require('../../bookManager')
+var bookManager = require('../../../../controllers/bookManager')
 
 // Props (from UserDashboard.js):
 // userid

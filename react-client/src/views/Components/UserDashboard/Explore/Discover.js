@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // props (from UserDashboard.js):
 // userid
 
-var bookManager = require('../../bookManager')
+var bookManager = require('../../../../controllers/bookManager')
 
 export class Discover extends Component {
     constructor(props) {

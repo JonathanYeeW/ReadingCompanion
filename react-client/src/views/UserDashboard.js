@@ -5,13 +5,13 @@ import React, { Component } from 'react';
 // import React, { Component } from 'react';
 
 import { Navbar } from './Components/UserDashboard/Navbar'
-import { Discover } from '../controllers/UserDashboard/Explore/Discover'
-import { GoogleSearch } from '../controllers/UserDashboard/Explore/GoogleSearch'
-import { Reviews } from '../controllers/UserDashboard/Reviews/Reviews'
-import { UserBooks } from '../controllers/UserDashboard/Library/UserBooks'
-import { CreateReview } from '../controllers/UserDashboard/Reviews/CreateReview'
-import { Newsfeed } from '../controllers/UserDashboard/Explore/Newsfeed';
-import { Reader } from '../controllers/UserDashboard/Reader/Reader';
+import { Discover } from './Components/UserDashboard/Explore/Discover'
+import { GoogleSearch } from './Components/UserDashboard/Explore/GoogleSearch'
+import { Reviews } from './Components/UserDashboard/Reviews/Reviews'
+import { UserBooks } from './Components/UserDashboard/Library/UserBooks'
+import { CreateReview } from './Components/UserDashboard/Reviews/CreateReview'
+import { Newsfeed } from './Components/UserDashboard/Explore/Newsfeed'
+import { Reader } from './Components/UserDashboard/Reader/Reader'
 
 // TODOS
 // - After adding a book i want it added to the newsfeed
