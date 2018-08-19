@@ -49,7 +49,9 @@ class App extends Component {
 
     if (this.state.admin) {
       body =
-        <AdminDashboard />
+        <AdminDashboard
+          navigationSwitch={this.navigationSwitch}
+        />
     }
 
     if (this.state.login) {
