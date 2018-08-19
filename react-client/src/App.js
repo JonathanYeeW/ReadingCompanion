@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { User } from './views/UserDashboard';
 import { Login } from './views/Login';
+import { AdminDashboard } from './views/AdminDashboard';
 
 class App extends Component {
   state = {
@@ -47,13 +48,15 @@ class App extends Component {
     let body;
 
     if (this.state.admin) {
-      body = <h1>Admin Breh</h1>
+      body =
+        <AdminDashboard />
     }
 
     if (this.state.login) {
       body =
         <Login
           login={this.login}
+          navigationSwitch={this.navigationSwitch}
         />
     }
 
@@ -61,7 +64,7 @@ class App extends Component {
       body =
         <User
           userid={this.state.userid}
-          navigationSwitch = {this.navigationSwitch}
+          navigationSwitch={this.navigationSwitch}
         />
     }
 

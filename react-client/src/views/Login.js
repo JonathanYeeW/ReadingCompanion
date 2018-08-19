@@ -7,6 +7,9 @@ import { SignUp } from './Components/Login/SignUp'
 
 // var userManager = require('../controllers/userManager')
 
+// Props (from App.js)
+// - navigationSwitch()
+
 export class Login extends Component {
     constructor(props) {
         super(props);
@@ -42,6 +45,7 @@ export class Login extends Component {
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <div className="col-6 d-flex justify-content-start">
                         <a className="navbar-brand" href="#">Reading Companion</a>
+                        <button className="btn" onClick={() => this.props.navigationSwitch(0)}>Admin</button>
                     </div>
                 </nav>
                 <div className="container-fluid">
