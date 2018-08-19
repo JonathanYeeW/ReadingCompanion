@@ -152,4 +152,16 @@ router.post('/discover', function (req, res) {
     })
 })
 
+// GET TOTAL BOOK OBJECT COUNT
+router.post('/count', function(req, res){
+    Book.find({}, function (err, books) {
+        if (err) {
+            res.json({ message: "There was an error getting all books", error: true })
+        } else {
+            // res.json({ message: "success", error: false, books: books })
+            res.json({message: "success", error: false, count: books.length})
+        }
+    })
+})
+
 module.exports = router;

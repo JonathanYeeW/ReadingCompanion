@@ -3,6 +3,9 @@
 
 import React, { Component } from 'react';
 
+let bookManager = require('../controllers/bookManager')
+let userManager = require('../controllers/userManager')
+
 export class AdminDashboard extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +17,24 @@ export class AdminDashboard extends Component {
             newsfeedcounter: 0,
             sitevisitcounter: 0,
         }
+        this.loadData()
+    }
+
+    loadData = () => {
+        console.log("## AdminDashboard ## loadData()")
+        bookManager.bookCounter()
+            .then(res => {
+                this.setState({
+                    bookcounter: res.count
+                })
+            })
+        userManager.userCounter()
+            .then(res => {
+                console.log(res.count)
+                this.setState({
+                    usercounter: res.count
+                })
+            })
     }
 
     // Manage Database

@@ -7,9 +7,9 @@ var User = mongoose.model('User')
 router.get('/', function (req, res, next) {
   User.find({}, function (err, users) {
     if (err) {
-      res.json({ message: 'error', error: err })
+      res.json({ message: 'error', error: true })
     } else {
-      res.json({ message: 'Get All Users Successful', users: users })
+      res.json({ message: 'Get All Users Successful', error: false, users: users })
     }
   })
 });
@@ -17,25 +17,21 @@ router.get('/', function (req, res, next) {
 //Sign In w/ Email and Password
 router.post('/signin', function (req, res, next) {
   const email = req.body.email
-  console.log("The email we're seaching for is", email)
   const password = req.body.password
+  
   // NOTE: for whatever reason, it's important to const password
   // otherwise they won't match in the conditional below when comparing.
   User.find({ email: email }, function (err, user) {
     if (err) {
-      console.log("error finding")
-      res.json({ message: "There was an error finding the user", error: err, confirm: false })
+      res.json({ message: "There was an error finding the user", error: true, confirm: false })
     } else {
       if (user.length > 0) {
         if (user[0].password === password) {
-          console.log("yes users")
           res.json({ message: "There is a user", confirm: true, id: user[0]["_id"] })
         } else {
-          console.log("No users 1")
           res.json({ message: "There is a user", confirm: false })
         }
       } else {
-        console.log("No users 2")
         res.json({ message: "There is not a user", confirm: false })
       }
     }
@@ -54,8 +50,8 @@ router.post('/getuserinfo', function (req, res, next) {
 })
 
 // CHECK IF USER EXISTS
-router.post('/checkUserExists', function(request, response){
-  response.json({message: "User Does not exist", error: false})
+router.post('/checkUserExists', function (request, response) {
+  response.json({ message: "User Does not exist", error: false })
 })
 
 // CREATE NEW USER
@@ -63,12 +59,12 @@ router.post('/create', function (req, res, next) {
   // Using the email, look for if the user exists
   console.log("## users.js ## /create")
   console.log("Looking for user with email", req.body.email)
-  User.find({email: req.body.email}, function(err, user){
-    if(err){
-      res.json({message: "Error Searching For User", error: true})
+  User.find({ email: req.body.email }, function (err, user) {
+    if (err) {
+      res.json({ message: "Error Searching For User", error: true })
     } else {
       // console.log(user.length)
-      if(user.length == 0){
+      if (user.length == 0) {
         // Create User
         var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })
         user.save(function (err) {
@@ -80,7 +76,7 @@ router.post('/create', function (req, res, next) {
         })
       } else {
         // User Already Exists
-        res.json({message: "Username Already In Use", error: true})
+        res.json({ message: "Username Already In Use", error: true })
       }
     }
   })
@@ -105,6 +101,16 @@ router.post('/delete', function (request, response, next) {
       response.json({ message: "There was an error deleting user by id", error: true })
     } else {
       response.json({ message: "success", error: false })
+    }
+  })
+})
+
+router.post('/count', function (req, res) {
+  User.find({}, function (err, users) {
+    if (err) {
+      res.json({ message: 'error', error: err })
+    } else {
+      res.json({ message: "success", error: false, count: users.length })
     }
   })
 })

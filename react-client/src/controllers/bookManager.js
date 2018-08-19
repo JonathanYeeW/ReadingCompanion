@@ -75,10 +75,25 @@ function addBook(data) {
     })
 }
 
+function bookCounter() {
+    console.log("## bookManager ## bookCounter()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/count', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     getAllUserBooks,
     removeBookFromUser,
     createBook,
     discoverBook,
     addBook,
+    bookCounter,
 }

@@ -44,9 +44,24 @@ function createNewUser(data) {
     })
 }
 
+function userCounter() {
+    console.log("## userManager ## userCounter()")
+    return new Promise((resolve, reject) => {
+        fetch('/users/count', {
+            method: "POST"
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                resolve(res)
+            })
+    })
+}
+
 module.exports = {
     checkForExistingUser,
     getAllUsers,
     createNewUser,
     fetchUserData,
+    userCounter,
 }
