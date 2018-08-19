@@ -45,11 +45,7 @@ router.post('/create', function (request, response) {
         if (err) {
             response.json({ message: "There was an error creating a new book", error: true })
         } else {
-           
-
             // CREATE A NEWSFEED OBJECT
-
-
             var newsfeed_object = new Newsfeed({
                 title: book.title,
                 by_userid: request.body.userid,
@@ -62,12 +58,11 @@ router.post('/create', function (request, response) {
             })
             newsfeed_object.save(function (err) {
                 if (err) {
-                    response.json({ message: "There was an error creating a new newsfeed_object, but the new book is good", error: true })
+                    response.json({ message: "success CreateBook, Error Create NewsfeedObject", error: true })
                 } else {
-                    response.json({ message: "success", error: false })
+                    response.json({ message: "success Create Book, Create NewsfeedObject", error: false })
                 }
             })
-
         }
     })
 })
