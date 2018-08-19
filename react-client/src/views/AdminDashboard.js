@@ -9,38 +9,175 @@ export class AdminDashboard extends Component {
         console.log("## AdminDashboard ## props:", this.props)
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="container">
                 <h1>AdminDashboard</h1>
-                <div className="row">
+                <div className="row mb-3">
                     <div className="col-4">
-                        <p>Books: #</p>
-                        <p>Users: #</p>
-                        <p>Reviews: #</p>
-                        <p>Site Visits: #</p>
+                        <div className="card-body bg-dark">
+                            <div className="card-body bg-white">
+                                <p>Books: #</p>
+                                <p>Users: #</p>
+                                <p>Reviews: #</p>
+                                <p>Site Visits: #</p>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-8">
-                        <button className="btn btn-danger">Delete Books</button>
-                        <button className="btn btn-danger">Delete Users</button>
-                        <button className="btn btn-danger">Delete Reviews</button>
+                        <div className="card-body bg-dark">
+                            <div className="card-body bg-white">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <button className="btn btn-danger">Delete Books</button>
+                                    </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                        <button className="btn btn-danger">Delete Users</button>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Third group">
+                                        <button className="btn btn-danger">Delete Reviews</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="row">
-                    <h3>Users</h3>
-                    <p>User Name, User ID, Delete Button</p>
+
+                <div className="row mb-3">
+                    <div className="col-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <h3>Users</h3>
+                                    </div>
+                                    <div className="col-8 justify-content-end d-flex">
+                                        <button className="btn btn-secondary">Expand</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <table className="table">
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Fullname</th>
+                                            <th scope="col">Last Signin</th>
+                                            <th scope="col">Library Size</th>
+                                            <th scope="col">Reviews</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Admin</td>
+                                            <td>Jonathan Yee</td>
+                                            <td>Today</td>
+                                            <td>100</td>
+                                            <td>3</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="row">
-                    <h3>Books</h3>
-                    <p>ISBN Number, Delete Button, likes</p>
+
+
+
+                {/* <div className="row mb-3">
+                    <div className="col-12 border rounded">
+                        <h3>Books</h3>
+                        <p>ISBN Number, Delete Button, likes</p>
+                    </div>
+                </div> */}
+
+
+                <div className="row mb-3">
+                    <div className="col-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <h3>Books</h3>
+                                    </div>
+                                    <div className="col-8 justify-content-end d-flex">
+                                        <button className="btn btn-secondary">Expand</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <table className="table">
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Author</th>
+                                            <th scope="col">ISBN</th>
+                                            <th scope="col">Likes</th>
+                                            <th scope="col">Reviews</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Harry Potter 1</td>
+                                            <td>JK Rowling</td>
+                                            <td>1234567890</td>
+                                            <td>100</td>
+                                            <td>3</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="row">
-                    <h3>Reviews</h3>
-                    <p>Flagged?, Delete Button, User Posted, Likes</p>
+
+                <div className="row mb-3">
+                    <div className="col-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <h3>Reviews</h3>
+                                    </div>
+                                    <div className="col-8 justify-content-end d-flex">
+                                        <button className="btn btn-secondary">Expand</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <table className="table">
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Book Title</th>
+                                            <th scope="col">Pub Date</th>
+                                            <th scope="col">Likes</th>
+                                            <th scope="col">Flags</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Admin</td>
+                                            <td>Harry Potter</td>
+                                            <td>Today</td>
+                                            <td>100</td>
+                                            <td>3</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
-    }    
+    }
 }//End AdminDashboard
 
 export default AdminDashboard;
