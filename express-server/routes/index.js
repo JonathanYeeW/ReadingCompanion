@@ -39,6 +39,7 @@ var ReviewSchema = new mongoose.Schema({
   review: String,
   created_at: Date,
   updated_at: Date,
+  flag: Boolean,
 })
 mongoose.model('Review', ReviewSchema)
 
