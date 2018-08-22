@@ -3,30 +3,25 @@
 
 import React, { Component } from 'react';
 
+let reviewManager = require('../../../../controllers/reviewManager')
+
 // Props:
 // - userid
 // - username
 
 export class CreateReview extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log("## CreateReview ## props:", this.props)
     }
-    
-    createBlogPost = (event) => {
+
+    createReview = (event) => {
+        console.log("## CreateReview ## createReview()")
         event.preventDefault()
-        const data = { title: event.target.title.value, userid: this.props.userid, username: this.props.username, post: event.target.post.value }
-        fetch('/posts/create', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(res => console.log(res))
+        const data = { title: event.target.title.value, userid: this.props.userid, username: this.props.username, review: event.target.review.value }
+        reviewManager.createReview(data)
         event.target.title.value = ""
-        event.target.post.value = ""
+        event.target.review.value = ""
     }
 
     render() {
@@ -37,12 +32,12 @@ export class CreateReview extends Component {
                         <h4>Blog</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit={(event) => this.createBlogPost(event)}>
+                        <form onSubmit={(event) => this.createReview(event)}>
                             <div className="form-group">
                                 <input type="text" className="form-control" placeholder="Title" name="title" />
                             </div>
                             <div className="form-group">
-                                <textarea class="form-control" placeholder="Blog Post" rows="10" name="post"></textarea>
+                                <textarea class="form-control" placeholder="Blog Post" rows="10" name="review"></textarea>
                             </div>
                             <input type="submit" className="btn btn-outline-info" />
                         </form>

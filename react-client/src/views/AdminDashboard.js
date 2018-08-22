@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 let bookManager = require('../controllers/bookManager')
 let userManager = require('../controllers/userManager')
+let reviewManager = require('../controllers/reviewManager')
 
 export class AdminDashboard extends Component {
     constructor(props) {
@@ -58,6 +59,11 @@ export class AdminDashboard extends Component {
 
     deleteAllReviews = () => {
         console.log("## AdminDashboard ## deleteAllReviews()")
+        reviewManager.deleteAllReviews()
+            .then(res => {
+                console.log(res)
+                this.loadData()
+            })
     }
 
     // Create Dummy Products

@@ -5,42 +5,37 @@
 // - userid
 
 import React, { Component } from 'react';
+let reviewManager = require('../../../../controllers/reviewManager')
 
 export class Reviews extends Component {
     constructor(props) {
         super(props);
         console.log("## Newsfeed ## props:", this.props)
         this.state = {
-            posts: []
+            reviews: []
         }
-        this.getPostsForUser(this.props.userid)
+        this.getReviews(this.props.userid)
     }
 
     // function that queries the database and gets all of the 
     // posts that are associate with the user. 
-    getPostsForUser = (data) => {
+
+    getReviews = (data) => {
+        // data is userid
         if (data === undefined) {
-            fetch('/posts/')
-                .then(res => res.json())
+            reviewManager.getAllReviews()
                 .then(res => {
-                    console.log(res.posts)
+                    console.log(res.reviews)
                     this.setState({
-                        posts: res.posts
+                        reviews: res.reviews
                     })
                 })
         } else {
             const temp = { userid: data }
-            fetch('/posts/userid', {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(temp)
-            })
-                .then(res => res.json())
+            reviewManager.getUserReviews(temp)
                 .then(res => {
                     this.setState({
-                        posts: res.posts
+                        reviews: res.reviews
                     })
                 })
         }
@@ -51,11 +46,11 @@ export class Reviews extends Component {
             <div id="newsfeed-wrapper" className="card dashboard-height-fill">
                 <div className="card-body bg-white dashboard-height-fill">
                     {
-                        this.state.posts.map(post => {
+                        this.state.reviews.map(review => {
                             return (
-                                <div key={post._id} className="mb-3">
+                                <div key={review._id} className="mb-3">
                                     <Post
-                                        post={post}
+                                    review={review}
                                     />
                                 </div>
                             )
@@ -91,7 +86,7 @@ export class Post extends Component {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
-                                <p>title: {this.props.post.title}</p>
+                                <p>title: {this.props.review.title}</p>
                             </div>
                             <div className="col-6 d-flex justify-content-end">
                                 <button className="btn btn-secondary" onClick={() => this.expand()}>Expand</button>
@@ -99,10 +94,10 @@ export class Post extends Component {
                         </div>
                     </div>
                     <div className="card-body">
-                        <p className="card-text text-muted">userid: {this.props.post.userid}</p>
-                        <p className="card-text text-muted">username: {this.props.post.username}</p>
-                        <p className="card-text text-muted">created_At: {this.props.post.created_At}</p>
-                        <p className="card-text">post: {this.props.post.post}</p>
+                        <p className="card-text text-muted">userid: {this.props.review.userid}</p>
+                        <p className="card-text text-muted">username: {this.props.review.username}</p>
+                        <p className="card-text text-muted">created_At: {this.props.review.created_At}</p>
+                        <p className="card-text">review: {this.props.review.post}</p>
                     </div>
                 </div>
         } else {
@@ -111,7 +106,7 @@ export class Post extends Component {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-6 d-flex justify-content-start">
-                                <p> {this.props.post.title}</p>
+                                <p> {this.props.review.title}</p>
                             </div>
                             <div className="col-6 d-flex justify-content-end">
                                 <button className="btn btn-outline-secondary" onClick={() => this.expand()}>Expand</button>

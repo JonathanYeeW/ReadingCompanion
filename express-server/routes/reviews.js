@@ -35,12 +35,12 @@ router.post('/userid', function (request, response) {
 // CREATE POST
 router.post('/create', function (request, response) {
     console.log("## reviews ## /create")
-    var review = new Review({ title: request.body.title, userid: request.body.userid, username: request.body.username, reviews: request.body.reviews, created_at: Date(), updated_at: Date() })
+    var review = new Review({ title: request.body.title, userid: request.body.userid, username: request.body.username, review: request.body.review, created_at: Date(), updated_at: Date() })
     review.save(function (err) {
         if (err) {
-            response.json({ message: "There was an error creating a new reviews", error: true })
+            response.json({ message: "There was an error creating a new review", error: true })
         } else {
-            response.json({ message: "success", error: false, newReview: reviews })
+            response.json({ message: "success", error: false, newReview: review })
         }
     })
 })

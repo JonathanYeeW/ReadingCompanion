@@ -36,7 +36,7 @@ var ReviewSchema = new mongoose.Schema({
   title: String,
   userid: String,
   username: String,
-  post: String,
+  review: String,
   created_at: Date,
   updated_at: Date,
 })
