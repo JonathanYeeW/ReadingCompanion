@@ -58,10 +58,20 @@ function userCounter() {
     })
 }
 
+function deleteAllUsers() {
+    console.log("## userManager ## deleteAllUsers()")
+    return new Promise((resolve, reject) => {
+        fetch('/users/deleteAll')
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     checkForExistingUser,
     getAllUsers,
     createNewUser,
     fetchUserData,
     userCounter,
+    deleteAllUsers,
 }

@@ -76,6 +76,7 @@ router.post('/create', function (req, res, next) {
         })
       } else {
         // User Already Exists
+        console.log("User Already Exists")
         res.json({ message: "Username Already In Use", error: true })
       }
     }
@@ -105,6 +106,7 @@ router.post('/delete', function (request, response, next) {
   })
 })
 
+// Counter of Users
 router.post('/count', function (req, res) {
   User.find({}, function (err, users) {
     if (err) {

@@ -40,10 +40,20 @@ export class AdminDashboard extends Component {
     // Manage Database
     deleteAllBooks = () => {
         console.log("## AdminDashboard ## deleteAllBooks()")
+        bookManager.deleteAllBooks()
+            .then(res => {
+                console.log(res)
+                this.loadData()
+            })
     }
 
     deleteAllUsers = () => {
         console.log("## AdminDashboard ## deleteAllUsers()")
+        userManager.deleteAllUsers()
+            .then(res => {
+                console.log(res)
+                this.loadData()
+            })
     }
 
     deleteAllReviews = () => {
@@ -53,10 +63,36 @@ export class AdminDashboard extends Component {
     // Create Dummy Products
     dummyBooks = () => {
         console.log("## AdminDashboard ## dummyBooks()")
+        for (let i = 0; i < superBooks.length; i++) {
+            let data =
+            {
+                title: superBooks[i].title,
+                author: superBooks[i].title,
+            }
+            bookManager.createBook(data)
+        }
+        this.loadData()
     }
 
     dummyUsers = () => {
         console.log("## AdminDashboard ## dummyUsers()")
+        for (let i = 0; i < superUsers.length; i++) {
+            console.log("Created new")
+            let body = {
+                email: superUsers[i].email,
+                firstname: superUsers[i].firstname,
+                lastname: superUsers[i].lastname,
+                password: superUsers[i].password
+            }
+            if (i != superUsers.length - 1) {
+                // not the last
+                userManager.createNewUser(body)
+            } else {
+                // the last and fetch all users to populate views
+                userManager.createNewUser(body)
+                    .then(this.loadData())
+            }
+        }
     }
 
     render() {
@@ -244,6 +280,11 @@ export class AdminDashboard extends Component {
                         </div>
                 </div> */}
                 </div>
+
+
+                <nav className="navbar bg-dark">
+                    <h1></h1>
+                </nav>
             </div>
         )
     }

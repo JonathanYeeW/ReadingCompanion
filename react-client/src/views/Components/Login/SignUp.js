@@ -46,15 +46,11 @@ export class SignUp extends Component {
 
             //Validate passwords match
             this.state.password === this.state.confirmpassword
-
         ) {
             this.setState({
                 ready: true
             })
         }
-    }
-
-    isEmail = () => {
     }
 
     confirmStillReady = () => {
@@ -75,9 +71,11 @@ export class SignUp extends Component {
     }
 
     emailChange = (event) => {
-        this.setState({
-            email: event.target.value
-        })
+        if(event.target.value.length < 33){
+            this.setState({
+                email: event.target.value
+            })
+        }
     }
 
     firstNameChange = (event) => {
@@ -106,8 +104,10 @@ export class SignUp extends Component {
 
     componentDidUpdate() {
         if (this.state.ready === false) {
+            console.log("confirming ready")
             this.checkIfReady()
         } else {
+            console.log("confirming still ready")
             this.confirmStillReady()
         }
     }
@@ -150,7 +150,7 @@ export class SignUp extends Component {
                         {passworderror}
                         {submissionerror}
                         <form onSubmit={(event) => event.preventDefault()}>
-                            <div className="form-group">
+                            <div className="form-group"> 
                                 <input type="text" className="form-control" value={this.state.email} placeholder="Username" name="email" onChange={this.emailChange} />
                             </div>
                             <div className="form-group">

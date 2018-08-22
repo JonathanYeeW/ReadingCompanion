@@ -57,7 +57,7 @@ export class Login extends Component {
                         </div>
                         <div className="col-8">
                             <div className="row d-flex justify-content-center">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kW9-vuLf3-w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/kW9-vuLf3-w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> */}
                             </div>
                             <div className="row d-flex justify-content-center">
                                 <h4>What Is Reading Companion?</h4>
@@ -78,6 +78,9 @@ export class Login extends Component {
                         </div>
                     </div>
                 </div>
+                <nav className="navbar bg-dark">
+                    <h1></h1>
+                </nav>
             </div>
         )
     }

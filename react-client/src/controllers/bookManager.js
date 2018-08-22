@@ -75,6 +75,15 @@ function addBook(data) {
     })
 }
 
+function deleteAllBooks() {
+    console.log("## bookManager ## deleteAllBooks()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/deleteAll')
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 function bookCounter() {
     console.log("## bookManager ## bookCounter()")
     return new Promise((resolve, reject) => {
@@ -95,5 +104,6 @@ module.exports = {
     createBook,
     discoverBook,
     addBook,
+    deleteAllBooks,
     bookCounter,
 }
