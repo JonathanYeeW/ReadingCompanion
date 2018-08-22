@@ -25,6 +25,7 @@ var BookSchema = new mongoose.Schema({
   allusers: [String],
   genre: String,
   description: String,
+  isbn: Number,
   reviews: [],
   created_at: Date,
   updated_at: Date,
@@ -37,9 +38,9 @@ var ReviewSchema = new mongoose.Schema({
   userid: String,
   username: String,
   review: String,
+  flag: Boolean,
   created_at: Date,
   updated_at: Date,
-  flag: Boolean,
 })
 mongoose.model('Review', ReviewSchema)
 
