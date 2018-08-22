@@ -57,4 +57,16 @@ router.delete('/deleteAll', function (request, response) {
     })
 })
 
+router.get('/counter', function (request, response){
+    console.log("## reviews ## /counter")
+    Review.find({}, function(err, reviews){
+        if(err){
+            response.json({message: "THere was an error getting all reviews for counter", error: true})
+        } else {
+            let temp = reviews.length
+            response.json({message: "success", error: false, count: temp})
+        }
+    })
+})
+
 module.exports = router;

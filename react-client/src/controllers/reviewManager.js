@@ -59,6 +59,15 @@ function deleteAllReviews() {
     })
 }
 
+function reviewCounter() {
+    console.log("## reviewManager ## reviewCounter()")
+    return new Promise((resolve, reject) => {
+        fetch('/reviews/counter')
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     getAllReviews,
     getUserReviews,
@@ -66,4 +75,5 @@ module.exports = {
     editReview,
     deleteSingleReview,
     deleteAllReviews,
+    reviewCounter,
 }

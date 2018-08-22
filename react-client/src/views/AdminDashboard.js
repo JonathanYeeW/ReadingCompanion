@@ -31,9 +31,15 @@ export class AdminDashboard extends Component {
             })
         userManager.userCounter()
             .then(res => {
-                console.log(res.count)
                 this.setState({
                     usercounter: res.count
+                })
+            })
+        reviewManager.reviewCounter()
+            .then(res => {
+                console.log(res.count)
+                this.setState({
+                    reviewcounter: res.count
                 })
             })
     }
@@ -83,7 +89,6 @@ export class AdminDashboard extends Component {
     dummyUsers = () => {
         console.log("## AdminDashboard ## dummyUsers()")
         for (let i = 0; i < superUsers.length; i++) {
-            console.log("Created new")
             let body = {
                 email: superUsers[i].email,
                 firstname: superUsers[i].firstname,
@@ -96,6 +101,24 @@ export class AdminDashboard extends Component {
             } else {
                 // the last and fetch all users to populate views
                 userManager.createNewUser(body)
+                    .then(this.loadData())
+            }
+        }
+    }
+
+    dummyReviews = () => {
+        console.log("## AdminDashboard ## dummyReviews()")
+        for (let i = 0; i < superReviews.length; i++) {
+            const data = {
+                title: superReviews[i].title,
+                userid: superReviews[i].userid,
+                username: superReviews[i].username,
+                review: superReviews[i].review,
+            }
+            if (i != superReviews.length - 1) {
+                reviewManager.createReview(data)
+            } else {
+                reviewManager.createReview(data)
                     .then(this.loadData())
             }
         }
@@ -129,14 +152,14 @@ export class AdminDashboard extends Component {
                                     <div className="card-body bg-white">
                                         <div className="row mb-3">
                                             <div className="col-12">
-                                                <div class="btn-toolbar" role="toolbar">
-                                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <div className="btn-toolbar" role="toolbar">
+                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
                                                         <button className="btn btn-danger" onClick={() => this.deleteAllBooks()}>Delete Books</button>
                                                     </div>
-                                                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                    <div className="btn-group mr-2" role="group" aria-label="Second group">
                                                         <button className="btn btn-danger" onClick={() => this.deleteAllUsers()}>Delete Users</button>
                                                     </div>
-                                                    <div class="btn-group" role="group" aria-label="Third group">
+                                                    <div className="btn-group" role="group" aria-label="Third group">
                                                         <button className="btn btn-danger" onClick={() => this.deleteAllReviews()}>Delete Reviews</button>
                                                     </div>
                                                 </div>
@@ -144,15 +167,15 @@ export class AdminDashboard extends Component {
                                         </div>
                                         <div className="row">
                                             <div className="col-12">
-                                                <div class="btn-toolbar" role="toolbar">
-                                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <div className="btn-toolbar" role="toolbar">
+                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
                                                         <button className="btn btn-warning" onClick={() => this.dummyBooks()}>Dummy Books</button>
                                                     </div>
-                                                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                    <div className="btn-group mr-2" role="group" aria-label="Second group">
                                                         <button className="btn btn-warning" onClick={() => this.dummyUsers()}>Dummy Users</button>
                                                     </div>
-                                                    <div class="btn-group" role="group" aria-label="Third group">
-                                                        <button className="btn btn-warning disabled">Dummy Reviews</button>
+                                                    <div className="btn-group" role="group" aria-label="Third group">
+                                                        <button className="btn btn-warning" onClick={() => this.dummyReviews()}>Dummy Reviews</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,5 +442,68 @@ const superBooks = [
     {
         title: "The Name of the Wind",
         author: "Patrick Rothfuss"
+    },
+]
+
+const superReviews = [
+    {
+        title: "title 1",
+        userid: "userid 1",
+        username: "username 1",
+        review: "review 1",
+    },
+    {
+        title: "title 2",
+        userid: "userid 2",
+        username: "username 2",
+        review: "review 2",
+    },
+    {
+        title: "title 3",
+        userid: "userid 3",
+        username: "username 3",
+        review: "review 3",
+    },
+    {
+        title: "title 4",
+        userid: "userid 4",
+        username: "username 4",
+        review: "review 4",
+    },
+    {
+        title: "title 5",
+        userid: "userid 5",
+        username: "username 5",
+        review: "review 5",
+    },
+    {
+        title: "title 6",
+        userid: "userid 6",
+        username: "username 6",
+        review: "review 6",
+    },
+    {
+        title: "title 7",
+        userid: "userid 7",
+        username: "username 7",
+        review: "review 7",
+    },
+    {
+        title: "title 8",
+        userid: "userid 8",
+        username: "username 8",
+        review: "review 8",
+    },
+    {
+        title: "title 9",
+        userid: "userid 9",
+        username: "username 9",
+        review: "review 9",
+    },
+    {
+        title: "title 10",
+        userid: "userid 10",
+        username: "username 10",
+        review: "review 10",
     },
 ]
