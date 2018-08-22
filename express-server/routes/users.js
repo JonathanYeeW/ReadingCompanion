@@ -5,6 +5,7 @@ var User = mongoose.model('User')
 
 //Get All Users
 router.get('/', function (req, res, next) {
+  console.log("## users ## /")
   User.find({}, function (err, users) {
     if (err) {
       res.json({ message: 'error', error: true })
@@ -16,6 +17,7 @@ router.get('/', function (req, res, next) {
 
 //Sign In w/ Email and Password
 router.post('/signin', function (req, res, next) {
+  console.log("## users ## /signin")
   const email = req.body.email
   const password = req.body.password
   
@@ -40,6 +42,7 @@ router.post('/signin', function (req, res, next) {
 
 //Get User By Id
 router.post('/getuserinfo', function (req, res, next) {
+  console.log("## users ## /getuserinfo")
   User.find({ _id: req.body.id }, function (err, user) {
     if (err) {
       res.json({ message: "There was an error finding the suer", error: err })
@@ -51,13 +54,14 @@ router.post('/getuserinfo', function (req, res, next) {
 
 // CHECK IF USER EXISTS
 router.post('/checkUserExists', function (request, response) {
+  console.log("## users ## /checkUserExists")
   response.json({ message: "User Does not exist", error: false })
 })
 
 // CREATE NEW USER
 router.post('/create', function (req, res, next) {
+  console.log("## users ## /create")
   // Using the email, look for if the user exists
-  console.log("## users.js ## /create")
   console.log("Looking for user with email", req.body.email)
   User.find({ email: req.body.email }, function (err, user) {
     if (err) {
@@ -85,6 +89,7 @@ router.post('/create', function (req, res, next) {
 
 //Delete All Users
 router.get('/deleteAll', function (req, res, next) {
+  console.log("## users ## /deleteAll")
   User.remove({}, function (err) {
     if (err) {
       res.json({ message: "error", error: err })
@@ -96,6 +101,7 @@ router.get('/deleteAll', function (req, res, next) {
 
 //DELETE USER BY ID
 router.post('/delete', function (request, response, next) {
+  console.log("## users ## /delete")
   console.log("delete the user", request.body)
   User.remove({ _id: request.body.userid }, function (err) {
     if (err) {
@@ -108,6 +114,7 @@ router.post('/delete', function (request, response, next) {
 
 // Counter of Users
 router.post('/count', function (req, res) {
+  console.log("## users ## /count")
   User.find({}, function (err, users) {
     if (err) {
       res.json({ message: 'error', error: err })

@@ -10,7 +10,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
-var postRouter = require('./routes/posts');
+var reviewsRouter = require('./routes/reviews');
 var newsfeedRouter = require('./routes/newsfeed')
 
 var bodyParser = require('body-parser');
@@ -35,7 +35,7 @@ console.log("# app.js # ROUTES")
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
-app.use('/posts', postRouter);
+app.use('/reviews', reviewsRouter);
 app.use('/newsfeed', newsfeedRouter)
 
 console.log("# app.js # ELSE")

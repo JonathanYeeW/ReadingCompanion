@@ -31,8 +31,8 @@ var BookSchema = new mongoose.Schema({
 })
 mongoose.model('Book', BookSchema);
 
-//POST SCHEMA
-var PostSchema = new mongoose.Schema({
+//REVIEW SCHEMA
+var ReviewSchema = new mongoose.Schema({
   title: String,
   userid: String,
   username: String,
@@ -40,7 +40,7 @@ var PostSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date,
 })
-mongoose.model('Post', PostSchema)
+mongoose.model('Review', ReviewSchema)
 
 //NEWSFEED SCHEMA
 var NewsfeedSchema = new mongoose.Schema({
@@ -57,6 +57,7 @@ mongoose.model('Newsfeed', NewsfeedSchema)
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log("## index ## /")
   res.render('index', { title: 'Express' });
 });
 
