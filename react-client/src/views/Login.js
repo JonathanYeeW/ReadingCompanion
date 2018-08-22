@@ -78,7 +78,7 @@ export class Login extends Component {
                         </div>
                     </div>
                 </div>
-                <nav className="navbar bg-dark">
+                <nav className="navbar bg-dark mt-5">
                     <h1></h1>
                 </nav>
             </div>
