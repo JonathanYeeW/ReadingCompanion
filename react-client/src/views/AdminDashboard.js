@@ -18,18 +18,23 @@ export class AdminDashboard extends Component {
             reviewcounter: 0,
             newsfeedcounter: 0,
             sitevisitcounter: 0,
+            users: [],
+            books: [],
+            reviews: [],
         }
         this.loadData()
     }
 
     loadData = () => {
         console.log("## AdminDashboard ## loadData()")
-        bookManager.bookCounter()
+        bookManager.getAllBooks()
             .then(res => {
                 this.setState({
-                    bookcounter: res.count
+                    bookcounter: res.books.length,
+                    books: res.books
                 })
             })
+
         userManager.userCounter()
             .then(res => {
                 this.setState({
@@ -80,7 +85,7 @@ export class AdminDashboard extends Component {
             let data =
             {
                 title: dummyData.Books[i].title,
-                author: dummyData.Books[i].title,
+                author: dummyData.Books[i].author,
             }
             bookManager.createBook(data)
         }
@@ -190,7 +195,9 @@ export class AdminDashboard extends Component {
                     </div>
 
                     <UserList />
-                    <BookList />
+                    <BookList
+                        books={this.state.books}
+                    />
                     <ReviewList />
 
                 </div>
@@ -266,7 +273,7 @@ export class UserList extends Component {
             </div>
         )
     }
-}//End Login
+}//End
 
 export class BookList extends Component {
     constructor(props) {
@@ -294,14 +301,20 @@ export class BookList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Harry Potter 1</td>
-                                <td>JK Rowling</td>
-                                <td>1234567890</td>
-                                <td>100</td>
-                                <td>3</td>
-                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                            </tr>
+                            {
+                                this.props.books.map(book => {
+                                    return (
+                                        <tr>
+                                            <td>{book.title}</td>
+                                            <td>{book.author}</td>
+                                            <td>{book.isbn}</td>
+                                            <td>{book.likes}</td>
+                                            <td>{book.reviews.length}</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>

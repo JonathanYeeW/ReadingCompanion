@@ -27,6 +27,7 @@ var BookSchema = new mongoose.Schema({
   description: String,
   isbn: Number,
   reviews: [],
+  likes: Number,
   created_at: Date,
   updated_at: Date,
 })

@@ -1,6 +1,19 @@
 
-function getAllUserBooks(userid) {
+function getAllBooks() {
     console.log("## bookManager ## getAllBooks()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/')
+            .then(res => res.json())
+            .then(res => {
+                console.log("getAllBooks()")
+                console.log(res)
+                resolve(res)
+            })
+    })
+}
+
+function getAllUserBooks(userid) {
+    console.log("## bookManager ## getAllUserBooks()")
     return new Promise((resolve, reject) => {
         fetch('/books/usercollection', {
             method: "POST",
@@ -99,6 +112,7 @@ function bookCounter() {
 }
 
 module.exports = {
+    getAllBooks,
     getAllUserBooks,
     removeBookFromUser,
     createBook,
