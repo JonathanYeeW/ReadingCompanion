@@ -40,7 +40,8 @@ var ReviewSchema = new mongoose.Schema({
   userid: String,
   username: String,
   review: String,
-  flag: Boolean,
+  flags: Number,
+  likes: Number,
   created_at: Date,
   updated_at: Date,
 })

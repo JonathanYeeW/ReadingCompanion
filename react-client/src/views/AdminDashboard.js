@@ -43,11 +43,11 @@ export class AdminDashboard extends Component {
                 })
             })
 
-        reviewManager.reviewCounter()
+        reviewManager.getAllReviews()
             .then(res => {
-                console.log(res.count)
                 this.setState({
-                    reviewcounter: res.count
+                    reviewcounter: res.reviews.length,
+                    reviews: res.reviews,
                 })
             })
     }
@@ -202,7 +202,9 @@ export class AdminDashboard extends Component {
                     <BookList
                         books={this.state.books}
                     />
-                    <ReviewList />
+                    <ReviewList
+                        reviews={this.state.reviews}
+                    />
 
                 </div>
 
@@ -249,7 +251,7 @@ export class UserList extends Component {
                                     return (
                                         <tr>
                                             <td>{user.email}</td>
-                                            <td>{user.firstname +" "+ user.lastname}</td>
+                                            <td>{user.firstname + " " + user.lastname}</td>
                                             <td>{user.lastSignIn}</td>
                                             <td>#</td>
                                             <td>#</td>
@@ -379,14 +381,20 @@ export class ReviewList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Admin</td>
-                                <td>Harry Potter</td>
-                                <td>Today</td>
-                                <td>100</td>
-                                <td>3</td>
-                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                            </tr>
+                            {
+                                this.props.reviews.map(review => {
+                                    return (
+                                        <tr>
+                                            <td>{review.username}</td>
+                                            <td>{review.title}</td>
+                                            <td>{review.created_at}</td>
+                                            <td>{review.likes}</td>
+                                            <td>{review.flags}</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
