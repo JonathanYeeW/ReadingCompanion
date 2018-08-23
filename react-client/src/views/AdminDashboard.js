@@ -35,12 +35,14 @@ export class AdminDashboard extends Component {
                 })
             })
 
-        userManager.userCounter()
+        userManager.getAllUsers()
             .then(res => {
                 this.setState({
-                    usercounter: res.count
+                    usercounter: res.users.length,
+                    users: res.users
                 })
             })
+
         reviewManager.reviewCounter()
             .then(res => {
                 console.log(res.count)
@@ -194,7 +196,9 @@ export class AdminDashboard extends Component {
                         </div>
                     </div>
 
-                    <UserList />
+                    <UserList
+                        users={this.state.users}
+                    />
                     <BookList
                         books={this.state.books}
                     />
@@ -231,7 +235,7 @@ export class UserList extends Component {
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col">Username</th>
+                                <th scope="col">Username/Email</th>
                                 <th scope="col">Fullname</th>
                                 <th scope="col">Last Signin</th>
                                 <th scope="col">Library Size</th>
@@ -240,15 +244,22 @@ export class UserList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Admin</td>
-                                <td>Jonathan Yee</td>
-                                <td>Today</td>
-                                <td>100</td>
-                                <td>3</td>
-                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                            </tr>
+                            {
+                                this.props.users.map(user => {
+                                    return (
+                                        <tr>
+                                            <td>{user.email}</td>
+                                            <td>{user.firstname +" "+ user.lastname}</td>
+                                            <td>{user.lastSignIn}</td>
+                                            <td>#</td>
+                                            <td>#</td>
+                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
+
                     </table>
                 </div>
         }

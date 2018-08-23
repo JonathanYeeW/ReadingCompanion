@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
   password: {type: String, required: true},
   created_at: {type: Date, required: true},
   updated_at: {type: Date, required: true},
+  lastSignIn: {type: Date, required: true}
 })
 mongoose.model('User', UserSchema);
 

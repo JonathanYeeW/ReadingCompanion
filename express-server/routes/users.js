@@ -70,7 +70,7 @@ router.post('/create', function (req, res, next) {
       // console.log(user.length)
       if (user.length == 0) {
         // Create User
-        var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date() })
+        var user = new User({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password, created_at: Date(), updated_at: Date(), lastSignIn: Date() })
         user.save(function (err) {
           if (err) {
             res.json({ message: "Please Fill In All Required Fields", error: true })
