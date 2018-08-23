@@ -188,128 +188,10 @@ export class AdminDashboard extends Component {
                         </div>
                     </div>
 
-                    {/* <div className="row mb-3">
-                        <div className="col-12">
-                            <div className="card">
-                                <div className="card-header">
-                                    <div className="row">
-                                        <div className="col-4">
-                                            <h3>Users</h3>
-                                        </div>
-                                        <div className="col-8 justify-content-end d-flex">
-                                            <button className="btn btn-secondary">Expand</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <table className="table">
-                                        <thead className="thead-dark">
-                                            <tr>
-                                                <th scope="col">Username</th>
-                                                <th scope="col">Fullname</th>
-                                                <th scope="col">Last Signin</th>
-                                                <th scope="col">Library Size</th>
-                                                <th scope="col">Reviews</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Admin</td>
-                                                <td>Jonathan Yee</td>
-                                                <td>Today</td>
-                                                <td>100</td>
-                                                <td>3</td>
-                                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
+                    <UserList />
+                    <BookList />
+                    <ReviewList />
 
-                    {/* <div className="row mb-3">
-                        <div className="col-12">
-                            <div className="card">
-                                <div className="card-header">
-                                    <div className="row">
-                                        <div className="col-4">
-                                            <h3>Books</h3>
-                                        </div>
-                                        <div className="col-8 justify-content-end d-flex">
-                                            <button className="btn btn-secondary">Expand</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <table className="table">
-                                        <thead className="thead-dark">
-                                            <tr>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Author</th>
-                                                <th scope="col">ISBN</th>
-                                                <th scope="col">Likes</th>
-                                                <th scope="col">Reviews</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Harry Potter 1</td>
-                                                <td>JK Rowling</td>
-                                                <td>1234567890</td>
-                                                <td>100</td>
-                                                <td>3</td>
-                                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-
-                    {/* <div className="row mb-3">
-                        <div className="col-12">
-                            <div className="card">
-                                <div className="card-header">
-                                    <div className="row">
-                                        <div className="col-4">
-                                            <h3>Reviews</h3>
-                                        </div>
-                                        <div className="col-8 justify-content-end d-flex">
-                                            <button className="btn btn-secondary">Expand</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <table className="table">
-                                        <thead className="thead-dark">
-                                            <tr>
-                                                <th scope="col">Username</th>
-                                                <th scope="col">Book Title</th>
-                                                <th scope="col">Pub Date</th>
-                                                <th scope="col">Likes</th>
-                                                <th scope="col">Flags</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Admin</td>
-                                                <td>Harry Potter</td>
-                                                <td>Today</td>
-                                                <td>100</td>
-                                                <td>3</td>
-                                                <td><button className="btn btn-outline-danger">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                </div> */}
                 </div>
 
 
@@ -322,6 +204,190 @@ export class AdminDashboard extends Component {
 }//End AdminDashboard
 
 export default AdminDashboard;
+
+export class UserList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expand: false
+        }
+    }
+
+    render() {
+        let body;
+        if (this.state.expand === false) {
+            body = undefined
+        } else {
+            body =
+                <div className="card-body">
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Fullname</th>
+                                <th scope="col">Last Signin</th>
+                                <th scope="col">Library Size</th>
+                                <th scope="col">Reviews</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Jonathan Yee</td>
+                                <td>Today</td>
+                                <td>100</td>
+                                <td>3</td>
+                                <td><button className="btn btn-outline-danger">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        }
+
+        return (
+            <div className="row mb-3">
+                <div className="col-12">
+                    <div className="card">
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-4">
+                                    <h3>Users</h3>
+                                </div>
+                                <div className="col-8 justify-content-end d-flex">
+                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                        {body}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}//End Login
+
+export class BookList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expand: false
+        }
+    }
+    render() {
+        let body;
+        if (this.state.expand === false) {
+            body = undefined
+        } else {
+            body =
+                <div className="card-body">
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col">Likes</th>
+                                <th scope="col">Reviews</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Harry Potter 1</td>
+                                <td>JK Rowling</td>
+                                <td>1234567890</td>
+                                <td>100</td>
+                                <td>3</td>
+                                <td><button className="btn btn-outline-danger">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        }
+
+        return (
+            <div className="row mb-3">
+                <div className="col-12">
+                    <div className="card">
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-4">
+                                    <h3>Books</h3>
+                                </div>
+                                <div className="col-8 justify-content-end d-flex">
+                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                        {body}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class ReviewList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            expand: false
+        }
+    }
+    render() {
+        let body;
+        if (this.state.expand === false) {
+            body = undefined
+        } else {
+            body =
+                <div className="card-body">
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Book Title</th>
+                                <th scope="col">Pub Date</th>
+                                <th scope="col">Likes</th>
+                                <th scope="col">Flags</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Harry Potter</td>
+                                <td>Today</td>
+                                <td>100</td>
+                                <td>3</td>
+                                <td><button className="btn btn-outline-danger">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        }
+
+        return (
+            <div className="row mb-3">
+                <div className="col-12">
+                    <div className="card">
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-4">
+                                    <h3>Reviews</h3>
+                                </div>
+                                <div className="col-8 justify-content-end d-flex">
+                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                        {body}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 
 const superUsers = [
     {
