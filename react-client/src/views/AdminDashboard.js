@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 let bookManager = require('../controllers/bookManager')
 let userManager = require('../controllers/userManager')
 let reviewManager = require('../controllers/reviewManager')
+let dummyData = require('../dummyData')
 
 export class AdminDashboard extends Component {
     constructor(props) {
@@ -75,11 +76,11 @@ export class AdminDashboard extends Component {
     // Create Dummy Products
     dummyBooks = () => {
         console.log("## AdminDashboard ## dummyBooks()")
-        for (let i = 0; i < superBooks.length; i++) {
+        for (let i = 0; i < dummyData.Books.length; i++) {
             let data =
             {
-                title: superBooks[i].title,
-                author: superBooks[i].title,
+                title: dummyData.Books[i].title,
+                author: dummyData.Books[i].title,
             }
             bookManager.createBook(data)
         }
@@ -88,14 +89,14 @@ export class AdminDashboard extends Component {
 
     dummyUsers = () => {
         console.log("## AdminDashboard ## dummyUsers()")
-        for (let i = 0; i < superUsers.length; i++) {
+        for (let i = 0; i < dummyData.Users.length; i++) {
             let body = {
-                email: superUsers[i].email,
-                firstname: superUsers[i].firstname,
-                lastname: superUsers[i].lastname,
-                password: superUsers[i].password
+                email: dummyData.Users[i].email,
+                firstname: dummyData.Users[i].firstname,
+                lastname: dummyData.Users[i].lastname,
+                password: dummyData.Users[i].password
             }
-            if (i != superUsers.length - 1) {
+            if (i != dummyData.Users.length - 1) {
                 // not the last
                 userManager.createNewUser(body)
             } else {
@@ -108,14 +109,14 @@ export class AdminDashboard extends Component {
 
     dummyReviews = () => {
         console.log("## AdminDashboard ## dummyReviews()")
-        for (let i = 0; i < superReviews.length; i++) {
+        for (let i = 0; i < dummyData.Reviews.length; i++) {
             const data = {
-                title: superReviews[i].title,
-                userid: superReviews[i].userid,
-                username: superReviews[i].username,
-                review: superReviews[i].review,
+                title: dummyData.Reviews[i].title,
+                userid: dummyData.Reviews[i].userid,
+                username: dummyData.Reviews[i].username,
+                review: dummyData.Reviews[i].review,
             }
-            if (i != superReviews.length - 1) {
+            if (i != dummyData.Reviews.length - 1) {
                 reviewManager.createReview(data)
             } else {
                 reviewManager.createReview(data)
@@ -388,190 +389,3 @@ export class ReviewList extends Component {
         )
     }
 }
-
-const superUsers = [
-    {
-        email: "Andrew@email.com",
-        firstname: "Andrew",
-        lastname: "Edstrom",
-        password: "password"
-    },
-    {
-        email: "Jessica@email.com",
-        firstname: "Jessica",
-        lastname: "Mandele",
-        password: "password"
-    },
-    {
-        email: "Rachel@email.com",
-        firstname: "Rachel",
-        lastname: "Schmidt",
-        password: "password"
-    },
-    {
-        email: "Jonathan@email.com",
-        firstname: "Jonathan",
-        lastname: "Yee",
-        password: "password"
-    },
-    {
-        email: "Michael@email.com",
-        firstname: "Michael",
-        lastname: "O'dell",
-        password: "password"
-    },
-    {
-        email: "Max@email.com",
-        firstname: "Max",
-        lastname: "deGruy",
-        password: "password"
-    },
-    {
-        email: "Mariel@email.com",
-        firstname: "Mariel",
-        lastname: "Little",
-        password: "password"
-    },
-    {
-        email: "Sterling@email.com",
-        firstname: "Sterling",
-        lastname: "Schyler",
-        password: "password"
-    },
-    {
-        email: "Alex@email.com",
-        firstname: "Alex",
-        lastname: "Edstrom",
-        password: "password"
-    },
-    {
-        email: "Jocko@email.com",
-        firstname: "Jocko",
-        lastname: "Willink",
-        password: "password"
-    },
-    {
-        email: "admin",
-        firstname: "Jonathan",
-        lastname: "Yee (admin)",
-        password: "password"
-    }
-]
-
-const superBooks = [
-    {
-        title: "Harry Potter and the Sorcerer's Stone",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Chamber of Secrets",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Prisoner of Azkaban",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Goblet of Fire",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Order of the Phoenix",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Halfblood Prince",
-        author: "JK Rowling"
-    },
-    {
-        title: "Harry Potter and the Deathly Hallows",
-        author: "JK Rowling"
-    },
-    {
-        title: "Ender's Game",
-        author: "Orson Scott Card"
-    },
-    {
-        title: "Ready Player One",
-        author: "Ernest Cline"
-    },
-    {
-        title: "The Shallows",
-        author: "Nicholas Carr"
-    },
-    {
-        title: "Extreme Ownership",
-        author: "Jocko Willink and Leif Babin"
-    },
-    {
-        title: "So Good They Can't Ignore You",
-        author: "Cal Newport"
-    },
-    {
-        title: "The Name of the Wind",
-        author: "Patrick Rothfuss"
-    },
-]
-
-const superReviews = [
-    {
-        title: "title 1",
-        userid: "userid 1",
-        username: "username 1",
-        review: "review 1",
-    },
-    {
-        title: "title 2",
-        userid: "userid 2",
-        username: "username 2",
-        review: "review 2",
-    },
-    {
-        title: "title 3",
-        userid: "userid 3",
-        username: "username 3",
-        review: "review 3",
-    },
-    {
-        title: "title 4",
-        userid: "userid 4",
-        username: "username 4",
-        review: "review 4",
-    },
-    {
-        title: "title 5",
-        userid: "userid 5",
-        username: "username 5",
-        review: "review 5",
-    },
-    {
-        title: "title 6",
-        userid: "userid 6",
-        username: "username 6",
-        review: "review 6",
-    },
-    {
-        title: "title 7",
-        userid: "userid 7",
-        username: "username 7",
-        review: "review 7",
-    },
-    {
-        title: "title 8",
-        userid: "userid 8",
-        username: "username 8",
-        review: "review 8",
-    },
-    {
-        title: "title 9",
-        userid: "userid 9",
-        username: "username 9",
-        review: "review 9",
-    },
-    {
-        title: "title 10",
-        userid: "userid 10",
-        username: "username 10",
-        review: "review 10",
-    },
-]
