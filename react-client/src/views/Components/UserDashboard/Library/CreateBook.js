@@ -55,16 +55,23 @@ export class CreateBook extends Component {
 
     }
 
-    toggleScreen = () => {
-        console.log("## CreateBook ## toggleScreen()")
-        if (this.state.screen !== 3) {
+    toggleScreen = (data) => {
+        console.log("## CreateBook ## toggleScreen() data:", data)
+        if (data !== undefined) {
+            console.log("here")
             this.setState({
-                screen: this.state.screen + 1
+                screen: data
             })
         } else {
-            this.setState({
-                screen: 0
-            })
+            if (this.state.screen !== 4) {
+                this.setState({
+                    screen: this.state.screen + 1
+                })
+            } else {
+                this.setState({
+                    screen: 0
+                })
+            }
         }
     }
 
@@ -103,7 +110,17 @@ export class CreateBook extends Component {
             case (3):
                 body =
                     <div>
-                        <RequestScreen />
+                        <RequestScreen 
+                            toggleScreen={this.toggleScreen}
+                        />
+                    </div>
+                break;
+            case (4):
+                body =
+                    <div>
+                        <SuccessScreen 
+                            toggleScreen={this.toggleScreen}
+                        />
                     </div>
                 break;
             default:
@@ -118,12 +135,12 @@ export class CreateBook extends Component {
                 <div className="card dashboard-width-fill">
                     <div className="card-header">
                         <h4>Create Book</h4>
+                        <button className="btn" onClick={() => this.toggleScreen()}> Developer MERP Next Button </button>
                     </div>
                     <div className="card-body dashboard-card-min-height">
                         {body}
                     </div>
                     <div className="card-footer">
-                        <button className="btn" onClick={() => this.toggleScreen()}> Developer MERP Next Button </button>
                     </div>
                 </div>
             </div>
@@ -183,7 +200,7 @@ export class ResultsScreen extends Component {
                                 <div>
                                     <p>Title: {book.title}</p>
                                     <p>Author: {book.author}</p>
-                                    <button className="btn btn-outline-primary">Add to Library</button>
+                                    <button className="btn btn-outline-primary" onClick={()=> this.props.toggleScreen(4) }>Add to Library</button>
                                     <hr />
                                 </div>
                             )
@@ -257,7 +274,7 @@ export class GoogleBooksAPIScreen extends Component {
                             <div>
                                 <p>Title: {book.volumeInfo.title}</p>
                                 <p>Author(s): {book.volumeInfo.authors}</p>
-                                <button className="btn btn-outline-warning">Add To Master Library</button>
+                                <button className="btn btn-outline-warning" onClick={() => this.props.toggleScreen(4)}>Add To Master Library</button>
                                 <hr />
                             </div>
                         )
@@ -270,15 +287,52 @@ export class GoogleBooksAPIScreen extends Component {
 }
 
 export class RequestScreen extends Component {
+
+    submitRequestForm = (event) => {
+        console.log("## CreateBook ## submitRequestForm()")
+        event.preventDefault();
+        this.props.toggleScreen(0)
+    }
+
     render() {
         return (
             <div>
                 <h3>Request Master Librarians to Add</h3>
-                <p>If you still haven't been able to find your book, please submit a request for the 
+                <p>If you still haven't been able to find your book, please submit a request for the
                     master librarians to add the book to the library. Your request will be responded to
                     so keep an eye out for a message in your inbox/notifications!
                 </p>
-                <p>Form Here</p>
+                <form onSubmit={(event) => this.submitRequestForm(event)}>
+                    <div className="form-group">
+                        <label>Title of Book</label>
+                        <input type="text" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <label>Author of Book</label>
+                        <input type="text" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <label>ISBN of Book</label>
+                        <input type="text" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <label>Description and Any Relevant Links</label>
+                        <textarea className="form-control" rows="5"></textarea>
+                    </div>
+                    <input type="submit" className="btn btn-outline-info" />
+                </form>
+
+
+            </div>
+        )
+    }
+}
+
+export class SuccessScreen extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Congrats! You've successfully added the book to your library!</h3>
             </div>
         )
     }
