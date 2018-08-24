@@ -91,7 +91,25 @@ function addBook(data) {
 function deleteAllBooks() {
     console.log("## bookManager ## deleteAllBooks()")
     return new Promise((resolve, reject) => {
-        fetch('/books/deleteAll')
+        fetch('/books/deleteAll', {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
+function deleteBook(data) {
+    // data = { bookid : String }
+    console.log("## bookManager ## deleteBook()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/delete', {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
             .then(res => res.json())
             .then(res => resolve(res))
     })
@@ -120,4 +138,5 @@ module.exports = {
     addBook,
     deleteAllBooks,
     bookCounter,
+    deleteBook,
 }

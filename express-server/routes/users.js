@@ -100,7 +100,7 @@ router.get('/deleteAll', function (req, res, next) {
 })
 
 //DELETE USER BY ID
-router.post('/delete', function (request, response, next) {
+router.delete('/delete', function (request, response, next) {
   console.log("## users ## /delete")
   console.log("delete the user", request.body)
   User.remove({ _id: request.body.userid }, function (err) {

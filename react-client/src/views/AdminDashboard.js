@@ -198,12 +198,15 @@ export class AdminDashboard extends Component {
 
                     <UserList
                         users={this.state.users}
+                        loadData={this.loadData}
                     />
                     <BookList
                         books={this.state.books}
+                        loadData={this.loadData}
                     />
                     <ReviewList
                         reviews={this.state.reviews}
+                        loadData={this.loadData}
                     />
 
                 </div>
@@ -225,6 +228,14 @@ export class UserList extends Component {
         this.state = {
             expand: false
         }
+    }
+
+    deleteUser = (userid) => {
+        userManager.deleteUser({ userid: userid })
+            .then(res => {
+                console.log(res)
+                this.props.loadData()
+            })
     }
 
     render() {
@@ -255,7 +266,7 @@ export class UserList extends Component {
                                             <td>{user.lastSignIn}</td>
                                             <td>#</td>
                                             <td>#</td>
-                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteUser(user._id)}>Delete</button></td>
                                         </tr>
                                     )
                                 })
@@ -295,6 +306,16 @@ export class BookList extends Component {
             expand: false
         }
     }
+
+    deleteBook = (data) => {
+        console.log("## AdminDashboard ## deleteBook()")
+        bookManager.deleteBook({ bookid: data })
+        .then(res => {
+            console.log(res)
+            this.props.loadData()
+        })
+    }
+
     render() {
         let body;
         if (this.state.expand === false) {
@@ -323,7 +344,7 @@ export class BookList extends Component {
                                             <td>{book.isbn}</td>
                                             <td>{book.likes}</td>
                                             <td>{book.reviews.length}</td>
-                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteBook(book._id)}>Delete</button></td>
                                         </tr>
                                     )
                                 })
@@ -362,6 +383,17 @@ export class ReviewList extends Component {
             expand: false
         }
     }
+
+    deleteReview = (reviewid) => {
+        console.log("## AdminDashboard ## deleteReview()")
+        console.log(reviewid)
+        reviewManager.deleteReview({ reviewid: reviewid })
+            .then(res => {
+                console.log(res)
+                this.props.loadData()
+            })
+    }
+
     render() {
         let body;
         if (this.state.expand === false) {
@@ -390,7 +422,7 @@ export class ReviewList extends Component {
                                             <td>{review.created_at}</td>
                                             <td>{review.likes}</td>
                                             <td>{review.flags}</td>
-                                            <td><button className="btn btn-outline-danger">Delete</button></td>
+                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteReview(review._id)}>Delete</button></td>
                                         </tr>
                                     )
                                 })

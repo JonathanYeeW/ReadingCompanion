@@ -35,13 +35,13 @@ router.post('/userid', function (request, response) {
 // CREATE REVIEW
 router.post('/create', function (request, response) {
     console.log("## reviews ## /create")
-    var review = new Review({ 
-        title: request.body.title, 
-        userid: request.body.userid, 
-        username: request.body.username, 
-        review: request.body.review, 
-        created_at: Date(), 
-        updated_at: Date(), 
+    var review = new Review({
+        title: request.body.title,
+        userid: request.body.userid,
+        username: request.body.username,
+        review: request.body.review,
+        created_at: Date(),
+        updated_at: Date(),
         flags: 0,
         likes: 0,
     })
@@ -66,14 +66,26 @@ router.delete('/deleteAll', function (request, response) {
     })
 })
 
-router.get('/counter', function (request, response){
-    console.log("## reviews ## /counter")
-    Review.find({}, function(err, reviews){
+// DELETE REVIEW BY ID
+router.delete('/delete', function (request, response) {
+    console.log("## reviews ## /delete")
+    Review.remove({ _id: request.body.reviewid}, function(err){
         if(err){
-            response.json({message: "THere was an error getting all reviews for counter", error: true})
+            response.json({message: "There was an error deleting review by id", error: true})
+        } else {
+            response.json({ message: "Success", error: false })
+        }
+    })
+})
+
+router.get('/counter', function (request, response) {
+    console.log("## reviews ## /counter")
+    Review.find({}, function (err, reviews) {
+        if (err) {
+            response.json({ message: "THere was an error getting all reviews for counter", error: true })
         } else {
             let temp = reviews.length
-            response.json({message: "success", error: false, count: temp})
+            response.json({ message: "success", error: false, count: temp })
         }
     })
 })

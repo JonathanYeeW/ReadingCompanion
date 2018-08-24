@@ -44,8 +44,20 @@ function editReview(data) {
     console.log("## reviewManager ## editReview()")
 }
 
-function deleteSingleReview(data) {
-    console.log("## reviewManager ## deleteSingleReview()")
+function deleteReview(data) {
+    // data = { reviewid : String }
+    console.log("## reviewManager ## deleteSingleReview()", data)
+    return new Promise((resolve, reject) => {
+        fetch('/reviews/delete', {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
 }
 
 function deleteAllReviews() {
@@ -73,7 +85,7 @@ module.exports = {
     getUserReviews,
     createReview,
     editReview,
-    deleteSingleReview,
+    deleteReview,
     deleteAllReviews,
     reviewCounter,
 }

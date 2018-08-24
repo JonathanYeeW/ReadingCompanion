@@ -128,7 +128,7 @@ router.post('/remove', function (req, res) {
 })
 
 //DELETE ALL BOOKS
-router.get('/deleteAll', function (req, res) {
+router.delete('/deleteAll', function (req, res) {
     Book.remove({}, function (err) {
         if (err) {
             res.json({ message: "There was an error deleting all the books", error: true })
@@ -139,8 +139,8 @@ router.get('/deleteAll', function (req, res) {
 })
 
 //DELETE BOOK BY BOOK ID
-router.post('/delete', function (req, res) {
-    Book.remove({ _id: req.body.id }, function (err) {
+router.delete('/delete', function (req, res) {
+    Book.remove({ _id: req.body.bookid }, function (err) {
         if (err) {
             res.json({ message: "There was an error deleting book by book id", error: true })
         } else {

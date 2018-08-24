@@ -67,6 +67,22 @@ function deleteAllUsers() {
     })
 }
 
+function deleteUser(data) {
+    // data = { userid : String }
+    console.log("## userManager ## deleteUser()")
+    return new Promise((resolve, reject) => {
+        fetch('/users/delete', {
+            method: "DELETE",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     checkForExistingUser,
     getAllUsers,
@@ -74,4 +90,5 @@ module.exports = {
     fetchUserData,
     userCounter,
     deleteAllUsers,
+    deleteUser
 }
