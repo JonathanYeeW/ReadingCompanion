@@ -44,7 +44,8 @@ export class Login extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <div className="col-6 d-flex justify-content-start">
-                        <a className="navbar-brand" href="#">Reading Companion</a>
+                        {/* <a className="navbar-brand" href="#">Reading Companion</a> */}
+                        <h4>Reading Companion</h4>
                     </div>
                     <div className="col-6 d-flex justify-content-end">
                         <button className="btn" onClick={() => this.props.navigationSwitch(0)}>Admin</button>
@@ -79,7 +80,6 @@ export class Login extends Component {
                     </div>
                 </div>
                 <nav className="navbar bg-dark mt-5">
-                    <h1></h1>
                 </nav>
             </div>
         )

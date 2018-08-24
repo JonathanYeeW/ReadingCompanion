@@ -103,7 +103,7 @@ export class AdminDashboard extends Component {
                 lastname: dummyData.Users[i].lastname,
                 password: dummyData.Users[i].password
             }
-            if (i != dummyData.Users.length - 1) {
+            if (i !== dummyData.Users.length - 1) {
                 // not the last
                 userManager.createNewUser(body)
             } else {
@@ -123,7 +123,7 @@ export class AdminDashboard extends Component {
                 username: dummyData.Reviews[i].username,
                 review: dummyData.Reviews[i].review,
             }
-            if (i != dummyData.Reviews.length - 1) {
+            if (i !== dummyData.Reviews.length - 1) {
                 reviewManager.createReview(data)
             } else {
                 reviewManager.createReview(data)
@@ -137,7 +137,8 @@ export class AdminDashboard extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <div className="col-6 d-flex justify-content-start">
-                        <a className="navbar-brand" href="#">Admin Dashboard</a>
+                        {/* <a className="navbar-brand" href="#">Admin Dashboard</a> */}
+                        <h4>Admin Dashboard</h4>
                     </div>
                     <div className="col-6 d-flex justify-content-end">
                         <button className="btn" onClick={() => this.props.navigationSwitch(1)}>Login</button>
@@ -213,7 +214,6 @@ export class AdminDashboard extends Component {
 
 
                 <nav className="navbar bg-dark">
-                    <h1></h1>
                 </nav>
             </div>
         )

@@ -12,26 +12,26 @@ export class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">{this.props.username}</a>
+                <h4>{this.props.username}</h4>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(0)}>Explore <span className="sr-only">(current)</span></a>
+                            <button className="btn" onClick={() => this.props.toggleNavigation(0)}>Explore <span className="sr-only">(current)</span></button>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(1)}>Library</a>
+                            <button className="btn" onClick={() => this.props.toggleNavigation(1)}>Library</button>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(2)}>Reviews</a>
+                            <button className="btn" onClick={() => this.props.toggleNavigation(2)}>Reviews</button>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={() => this.props.toggleNavigation(3)}>Reader</a>
+                            <button className="btn" onClick={() => this.props.toggleNavigation(3)}>Reader</button>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled" href="#">Friends (Disabled)</a>
+                            <button className="btn disabled">Friends (disabled)</button>
                         </li>
                     </ul>
                 </div>
