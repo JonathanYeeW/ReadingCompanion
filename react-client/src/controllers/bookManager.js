@@ -72,6 +72,7 @@ function removeBookFromUser(bookid, userid) {
 }
 
 function createBook(data) {
+    // data = { title: String, author: String, userid: String, isbn10: String, isbn13: String }
     console.log("## bookManager ## createBook()")
     return new Promise((resolve, reject) => {
         fetch('/books/create', {

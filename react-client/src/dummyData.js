@@ -71,55 +71,81 @@ const Users = [
 const Books = [
     {
         title: "Harry Potter and the Sorcerer's Stone",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Chamber of Secrets",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Prisoner of Azkaban",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Goblet of Fire",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Order of the Phoenix",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Halfblood Prince",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Harry Potter and the Deathly Hallows",
-        author: "JK Rowling"
+        author: "JK Rowling",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Ender's Game",
-        author: "Orson Scott Card"
+        author: "Orson Scott Card",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Ready Player One",
-        author: "Ernest Cline"
+        author: "Ernest Cline",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "The Shallows",
-        author: "Nicholas Carr"
+        author: "Nicholas Carr",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "Extreme Ownership",
-        author: "Jocko Willink and Leif Babin"
+        author: "Jocko Willink and Leif Babin",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "So Good They Can't Ignore You",
-        author: "Cal Newport"
+        author: "Cal Newport",
+        isbn10: 1,
+        isbn13: 2,
     },
     {
         title: "The Name of the Wind",
-        author: "Patrick Rothfuss"
+        author: "Patrick Rothfuss",
+        isbn10: 1,
+        isbn13: 2,
     },
 ]
 

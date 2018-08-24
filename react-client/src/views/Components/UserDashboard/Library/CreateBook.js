@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 
+/*
+ISBN 10 vs 13:
+
+An ISBN is assigned to each edition and variation (except reprintings) 
+of a book. ... The ISBN is 13 digits long if assigned on or after 1 January 2007, 
+and 10 digits long if assigned before 2007. An International Standard Book Number 
+consists of 4 parts (if it is a 10 digit ISBN) or 5 parts (for a 13 digit ISBN)
+
+I want to use 13 as the primary, 
+but 10 obviously as a secondary and store both whenever possible
+*/
+
 // Props
 // - userid
 // - fetchUserBooks | To reload parent component when i create a new book
 // - username | need to send it with new book for newsfeed
+
+var counter = 0
 
 var bookManager = require('../../../../controllers/bookManager')
 
@@ -228,6 +242,10 @@ export class GoogleBooksAPIScreen extends Component {
         this.searchGoogleBooksAPI()
     }
 
+    returnkey = () => {
+        return counter++
+    }
+
     searchGoogleBooksAPI = async () => {
         console.log("## CreateBook ## searchGoogleBooksAPI()")
 
@@ -257,8 +275,19 @@ export class GoogleBooksAPIScreen extends Component {
         const data = await api_call.json()
         console.log(data)
 
+        let tempitems = []
+
+        for (let i = 0; i < data.items.length; i++) {
+            console.log(data.items[i])
+            if (data.items[i].volumeInfo.industryIdentifiers) {
+                if (data.items[i].volumeInfo.industryIdentifiers[0] && data.items[i].volumeInfo.industryIdentifiers[1]) {
+                    tempitems.push(data.items[i])
+                }
+            }
+        }
+
         this.setState({
-            books: data.items
+            books: tempitems
         })
         // Figure Out Pagination
         // Have an error message if Google Books API is down or cannot be reached
@@ -272,9 +301,14 @@ export class GoogleBooksAPIScreen extends Component {
                     {
                         this.state.books.map(book => {
                             return (
-                                <div>
+                                <div key={this.returnkey()}>
                                     <p>Title: {book.volumeInfo.title}</p>
                                     <p>Author(s): {book.volumeInfo.authors}</p>
+                                    <p>ISBN10: {book.volumeInfo.industryIdentifiers[0].identifier}</p>
+                                    <p>ISBN13: {book.volumeInfo.industryIdentifiers[1].identifier}</p>
+                                    <button className="btn" onClick={() => {
+                                        console.log(book.volumeInfo.industryIdentifiers)
+                                    }}>Print Book</button>
                                     <button className="btn btn-outline-warning" onClick={() => this.props.toggleScreen(4)}>Add To Master Library</button>
                                     <hr />
                                 </div>

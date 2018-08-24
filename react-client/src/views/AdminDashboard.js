@@ -88,6 +88,8 @@ export class AdminDashboard extends Component {
             {
                 title: dummyData.Books[i].title,
                 author: dummyData.Books[i].author,
+                isbn10: dummyData.Books[i].isbn10,
+                isbn13: dummyData.Books[i].isbn13,
             }
             bookManager.createBook(data)
         }
