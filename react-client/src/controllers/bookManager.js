@@ -5,8 +5,6 @@ function getAllBooks() {
         fetch('/books/')
             .then(res => res.json())
             .then(res => {
-                console.log("getAllBooks()")
-                console.log(res)
                 resolve(res)
             })
     })
@@ -21,6 +19,22 @@ function getAllUserBooks(userid) {
                 "content-type": "application/json"
             },
             body: JSON.stringify({ userid: userid })
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
+function getBooksByTitle(booktitle) {
+    // booktitle = String
+    console.log("## bookManager ## getBooksByTitle()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/booktitle', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ title: booktitle })
         })
             .then(res => res.json())
             .then(res => resolve(res))
@@ -139,4 +153,5 @@ module.exports = {
     deleteAllBooks,
     bookCounter,
     deleteBook,
+    getBooksByTitle,
 }

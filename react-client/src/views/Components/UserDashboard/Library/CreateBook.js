@@ -12,56 +12,64 @@ export class CreateBook extends Component {
         super(props);
         console.log("## CreateBook.js ## props:", this.props)
         this.state = {
-            title: "",
-            author: "",
+            screen: 0
         }
     }
 
-    titleChange = (event) => {
-        this.setState({
-            title: event.target.value
-        })
-    }
-
-    authorChange = (event) => {
-        this.setState({
-            author: event.target.value
-        })
-    }
-
-    createBook = () => {
-        let data = { title: this.state.title, author: this.state.author, userid: this.props.userid, username: this.props.username }
-        bookManager.createBook(data)
-        this.props.fetchUserBooks()
-        this.setState({
-            title: "",
-            author: ""
-        })
+    toggleScreen = () => {
+        console.log("## CreateBook ## toggleScreen()")
+        if (this.state.screen !== 2) {
+            this.setState({
+                screen: this.state.screen + 1
+            })
+        } else {
+            this.setState({
+                screen: 0
+            })
+        }
     }
 
     render() {
-        let submitbutton;
-        if (this.state.title === "" || this.state.author === "") {
-            submitbutton = <button className="btn btn-outline-secondary">Submit</button>
-        } else {
-            submitbutton = <button onClick={() => { this.createBook() }} className="btn btn-outline-success">Submit</button>
+        let body;
+
+        switch (this.state.screen) {
+            case (0):
+                body =
+                    <div>
+                        <SearchScreen />
+                    </div>
+                break
+            case (1):
+                body =
+                    <div>
+                        <ResultsScreen />
+                    </div>
+                break;
+            case (2):
+                body =
+                    <div>
+                        <GoogleBooksAPIScreen />
+                    </div>
+                break;
+            default:
+                body =
+                    <div>
+                        <p>Error</p>
+                    </div>
         }
 
         return (
-            <div className="card dashboard-width-fill">
-                <div className="card-header">
-                    <h4>Create Book</h4>
-                </div>
-                <div className="card-body dashboard-card-min-height">
-                    <form onSubmit={(event) => { event.preventDefault() }}>
-                        <div className="form-group">
-                            <input type="text" className="form-control" value={this.state.title} placeholder="Title" name="title" onChange={this.titleChange} />
-                        </div>
-                        <div className="form-group">
-                            <input type="text" className="form-control" value={this.state.author} placeholder="Author" name="author" onChange={this.authorChange} />
-                        </div>
-                        {submitbutton}
-                    </form>
+            <div className="container">
+                <div className="card dashboard-width-fill">
+                    <div className="card-header">
+                        <h4>Create Book</h4>
+                    </div>
+                    <div className="card-body dashboard-card-min-height">
+                        {body}
+                    </div>
+                    <div className="card-footer">
+                        <button className="btn" onClick={() => this.toggleScreen()}> Developer MERP Next Button </button>
+                    </div>
                 </div>
             </div>
         )
@@ -69,3 +77,47 @@ export class CreateBook extends Component {
 }
 
 export default CreateBook;
+
+export class SearchScreen extends Component {
+    render() {
+        return (
+            <div>
+                <h4>Search Screen</h4>
+                <form onSubmit={(event) => { event.preventDefault() }}>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Title" name="title" />
+                        <input type="submit" className="btn"/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Author" name="author" />
+                        <input type="submit" className="btn"/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Genre" name="genre" />
+                        <input type="submit" className="btn"/>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+}
+
+export class ResultsScreen extends Component {
+    render() {
+        return (
+            <div>
+                <h4>Results Screen</h4>
+            </div>
+        )
+    }
+}
+
+export class GoogleBooksAPIScreen extends Component {
+    render() {
+        return (
+            <div>
+                <h4>GoogleBooksAPI Screen</h4>
+            </div>
+        )
+    }
+}

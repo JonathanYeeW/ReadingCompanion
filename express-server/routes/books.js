@@ -38,6 +38,17 @@ router.post('/usercollection', function (request, response) {
     })
 })
 
+// GET ALL BOOKS BY TITLE
+router.post('/booktitle', function(request, response){
+    Book.find({ title: request.body.title}, function(err, books){
+        if(err){
+            response.json({message: "There was an error getting the book by title", error: true})
+        } else {
+            response.json({message: "Success", error: false, books: books})
+        }
+    })
+})
+
 //CREATE BOOK
 router.post('/create', function (request, response) {
     var book = new Book({ 
