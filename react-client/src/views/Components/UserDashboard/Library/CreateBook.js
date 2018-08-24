@@ -110,7 +110,7 @@ export class CreateBook extends Component {
             case (3):
                 body =
                     <div>
-                        <RequestScreen 
+                        <RequestScreen
                             toggleScreen={this.toggleScreen}
                         />
                     </div>
@@ -118,7 +118,7 @@ export class CreateBook extends Component {
             case (4):
                 body =
                     <div>
-                        <SuccessScreen 
+                        <SuccessScreen
                             toggleScreen={this.toggleScreen}
                         />
                     </div>
@@ -200,7 +200,7 @@ export class ResultsScreen extends Component {
                                 <div>
                                     <p>Title: {book.title}</p>
                                     <p>Author: {book.author}</p>
-                                    <button className="btn btn-outline-primary" onClick={()=> this.props.toggleScreen(4) }>Add to Library</button>
+                                    <button className="btn btn-outline-primary" onClick={() => this.props.toggleScreen(4)}>Add to Library</button>
                                     <hr />
                                 </div>
                             )
@@ -265,21 +265,32 @@ export class GoogleBooksAPIScreen extends Component {
     }
 
     render() {
+        let body;
+        if (this.state.books.length > 0) {
+            body =
+                <div>
+                    {
+                        this.state.books.map(book => {
+                            return (
+                                <div>
+                                    <p>Title: {book.volumeInfo.title}</p>
+                                    <p>Author(s): {book.volumeInfo.authors}</p>
+                                    <button className="btn btn-outline-warning" onClick={() => this.props.toggleScreen(4)}>Add To Master Library</button>
+                                    <hr />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+        } else {
+            body =
+                <p>Sorry, Nothing in Google Books API :(</p>
+        }
+
         return (
             <div>
                 <h4>GoogleBooksAPI Screen</h4>
-                {
-                    this.state.books.map(book => {
-                        return (
-                            <div>
-                                <p>Title: {book.volumeInfo.title}</p>
-                                <p>Author(s): {book.volumeInfo.authors}</p>
-                                <button className="btn btn-outline-warning" onClick={() => this.props.toggleScreen(4)}>Add To Master Library</button>
-                                <hr />
-                            </div>
-                        )
-                    })
-                }
+                {body}
                 <button className="btn btn-outline-danger" onClick={() => this.props.toggleScreen()}>Still Not Here?</button>
             </div>
         )
