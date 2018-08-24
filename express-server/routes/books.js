@@ -78,7 +78,7 @@ router.post('/create', function (request, response) {
     })
     book.save(function (err) {
         if (err) {
-            response.json({ message: "There was an error creating a new book", error: true })
+            response.json({ message: "There was an error creating a new book", error: true, err: err })
         } else {
             // CREATE A NEWSFEED OBJECT
             var newsfeed_object = new Newsfeed({
@@ -95,7 +95,7 @@ router.post('/create', function (request, response) {
                 if (err) {
                     response.json({ message: "success CreateBook, Error Create NewsfeedObject", error: true })
                 } else {
-                    response.json({ message: "success Create Book, Create NewsfeedObject", error: false })
+                    response.json({ message: "success Create Book, Create NewsfeedObject", error: false, newBook: book })
                 }
             })
         }

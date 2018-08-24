@@ -118,6 +118,7 @@ export class CreateBook extends Component {
                             toggleScreen={this.toggleScreen}
                             searchType={this.state.searchType}
                             searchTerms={this.state.searchTerms}
+                            userid = {this.props.userid}
                         />
                     </div>
                 break;
@@ -149,7 +150,7 @@ export class CreateBook extends Component {
                 <div className="card dashboard-width-fill">
                     <div className="card-header">
                         <h4>Create Book</h4>
-                        <button className="btn" onClick={() => this.toggleScreen()}> Developer MERP Next Button </button>
+                        {/* <button className="btn" onClick={() => this.toggleScreen()}> Developer MERP Next Button </button> */}
                     </div>
                     <div className="card-body dashboard-card-min-height">
                         {body}
@@ -293,6 +294,26 @@ export class GoogleBooksAPIScreen extends Component {
         // Have an error message if Google Books API is down or cannot be reached
     }
 
+    addBookToLibrary = (book) => {
+        console.log("Adding this to library", book.volumeInfo)
+        // create the book because we're sourcing from GoogleAPI
+        const data = {
+            title: book.volumeInfo.title,
+            author: book.volumeInfo.authors,
+            userid: this.props.userid,
+            isbn10: book.volumeInfo.industryIdentifiers[0].identifier,
+            isbn13: book.volumeInfo.industryIdentifiers[1].identifier,
+        }
+        console.log("#########################")
+        console.log("#########################")
+        console.log("#########################")
+        console.log(data)
+        bookManager.createBook(data)
+        .then(res => console.log(res))
+        
+        this.props.toggleScreen(4)
+    }
+
     render() {
         let body;
         if (this.state.books.length > 0) {
@@ -309,7 +330,7 @@ export class GoogleBooksAPIScreen extends Component {
                                     <button className="btn" onClick={() => {
                                         console.log(book.volumeInfo.industryIdentifiers)
                                     }}>Print Book</button>
-                                    <button className="btn btn-outline-warning" onClick={() => this.props.toggleScreen(4)}>Add To Master Library</button>
+                                    <button className="btn btn-outline-warning" onClick={() => this.addBookToLibrary(book)}>Add To Master Library</button>
                                     <hr />
                                 </div>
                             )

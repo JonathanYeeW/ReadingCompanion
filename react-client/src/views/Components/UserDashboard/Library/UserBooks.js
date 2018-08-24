@@ -37,48 +37,56 @@ export class UserBooks extends Component {
         // bookid = book._id, the bookid should be the book id that needs to be removed
         console.log("## UserBooks ## removeBookFromUser()", bookid)
         bookManager.removeBookFromUser(bookid, this.props.userid)
-        .then(res => {
-            console.log(res)
-            this.fetchUserBooks()
-        })
+            .then(res => {
+                console.log(res)
+                this.fetchUserBooks()
+            })
     }
 
     render() {
         let body;
         if (this.state.books.length !== 0) {
             body =
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3 library-card">
-                        <CreateBook
-                            userid={this.props.userid}
-                            fetchUserBooks={this.fetchUserBooks}
-                            username={this.props.username}
-                        />
+                <div>
+                    <div className="row mb-5">
+                        <div className="col-12">
+                            <CreateBook
+                                userid={this.props.userid}
+                                fetchUserBooks={this.fetchUserBooks}
+                                username={this.props.username}
+                            />
+                        </div>
                     </div>
-                    {
-                        this.state.books.map(book => {
-                            return (
-                                <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
-                                    <Book
-                                        book={book}
-                                        removeBookFromUser={this.removeBookFromUser}
-                                    />
-                                </div>
-                            )
-                        })
-                    }
+                    <div className="row">
+                        {
+                            this.state.books.map(book => {
+                                return (
+                                    <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
+                                        <Book
+                                            book={book}
+                                            removeBookFromUser={this.removeBookFromUser}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
         } else {
             body =
                 <div>
-                    <div className="col-4">
-                        <CreateBook
-                            userid={this.props.userid}
-                            fetchUserBooks={this.fetchUserBooks}
-                        />
+                    <div className="row">
+                        <div className="col-12">
+                            <CreateBook
+                                userid={this.props.userid}
+                                fetchUserBooks={this.fetchUserBooks}
+                            />
+                        </div>
                     </div>
-                    <div className="col-8">
-                        <h5>You have no books! Go Add Some!</h5>
+                    <div className="row">
+                        <div className="col-12">
+                            <h5>You have no books! Go Add Some!</h5>
+                        </div>
                     </div>
                 </div>
         }

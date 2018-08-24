@@ -75,8 +75,8 @@ class App extends Component {
 
     return (
       <div id="app-wrapper">
-        {/* {body} */}
-        <CreateBook />
+        {body}
+        {/* <CreateBook /> */}
       </div>
     )
   }
