@@ -41,6 +41,21 @@ function getBooksByTitle(booktitle) {
     })
 }
 
+function getBooksByAuthor(authorName) {
+    console.log("## bookManager ## getBooksByAuthor()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/authorname', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ name: authorName })
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 function removeBookFromUser(bookid, userid) {
     console.log("## bookManager ## removeBookFromUser()")
     return new Promise((resolve, reject) => {
@@ -154,4 +169,5 @@ module.exports = {
     bookCounter,
     deleteBook,
     getBooksByTitle,
+    getBooksByAuthor,
 }

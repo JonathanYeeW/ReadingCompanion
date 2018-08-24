@@ -39,30 +39,41 @@ router.post('/usercollection', function (request, response) {
 })
 
 // GET ALL BOOKS BY TITLE
-router.post('/booktitle', function(request, response){
-    Book.find({ title: request.body.title}, function(err, books){
-        if(err){
-            response.json({message: "There was an error getting the book by title", error: true})
+router.post('/booktitle', function (request, response) {
+    Book.find({ title: request.body.title }, function (err, books) {
+        if (err) {
+            response.json({ message: "There was an error getting the book by title", error: true })
         } else {
-            response.json({message: "Success", error: false, books: books})
+            response.json({ message: "Success", error: false, books: books })
+        }
+    })
+})
+
+// GET ALL BOOKS BY AUTHOR
+router.post('/authorname', function (request, response) {
+    Book.find({ author: request.body.name }, function (err, books) {
+        if (err) {
+            response.json({ message: "There was an error getting the book by author", error: true })
+        } else {
+            response.json({ message: "Success", error: false, books: books })
         }
     })
 })
 
 //CREATE BOOK
 router.post('/create', function (request, response) {
-    var book = new Book({ 
-        title: request.body.title, 
-        author: request.body.author, 
-        userid: request.body.userid, 
-        allusers: [request.body.userid], 
+    var book = new Book({
+        title: request.body.title,
+        author: request.body.author,
+        userid: request.body.userid,
+        allusers: [request.body.userid],
         genre: "genre tbd",
         description: "description tbd",
         isbn: 88888888,
         reviews: [],
         likes: 0,
-        created_at: Date(), 
-        updated_at: Date() 
+        created_at: Date(),
+        updated_at: Date()
     })
     book.save(function (err) {
         if (err) {
@@ -176,13 +187,13 @@ router.post('/discover', function (req, res) {
 })
 
 // GET TOTAL BOOK OBJECT COUNT
-router.post('/count', function(req, res){
+router.post('/count', function (req, res) {
     Book.find({}, function (err, books) {
         if (err) {
             res.json({ message: "There was an error getting all books", error: true })
         } else {
             // res.json({ message: "success", error: false, books: books })
-            res.json({message: "success", error: false, count: books.length})
+            res.json({ message: "success", error: false, count: books.length })
         }
     })
 })
