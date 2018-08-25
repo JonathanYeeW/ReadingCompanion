@@ -181,6 +181,7 @@ export class SearchScreen extends Component {
         return (
             <div>
                 <h4>Search Screen</h4>
+                <p className="text-muted">Let's start by looking through the Master Library for the book you're looking for</p>
                 <form onSubmit={(event) => { this.submitForm(event) }}>
                     <div className="form-group">
                         <label>Keyword</label>
@@ -228,6 +229,7 @@ export class ResultsScreen extends Component {
             <div>
                 <h4>Results Screen</h4>
                 {body}
+                <button className="btn btn-outline-info" onClick={() => this.props.toggleScreen(0)}>modify search?</button>
                 <button className="btn btn-outline-danger" onClick={() => this.props.toggleScreen()}>is the book not here?</button>
             </div>
         )
@@ -346,7 +348,9 @@ export class GoogleBooksAPIScreen extends Component {
         return (
             <div>
                 <h4>GoogleBooksAPI Screen</h4>
+                <p className="text-muted">If the book isn't already in the Master Library, let's look through Google's Library shall we?</p>
                 {body}
+                <button className="btn btn-outline-info" onClick={() => this.props.toggleScreen(0)}>Modify Search?</button>
                 <button className="btn btn-outline-danger" onClick={() => this.props.toggleScreen()}>Still Not Here?</button>
             </div>
         )
@@ -365,9 +369,10 @@ export class RequestScreen extends Component {
         return (
             <div>
                 <h3>Request Master Librarians to Add</h3>
-                <p>If you still haven't been able to find your book, please submit a request for the
-                    master librarians to add the book to the library. Your request will be responded to
-                    so keep an eye out for a message in your inbox/notifications!
+                <p className="text-muted">It happens, sometimes we can find the book you're looking for. 
+                    Submit a request form for it to be added and the Master Librarians will add it for you! 
+                    We have to do it this way because we want to make sure we get the right information when 
+                    adding it to the MASTER LIBRARY.
                 </p>
                 <form onSubmit={(event) => this.submitRequestForm(event)}>
                     <div className="form-group">

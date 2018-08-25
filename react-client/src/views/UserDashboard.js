@@ -121,11 +121,11 @@ export class User extends Component {
                                 userid={this.state.userid}
                             />
                         </div>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <GoogleSearch
                                 userid={this.state.userid}
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
                         <div id="userdashboard-newsfeed-container" className="mt-3">
