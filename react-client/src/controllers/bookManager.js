@@ -159,6 +159,22 @@ function bookCounter() {
     })
 }
 
+function likeBook(data) {
+    // data = { bookid: String, newLikes: Number }
+    console.log("## bookManager ## likeBook()")
+    return new Promise((resolve, reject) => {
+        fetch('/books/like', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+    })
+}
+
 module.exports = {
     getAllBooks,
     getAllUserBooks,
@@ -171,4 +187,5 @@ module.exports = {
     deleteBook,
     getBooksByTitle,
     getBooksByAuthor,
+    likeBook,
 }
