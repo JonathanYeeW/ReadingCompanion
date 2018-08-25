@@ -40,10 +40,13 @@ router.post('/usercollection', function (request, response) {
 
 // GET ALL BOOKS BY TITLE
 router.post('/booktitle', function (request, response) {
-    Book.find({ title: request.body.title }, function (err, books) {
+    console.log()
+    Book.find({ $text: { $search: request.body.title } }, function (err, books) {
         if (err) {
-            response.json({ message: "There was an error getting the book by title", error: true })
+            console.log("error", err)
+            response.json({ message: "There was an error getting the book by title", error: true, books: [] })
         } else {
+            console.log("success", books)
             response.json({ message: "Success", error: false, books: books })
         }
     })

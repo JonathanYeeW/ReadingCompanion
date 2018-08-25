@@ -3,18 +3,18 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/merntest')
+mongoose.connect('mongodb://localhost/merntest1')
 mongoose.Promise = global.Promise;
 
 // USER SCHEMA
 var UserSchema = new mongoose.Schema({
-  firstname: {type: String, required: true},
-  lastname: {type: String, required: true},
-  email: {type: String, required: true},
-  password: {type: String, required: true},
-  created_at: {type: Date, required: true},
-  updated_at: {type: Date, required: true},
-  lastSignIn: {type: Date, required: true}
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  created_at: { type: Date, required: true },
+  updated_at: { type: Date, required: true },
+  lastSignIn: { type: Date, required: true }
 })
 mongoose.model('User', UserSchema);
 
@@ -33,6 +33,7 @@ var BookSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date,
 })
+BookSchema.index({ title: "text", author: "text" })
 mongoose.model('Book', BookSchema);
 
 //REVIEW SCHEMA
@@ -62,7 +63,7 @@ var NewsfeedSchema = new mongoose.Schema({
 mongoose.model('Newsfeed', NewsfeedSchema)
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   console.log("## index ## /")
   res.render('index', { title: 'Express' });
 });
