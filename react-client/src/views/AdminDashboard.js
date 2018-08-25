@@ -330,7 +330,8 @@ export class BookList extends Component {
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
-                                <th scope="col">ISBN</th>
+                                <th scope="col">ISBN10</th>
+                                <th scope="col">ISBN13</th>
                                 <th scope="col">Likes</th>
                                 <th scope="col">Reviews</th>
                                 <th scope="col">Actions</th>
@@ -343,7 +344,8 @@ export class BookList extends Component {
                                         <tr>
                                             <td>{book.title}</td>
                                             <td>{book.author}</td>
-                                            <td>{book.isbn}</td>
+                                            <td>{book.isbn10}</td>
+                                            <td>{book.isbn13}</td>
                                             <td>{book.likes}</td>
                                             <td>{book.reviews.length}</td>
                                             <td><button className="btn btn-outline-danger" onClick={() => this.deleteBook(book._id)}>Delete</button></td>

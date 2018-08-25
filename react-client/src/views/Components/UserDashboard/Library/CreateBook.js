@@ -118,7 +118,7 @@ export class CreateBook extends Component {
                             toggleScreen={this.toggleScreen}
                             searchType={this.state.searchType}
                             searchTerms={this.state.searchTerms}
-                            userid = {this.props.userid}
+                            userid={this.props.userid}
                         />
                     </div>
                 break;
@@ -277,12 +277,13 @@ export class GoogleBooksAPIScreen extends Component {
         console.log(data)
 
         let tempitems = []
-
-        for (let i = 0; i < data.items.length; i++) {
-            console.log(data.items[i])
-            if (data.items[i].volumeInfo.industryIdentifiers) {
-                if (data.items[i].volumeInfo.industryIdentifiers[0] && data.items[i].volumeInfo.industryIdentifiers[1]) {
-                    tempitems.push(data.items[i])
+        if (data.items) {
+            for (let i = 0; i < data.items.length; i++) {
+                console.log(data.items[i])
+                if (data.items[i].volumeInfo.industryIdentifiers) {
+                    if (data.items[i].volumeInfo.industryIdentifiers[0] && data.items[i].volumeInfo.industryIdentifiers[1]) {
+                        tempitems.push(data.items[i])
+                    }
                 }
             }
         }
@@ -309,8 +310,8 @@ export class GoogleBooksAPIScreen extends Component {
         console.log("#########################")
         console.log(data)
         bookManager.createBook(data)
-        .then(res => console.log(res))
-        
+            .then(res => console.log(res))
+
         this.props.toggleScreen(4)
     }
 
