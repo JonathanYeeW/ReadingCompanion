@@ -129,7 +129,8 @@ export class User extends Component {
                     </div>
                     <div className="col-xl-8 col-lg-8 col-m-6 col-sm-12 col-xs-12">
                         <div id="userdashboard-newsfeed-container" className="mt-3">
-                            <Newsfeed />
+                            <h4>Newsfeed here</h4>
+                            {/* <Newsfeed /> */}
                         </div>
                     </div>
                 </div>

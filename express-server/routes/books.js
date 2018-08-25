@@ -202,4 +202,15 @@ router.post('/count', function (req, res) {
     })
 })
 
+router.post('/like', function(request, response){
+    // request = { bookid: String, newLikes: Number }
+    Book.update({_id: request.body.bookid}, { likes: request.body.newLikes}, function(err){
+        if(err){
+            response.json({message: "There was an error liking the book", error: true})
+        } else {
+            response.json({message: "Success", error: false})
+        }
+    })
+})
+
 module.exports = router;

@@ -169,12 +169,14 @@ export class SearchScreen extends Component {
     submitForm = (event) => {
         console.log("## CreateBook ## submitForm()")
         event.preventDefault()
-        const data = {
-            keyword: event.target.keyword.value,
-            type: event.target.type.value,
+        if (event.target.keyword.value !== "") {
+            const data = {
+                keyword: event.target.keyword.value,
+                type: event.target.type.value,
+            }
+            this.props.searchBooks(data)
+            this.props.toggleScreen()
         }
-        this.props.searchBooks(data)
-        this.props.toggleScreen()
     }
 
     render() {
@@ -369,9 +371,9 @@ export class RequestScreen extends Component {
         return (
             <div>
                 <h3>Request Master Librarians to Add</h3>
-                <p className="text-muted">It happens, sometimes we can find the book you're looking for. 
-                    Submit a request form for it to be added and the Master Librarians will add it for you! 
-                    We have to do it this way because we want to make sure we get the right information when 
+                <p className="text-muted">It happens, sometimes we can find the book you're looking for.
+                    Submit a request form for it to be added and the Master Librarians will add it for you!
+                    We have to do it this way because we want to make sure we get the right information when
                     adding it to the MASTER LIBRARY.
                 </p>
                 <form onSubmit={(event) => this.submitRequestForm(event)}>
