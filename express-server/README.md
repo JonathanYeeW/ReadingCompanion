@@ -1,4 +1,14 @@
-# ReadingCompanion
+# Server Documentation
+
+Below is the server documentation for development. I hope that one day this database is large enough for other developers to plug into and use for their websites. Go Reading!
+
+## Users
+
+### Template 
+- Method Route:
+- Inputs: 
+- Outputs: 
+- Method Description: 
 
 ## Books
 
@@ -77,7 +87,15 @@
 - Outputs: { message: "Success", error: false }
 - Method Description: Adds one to the total number of likes of a Book Object
 
-### 
+### Template 
+- Method Route:
+- Inputs: 
+- Outputs: 
+- Method Description: 
+
+## Reviews
+
+### Template 
 - Method Route:
 - Inputs: 
 - Outputs: 
