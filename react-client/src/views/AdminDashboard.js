@@ -21,8 +21,27 @@ export class AdminDashboard extends Component {
             users: [],
             books: [],
             reviews: [],
+            listview: "user"
         }
         this.loadData()
+    }
+
+    toggleListView = (data) => {
+        console.log("## AdminDashboard ## toggleListView")
+        switch (data) {
+            case (0):
+                this.setState({ listview: "user" })
+                break;
+            case (1):
+                this.setState({ listview: "book" })
+                break;
+            case (2):
+                this.setState({ listview: "review" })
+                break;
+            default:
+                console.log("error")
+        }
+
     }
 
     loadData = () => {
@@ -135,6 +154,38 @@ export class AdminDashboard extends Component {
     }
 
     render() {
+        let listview;
+        let listtitle;
+        switch (this.state.listview) {
+            case ("user"):
+                listview =
+                    <UserList
+                        users={this.state.users}
+                        loadData={this.loadData}
+                    />
+                listtitle = <h4>Users</h4>
+                break;
+            case ("book"):
+                listview =
+                    <BookList
+                        books={this.state.books}
+                        loadData={this.loadData}
+                    />
+                listtitle = <h4>Books</h4>
+                break;
+            case ("review"):
+                listview =
+                    <ReviewList
+                        reviews={this.state.reviews}
+                        loadData={this.loadData}
+                    />
+                listtitle = <h4>Reviews</h4>
+                break;
+            default:
+                listview =
+                    <h4>There is an error with the listview in state</h4>
+        }
+
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
@@ -148,72 +199,79 @@ export class AdminDashboard extends Component {
                 </nav>
                 <div className="container">
                     <div className="row mb-3">
-                        <div className="col-4">
-                            <div className="card-body bg-dark">
-                                <div className="card-body bg-white">
-                                    <p>Books: {this.state.bookcounter}</p>
-                                    <p>Users: {this.state.usercounter}</p>
-                                    <p>Reviews: {this.state.reviewcounter}</p>
-                                    <p>Newsfeed: {this.state.newsfeedcounter}</p>
-                                    <p>Site Visits: {this.state.sitevisitcounter}</p>
-                                </div>
-                            </div>
+                        <div className="col-6">
+                            <h4>User Activity</h4>
+                            <hr />
+                            <p>Today's Date</p>
+                            <p>Sign Ins Today</p>
+                            <p>Sign Ins All-Time</p>
                         </div>
-                        <div className="col-8">
-                            <div className="row">
-                                <div className="card-body bg-dark">
-                                    <div className="card-body bg-white">
-                                        <div className="row mb-3">
-                                            <div className="col-12">
-                                                <div className="btn-toolbar" role="toolbar">
-                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
-                                                        <button className="btn btn-danger" onClick={() => this.deleteAllBooks()}>Delete Books</button>
-                                                    </div>
-                                                    <div className="btn-group mr-2" role="group" aria-label="Second group">
-                                                        <button className="btn btn-danger" onClick={() => this.deleteAllUsers()}>Delete Users</button>
-                                                    </div>
-                                                    <div className="btn-group" role="group" aria-label="Third group">
-                                                        <button className="btn btn-danger" onClick={() => this.deleteAllReviews()}>Delete Reviews</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <div className="btn-toolbar" role="toolbar">
-                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
-                                                        <button className="btn btn-warning" onClick={() => this.dummyBooks()}>Dummy Books</button>
-                                                    </div>
-                                                    <div className="btn-group mr-2" role="group" aria-label="Second group">
-                                                        <button className="btn btn-warning" onClick={() => this.dummyUsers()}>Dummy Users</button>
-                                                    </div>
-                                                    <div className="btn-group" role="group" aria-label="Third group">
-                                                        <button className="btn btn-warning" onClick={() => this.dummyReviews()}>Dummy Reviews</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div className="col-6">
+                            <h4>Database</h4>
+                            <hr />
+                            <p>Total Users: {this.state.usercounter}</p>
+                            <p>Total Books: {this.state.bookcounter}</p>
+                            <p>Total Reviews: {this.state.reviewcounter}</p>
+                        </div>
+                    </div>
+
+                    <div className="row mb-3">
+                        <div className="col-12">
+                            <div className="btn-toolbar" role="toolbar">
+                                <div className="btn-group mr-2" role="group" aria-label="First group">
+                                    <button className="btn btn-danger" onClick={() => this.deleteAllBooks()}>Delete Books</button>
+                                </div>
+                                <div className="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button className="btn btn-danger" onClick={() => this.deleteAllUsers()}>Delete Users</button>
+                                </div>
+                                <div className="btn-group mr-2" role="group" aria-label="Third group">
+                                    <button className="btn btn-danger" onClick={() => this.deleteAllReviews()}>Delete Reviews</button>
+                                </div>
+                                <div className="btn-group mr-2" role="group" aria-label="First group">
+                                    <button className="btn btn-warning" onClick={() => this.dummyBooks()}>Dummy Books</button>
+                                </div>
+                                <div className="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button className="btn btn-warning" onClick={() => this.dummyUsers()}>Dummy Users</button>
+                                </div>
+                                <div className="btn-group" role="group" aria-label="Third group">
+                                    <button className="btn btn-warning" onClick={() => this.dummyReviews()}>Dummy Reviews</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <UserList
-                        users={this.state.users}
-                        loadData={this.loadData}
-                    />
-                    <BookList
-                        books={this.state.books}
-                        loadData={this.loadData}
-                    />
-                    <ReviewList
-                        reviews={this.state.reviews}
-                        loadData={this.loadData}
-                    />
-
+                    <div className="row mb-3">
+                        <div className="card text-center dashboard-width-fill">
+                            <div className="card-header">
+                                <div className="row">
+                                    <div className="col-9">
+                                        <div className="d-flex justify-content-start">
+                                            <div className="btn-toolbar">
+                                                <div className="btn-group mr-2">
+                                                    <button className="btn btn-primary" onClick={() => this.toggleListView(0)}>Users</button>
+                                                </div>
+                                                <div className="btn-group mr-2">
+                                                    <button className="btn btn-primary" onClick={() => this.toggleListView(1)}>Books</button>
+                                                </div>
+                                                <div className="btn-group mr-2">
+                                                    <button className="btn btn-primary" onClick={() => this.toggleListView(2)}>Reviews</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-3">
+                                        <div className="d-flex justify-content-end">
+                                            {listtitle}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                {listview}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
 
                 <nav className="navbar bg-dark">
                 </nav>
@@ -241,65 +299,40 @@ export class UserList extends Component {
     }
 
     render() {
-        let body;
-        if (this.state.expand === false) {
-            body = undefined
-        } else {
-            body =
-                <div className="card-body">
-                    <table className="table">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col">Username/Email</th>
-                                <th scope="col">Fullname</th>
-                                <th scope="col">Last Signin</th>
-                                <th scope="col">Library Size</th>
-                                <th scope="col">Reviews</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.users.map(user => {
-                                    return (
-                                        <tr>
-                                            <td>{user.email}</td>
-                                            <td>{user.firstname + " " + user.lastname}</td>
-                                            <td>{user.lastSignIn}</td>
-                                            <td>#</td>
-                                            <td>#</td>
-                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteUser(user._id)}>Delete</button></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-
-                    </table>
-                </div>
-        }
-
         return (
-            <div className="row mb-3">
-                <div className="col-12">
-                    <div className="card">
-                        <div className="card-header">
-                            <div className="row">
-                                <div className="col-4">
-                                    <h3>Users</h3>
-                                </div>
-                                <div className="col-8 justify-content-end d-flex">
-                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
-                                </div>
-                            </div>
-                        </div>
-                        {body}
-                    </div>
-                </div>
+            <div>
+                <table className="table">
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Username/Email</th>
+                            <th scope="col">Fullname</th>
+                            <th scope="col">Last Signin</th>
+                            <th scope="col">Library Size</th>
+                            <th scope="col">Reviews</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.users.map(user => {
+                                return (
+                                    <tr>
+                                        <td>{user.email}</td>
+                                        <td>{user.firstname + " " + user.lastname}</td>
+                                        <td>{user.lastSignIn}</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td><button className="btn btn-outline-danger" onClick={() => this.deleteUser(user._id)}>Delete</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         )
     }
-}//End
+}
 
 export class BookList extends Component {
     constructor(props) {
@@ -312,69 +345,45 @@ export class BookList extends Component {
     deleteBook = (data) => {
         console.log("## AdminDashboard ## deleteBook()")
         bookManager.deleteBook({ bookid: data })
-        .then(res => {
-            console.log(res)
-            this.props.loadData()
-        })
+            .then(res => {
+                console.log(res)
+                this.props.loadData()
+            })
     }
 
     render() {
-        let body;
-        if (this.state.expand === false) {
-            body = undefined
-        } else {
-            body =
-                <div className="card-body">
-                    <table className="table">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">ISBN10</th>
-                                <th scope="col">ISBN13</th>
-                                <th scope="col">Likes</th>
-                                <th scope="col">Reviews</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.books.map(book => {
-                                    return (
-                                        <tr>
-                                            <td>{book.title}</td>
-                                            <td>{book.author}</td>
-                                            <td>{book.isbn10}</td>
-                                            <td>{book.isbn13}</td>
-                                            <td>{book.likes}</td>
-                                            <td>{book.reviews.length}</td>
-                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteBook(book._id)}>Delete</button></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
-        }
-
         return (
-            <div className="row mb-3">
-                <div className="col-12">
-                    <div className="card">
-                        <div className="card-header">
-                            <div className="row">
-                                <div className="col-4">
-                                    <h3>Books</h3>
-                                </div>
-                                <div className="col-8 justify-content-end d-flex">
-                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
-                                </div>
-                            </div>
-                        </div>
-                        {body}
-                    </div>
-                </div>
+            <div>
+                <table className="table">
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">ISBN10</th>
+                            <th scope="col">ISBN13</th>
+                            <th scope="col">Likes</th>
+                            <th scope="col">Reviews</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.books.map(book => {
+                                return (
+                                    <tr>
+                                        <td>{book.title}</td>
+                                        <td>{book.author}</td>
+                                        <td>{book.isbn10}</td>
+                                        <td>{book.isbn13}</td>
+                                        <td>{book.likes}</td>
+                                        <td>{book.reviews.length}</td>
+                                        <td><button className="btn btn-outline-danger" onClick={() => this.deleteBook(book._id)}>Delete</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         )
     }
@@ -399,60 +408,36 @@ export class ReviewList extends Component {
     }
 
     render() {
-        let body;
-        if (this.state.expand === false) {
-            body = undefined
-        } else {
-            body =
-                <div className="card-body">
-                    <table className="table">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">Book Title</th>
-                                <th scope="col">Pub Date</th>
-                                <th scope="col">Likes</th>
-                                <th scope="col">Flags</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.reviews.map(review => {
-                                    return (
-                                        <tr>
-                                            <td>{review.username}</td>
-                                            <td>{review.title}</td>
-                                            <td>{review.created_at}</td>
-                                            <td>{review.likes}</td>
-                                            <td>{review.flags}</td>
-                                            <td><button className="btn btn-outline-danger" onClick={() => this.deleteReview(review._id)}>Delete</button></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
-        }
-
         return (
-            <div className="row mb-3">
-                <div className="col-12">
-                    <div className="card">
-                        <div className="card-header">
-                            <div className="row">
-                                <div className="col-4">
-                                    <h3>Reviews</h3>
-                                </div>
-                                <div className="col-8 justify-content-end d-flex">
-                                    <button className="btn btn-secondary" onClick={() => this.setState({ expand: !this.state.expand })}>Expand</button>
-                                </div>
-                            </div>
-                        </div>
-                        {body}
-                    </div>
-                </div>
+            <div>
+                <table className="table">
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Pub Date</th>
+                            <th scope="col">Likes</th>
+                            <th scope="col">Flags</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.reviews.map(review => {
+                                return (
+                                    <tr>
+                                        <td>{review.username}</td>
+                                        <td>{review.title}</td>
+                                        <td>{review.created_at}</td>
+                                        <td>{review.likes}</td>
+                                        <td>{review.flags}</td>
+                                        <td><button className="btn btn-outline-danger" onClick={() => this.deleteReview(review._id)}>Delete</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         )
     }

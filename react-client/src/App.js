@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import { User } from './views/UserDashboard';
 import { Login } from './views/Login';
 import { AdminDashboard } from './views/AdminDashboard';
-import AddBookToLibrary from './AddBookToLibrary';
-import { CreateBook } from './views/Components/UserDashboard/Library/CreateBook';
 
 class App extends Component {
   state = {
@@ -75,8 +73,8 @@ class App extends Component {
 
     return (
       <div id="app-wrapper">
-        {body}
-        {/* <CreateBook /> */}
+        {/* {body} */}
+        <AdminDashboard />
       </div>
     )
   }
