@@ -189,12 +189,23 @@ export class AdminDashboard extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
-                    <div className="col-6 d-flex justify-content-start">
-                        {/* <a className="navbar-brand" href="#">Admin Dashboard</a> */}
-                        <h4>Admin Dashboard</h4>
-                    </div>
-                    <div className="col-6 d-flex justify-content-end">
-                        <button className="btn" onClick={() => this.props.navigationSwitch(1)}>Login</button>
+                    <h4>Admin Dashboard</h4>
+                    <div className="btn-toolbar ml-5">
+                        <div className="btn-group mr-2">
+                            <button className="btn btn-outline-secondary">Home</button>
+                        </div>
+                        <div className="btn-group mr-2">
+                            <button className="btn btn-outline-secondary">User Workbench</button>
+                        </div>
+                        <div className="btn-group mr-2">
+                            <button className="btn btn-outline-secondary">Book Workbench</button>
+                        </div>
+                        <div className="btn-group mr-2">
+                            <button className="btn btn-outline-secondary">Database</button>
+                        </div>
+                        <div className="btn-group mr-2">
+                            <button className="btn" onClick={() => this.props.navigationSwitch(1)}>Log Out</button>
+                        </div>
                     </div>
                 </nav>
                 <div className="container">
