@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Book = mongoose.model('Book')
 var Newsfeed = mongoose.model('Newsfeed')
 
-
 // MARK: This books.js is where all the Books routes need to be 
 // transitioned too. After confirming that they all work i need 
 // to go through the front end and rewrite all of the routes so 
@@ -15,6 +14,32 @@ var Newsfeed = mongoose.model('Newsfeed')
 // MARK: So far I've transitioned all of the created routes on 
 // the user.js file that have to do with books to this file. Most 
 // are commented out though.
+
+/* 
+Documentation
+
+Method Name:
+Method Route:
+Inputs:
+Outputs:
+Method Description:
+
+
+Get All Books
+Get All Books For User
+Get All Books By Title
+Get All Books By Author
+Create Book
+Add Book To User Collection
+Remove Book From User Collection
+Delete All Books
+Delete Book
+Get All Books Not In User Collection
+Like Book
+Get Total Count of Book Objects
+
+*/
+
 
 //GET ALL BOOKS
 router.get('/', function (request, response) {
@@ -29,6 +54,7 @@ router.get('/', function (request, response) {
 
 //GET All BOOKS FOR USER BY ID
 router.post('/usercollection', function (request, response) {
+    // body = { userid: String }
     Book.find({ allusers: request.body.userid }, function (err, books) {
         if (err) {
             response.json({ message: "There was an error getting all books for user by id", error: true })
@@ -83,24 +109,25 @@ router.post('/create', function (request, response) {
         if (err) {
             response.json({ message: "There was an error creating a new book", error: true, err: err })
         } else {
+            response.json({ message: "Success", error: false, newBook: book })
             // CREATE A NEWSFEED OBJECT
-            var newsfeed_object = new Newsfeed({
-                title: book.title,
-                by_userid: request.body.userid,
-                by_username: request.body.username,
-                type: "Book",
-                type_id: book._id,
-                type_title: book.title,
-                created_at: Date(),
-                updated_at: Date(),
-            })
-            newsfeed_object.save(function (err) {
-                if (err) {
-                    response.json({ message: "success CreateBook, Error Create NewsfeedObject", error: true })
-                } else {
-                    response.json({ message: "success Create Book, Create NewsfeedObject", error: false, newBook: book })
-                }
-            })
+            // var newsfeed_object = new Newsfeed({
+            //     title: book.title,
+            //     by_userid: request.body.userid,
+            //     by_username: request.body.username,
+            //     type: "Book",
+            //     type_id: book._id,
+            //     type_title: book.title,
+            //     created_at: Date(),
+            //     updated_at: Date(),
+            // })
+            // newsfeed_object.save(function (err) {
+            //     if (err) {
+            //         response.json({ message: "success CreateBook, Error Create NewsfeedObject", error: true })
+            //     } else {
+            //         response.json({ message: "success Create Book, Create NewsfeedObject", error: false, newBook: book })
+            //     }
+            // })
         }
     })
 })
@@ -202,13 +229,14 @@ router.post('/count', function (req, res) {
     })
 })
 
-router.post('/like', function(request, response){
+// Like Book
+router.post('/like', function (request, response) {
     // request = { bookid: String, newLikes: Number }
-    Book.update({_id: request.body.bookid}, { likes: request.body.newLikes}, function(err){
-        if(err){
-            response.json({message: "There was an error liking the book", error: true})
+    Book.update({ _id: request.body.bookid }, { likes: request.body.newLikes }, function (err) {
+        if (err) {
+            response.json({ message: "There was an error liking the book", error: true })
         } else {
-            response.json({message: "Success", error: false})
+            response.json({ message: "Success", error: false })
         }
     })
 })
