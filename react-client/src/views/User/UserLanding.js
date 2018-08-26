@@ -4,14 +4,14 @@
 import React, { Component } from 'react';
 // import React, { Component } from 'react';
 
-import { Navbar } from './Components/UserDashboard/Navbar'
-import { Discover } from './Components/UserDashboard/Explore/Discover'
-import { GoogleSearch } from './Components/UserDashboard/Explore/GoogleSearch'
-import { Reviews } from './Components/UserDashboard/Reviews/Reviews'
-import { UserBooks } from './Components/UserDashboard/Library/UserBooks'
-import { CreateReview } from './Components/UserDashboard/Reviews/CreateReview'
-import { Newsfeed } from './Components/UserDashboard/Explore/Newsfeed'
-import { Reader } from './Components/UserDashboard/Reader/Reader'
+import { Navbar } from './Components/Navbar'
+import { Discover } from './Components/Explore/Discover'
+import { GoogleSearch } from './Components/Explore/GoogleSearch'
+import { Reviews } from './Components/Reviews/Reviews'
+import { UserBooks } from './Components/Library/UserBooks'
+import { CreateReview } from './Components/Reviews/CreateReview'
+import { Newsfeed } from './Components/Explore/Newsfeed'
+import { Reader } from './Components/Reader/Reader'
 
 // TODOS
 // - After adding a book i want it added to the newsfeed
@@ -32,7 +32,7 @@ import { Reader } from './Components/UserDashboard/Reader/Reader'
 // - userid
 // - navigationSwitch
 
-var userManager = require('../controllers/userManager')
+var userManager = require('../../controllers/userManager')
 
 export class User extends Component {
     constructor(props) {

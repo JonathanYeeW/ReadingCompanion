@@ -3,10 +3,10 @@
 
 import React, { Component } from 'react';
 
-let bookManager = require('../controllers/bookManager')
-let userManager = require('../controllers/userManager')
-let reviewManager = require('../controllers/reviewManager')
-let dummyData = require('../dummyData')
+let bookManager = require('../../controllers/bookManager')
+let userManager = require('../../controllers/userManager')
+let reviewManager = require('../../controllers/reviewManager')
+let dummyData = require('../../dummyData')
 
 export class AdminDashboard extends Component {
     constructor(props) {

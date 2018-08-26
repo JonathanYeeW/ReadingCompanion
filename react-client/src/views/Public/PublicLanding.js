@@ -2,8 +2,8 @@
 // Look there when starting to learn this application
 
 import React, { Component } from 'react';
-import { SignIn } from './Components/Login/SignIn'
-import { SignUp } from './Components/Login/SignUp'
+import { SignIn } from '../Public/Components/SignIn'
+import { SignUp } from '../Public/Components/SignUp'
 
 // var userManager = require('../controllers/userManager')
 
