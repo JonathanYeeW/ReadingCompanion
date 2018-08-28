@@ -23,7 +23,12 @@ class BookWorkbench extends Component {
                         </ul>
                     </div>
                     <div className="col-6">
-
+                        <h4>Things To Do</h4>
+                        <ol>
+                            <li>Edit Any String Property</li>
+                            <li>Remove book from users library</li>
+                            <li>Delete Book From Master Library</li>
+                        </ol>
                     </div>
                 </div>
 
@@ -32,53 +37,42 @@ class BookWorkbench extends Component {
                 </div>
 
                 <div className="row">
-                    <form>
-                        <div className="row">
-                            <div className="col-3">
-                                <div className="form-group">
-                                    <label>title</label>
-                                    <input type="text" name="title" className="form-control" />
+                    <div className="col-12 dashboard-fill-width">
+                        <form>
+                            <div className="row">
+                                <div className="col-6">
+                                    <div className="form-group">
+                                        <label>title : String</label>
+                                        <input type="text" name="title" className="form-control" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>author : String</label>
+                                        <input type="text" name="author" className="form-control" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>genre : String</label>
+                                        <input type="text" name="genre" className="form-control" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>isbn10 : String</label>
+                                        <input type="text" name="isbn10" className="form-control" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>isbn13 : String</label>
+                                        <input type="text" name="isbn13" className="form-control" />
+                                    </div>
                                 </div>
-                                <div className="form-group">
-                                    <label>author</label>
-                                    <input type="text" name="author" className="form-control" />
-                                </div>
-                            </div>
-                            <div className="col-3">
-                                <div className="form-group">
-                                    <label>userid</label>
-                                    <input type="text" name="userid" className="form-control" />
-                                </div>
-                                <div className="form-group">
-                                    <label>genre</label>
-                                    <input type="text" name="genre" className="form-control" />
-                                </div>
-                            </div>
-                            <div className="col-3">
-                                <div className="form-group">
-                                    <label>description</label>
-                                    <input type="text" name="description" className="form-control" />
-                                </div>
-                                <div className="form-group">
-                                    <label>isbn10</label>
-                                    <input type="text" name="isbn10" className="form-control" />
-                                </div>
-                            </div>
-                            <div className="col-3">
-                                <div className="form-group">
-                                    <label>isbn13</label>
-                                    <input type="text" name="isbn13" className="form-control" />
-                                </div>
-                                <div className="form-group">
-                                    <label>likes</label>
-                                    <input type="text" name="likes" className="form-control" />
+                                <div className="col-6">
+                                    <div className="form-group">
+                                        <label>description : String</label>
+                                        <textarea className="form-control" rows="15"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
-
             </div>
         )
     }
