@@ -2,6 +2,11 @@
 // Look there when starting to learn this application
 
 import React, { Component } from 'react';
+import Home from './Components/Home'
+import AdminNavbar from './Components/AdminNavbar';
+import BookWorkbench from './Components/BookWorkbench';
+import UserWorkbench from './Components/UserWorkbench';
+import Database from './Components/Database';
 
 let bookManager = require('../../controllers/bookManager')
 let userManager = require('../../controllers/userManager')
@@ -21,9 +26,42 @@ export class AdminDashboard extends Component {
             users: [],
             books: [],
             reviews: [],
-            listview: "user"
+            listview: "user",
+            view: "Home"
         }
         this.loadData()
+    }
+
+    toggleView = (data) => {
+        console.log("## AdminDashboard ## toggleView()", data)
+        switch (data) {
+            case (0):
+                // Home
+                this.setState({
+                    view: "Home"
+                })
+                break;
+            case (1):
+                // User Workbench
+                this.setState({
+                    view: "UserWorkbench"
+                })
+                break;
+            case (2):
+                // Book Workbench
+                this.setState({
+                    view: "BookWorkbench"
+                })
+                break;
+            case (3):
+                // Database
+                this.setState({
+                    view: "Database"
+                })
+                break;
+            default:
+                console.log("Error")
+        }
     }
 
     toggleListView = (data) => {
@@ -186,8 +224,32 @@ export class AdminDashboard extends Component {
                     <h4>There is an error with the listview in state</h4>
         }
 
+        let view;
+        switch (this.state.view) {
+            case ("Home"):
+                view = <Home />
+                break;
+            case ("UserWorkbench"):
+                view = <UserWorkbench />
+                break;
+            case ("BookWorkbench"):
+                view = <BookWorkbench />
+                break;
+            case ("Database"):
+                view = <Database />
+                break;
+            default:
+                view = <h4>There was an error with view in state</h4>
+        }
+
         return (
             <div>
+                <AdminNavbar
+                    toggleView={this.toggleView}
+                    navigationSwitch={this.props.navigationSwitch}
+                />
+                {view}
+                {/* <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <h4>Admin Dashboard</h4>
                     <div className="btn-toolbar ml-5">
@@ -286,6 +348,7 @@ export class AdminDashboard extends Component {
 
                 <nav className="navbar bg-dark">
                 </nav>
+            </div> */}
             </div>
         )
     }
