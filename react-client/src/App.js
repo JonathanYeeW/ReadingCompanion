@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { User } from './views/User/UserLanding';
 import { Login } from './views/Public/PublicLanding';
 import { AdminDashboard } from './views/Admin/AdminLanding';
+import Bookform from './Admin/view/Bookform';
 
 class App extends Component {
   state = {
@@ -73,7 +74,11 @@ class App extends Component {
 
     return (
       <div id="app-wrapper">
-        {body}
+        {/* {body} */}
+        <div className="container">
+          <Bookform />
+        </div>
+        
       </div>
     )
   }
