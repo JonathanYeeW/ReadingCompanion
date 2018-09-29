@@ -1,38 +1,44 @@
 import React, { Component } from 'react';
 import Header from './Header';
+const bookManager = require('../controller/bookManager')
 
 class Bookform extends Component {
+    constructor(props){
+        super(props);
+        console.log("## Bookform.js ## props:", props)
+    }
+    
     render() {
         return (
             <div>
                 <Header />
-                <div class="btn-toolbar pb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group">
-                        <button type="button" class="btn btn-secondary">Create</button>
+                <div className="btn-toolbar pb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div className="btn-group mr-2" role="group">
+                        <button type="button" className="btn btn-secondary">Create</button>
                     </div>
-                    <div class="btn-group mr-2" role="group">
-                        <button type="button" class="btn btn-secondary">Read</button>
+                    <div className="btn-group mr-2" role="group">
+                        <button type="button" className="btn btn-secondary">Read</button>
                     </div>
-                    <div class="btn-group mr-2" role="group">
-                        <button type="button" class="btn btn-secondary">Update</button>
+                    <div className="btn-group mr-2" role="group">
+                        <button type="button" className="btn btn-secondary">Update</button>
                     </div>
-                    <div class="btn-group mr-2" role="group">
-                        <button type="button" class="btn btn-secondary">Delete</button>
+                    <div className="btn-group mr-2" role="group">
+                        <button type="button" className="btn btn-secondary">Delete</button>
                     </div>
                 </div>
 
                 <div className="row pb-3">
                     <div className="col-4">
-                        <div className="form" onSumbit={(event) => event.preventDefault()}>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text" id="btnGroupAddon">RCID#</div>
+                        <form className="form" onSubmit={(event) => event.preventDefault()}>
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text" id="btnGroupAddon">RCID#</div>
                                 </div>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                                 <button className="btn btn-secondary ml-2">Submit</button>
                             </div>
 
-                        </div>
+                        </form>
                     </div>
                 </div>
 
