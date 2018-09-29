@@ -20,18 +20,29 @@ mongoose.model('User', UserSchema);
 
 //BOOK SCHEMA
 var BookSchema = new mongoose.Schema({
+  rcid: String,
   title: String,
   author: String,
-  userid: String,
-  allusers: [String],
   genre: String,
-  description: String,
+  subgenre: String,
+  fiction: Boolean,
   isbn10: String,
   isbn13: String,
-  reviews: [],
-  likes: Number,
+  description: String,
+  edition: Number,
+  pages: Number,
+  language: String,
+  publisher: String,
+  publishingDate: String,
+  hardcover: Boolean,
+  image: String,
   created_at: Date,
   updated_at: Date,
+  
+  userid: String,
+  allusers: [String],
+  reviews: [],
+  likes: Number,
 })
 BookSchema.index({ title: "text", author: "text" })
 mongoose.model('Book', BookSchema);
