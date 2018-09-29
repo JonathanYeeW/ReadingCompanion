@@ -1,4 +1,6 @@
 
+const validationManager = require('./validationManager')
+
 function getAllBooks() {
     console.log("## bookManager ## getAllBooks()")
     return new Promise((resolve, reject) => {
