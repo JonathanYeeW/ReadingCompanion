@@ -19,13 +19,23 @@ class Bookform extends Component {
                     <div class="btn-group mr-2" role="group">
                         <button type="button" class="btn btn-secondary">Delete</button>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text" id="btnGroupAddon">RCID#</div>
+                </div>
+
+                <div className="row pb-3">
+                    <div className="col-4">
+                        <div className="form" onSumbit={(event) => event.preventDefault()}>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" id="btnGroupAddon">RCID#</div>
+                                </div>
+                                <input type="text" class="form-control" />
+                                <button className="btn btn-secondary ml-2">Submit</button>
+                            </div>
+
                         </div>
-                        <input type="text" class="form-control" />
                     </div>
                 </div>
+
                 <h3>Book Form</h3>
                 <form>
                     <div className="row">
