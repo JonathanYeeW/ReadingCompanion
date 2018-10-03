@@ -1,5 +1,7 @@
+const dummyData = require('../../dummyData')
+// const validationManager = require('./validationManager')
 
-const validationManager = require('./validationManager')
+let counter = 0
 
 function getAllBooks() {
     console.log("## bookManager ## getAllBooks()")
@@ -182,6 +184,19 @@ function likeBook(data) {
 
 function populateDevelopmentBooks() {
     console.log("## bookManager ## populateDevelopmentBooks() ##")
+    // Create Dummy Products
+    for (let i = 0; i < dummyData.Books.length; i++) {
+        counter++
+        let data =
+        {
+            title: dummyData.Books[i].title,
+            author: dummyData.Books[i].author,
+            isbn10: dummyData.Books[i].isbn10,
+            isbn13: dummyData.Books[i].isbn13,
+            rcid: counter
+        }
+        createBook(data)
+    }
 }
 
 

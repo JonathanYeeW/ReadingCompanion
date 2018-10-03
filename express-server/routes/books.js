@@ -96,6 +96,7 @@ router.post('/create', function (request, response) {
         author: request.body.author,
         userid: request.body.userid,
         allusers: [request.body.userid],
+        rcid: request.body.rcid,
         genre: "genre tbd",
         description: "description tbd",
         isbn10: request.body.isbn10,

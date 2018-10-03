@@ -11,8 +11,9 @@ class List extends Component {
         // on load, i want to fetch all book objects
         // from the database and populate it into the 
         // book list array
-        this.populateBookList()
+        bookManager.deleteAllBooks()
         bookManager.populateDevelopmentBooks()
+        this.populateBookList()
     }
 
     populateBookList = () => {
@@ -30,6 +31,7 @@ class List extends Component {
         return (
             <div>
                 <hr />
+                <button className="btn btn-secondary" onClick={() => this.populateBookList()}>Refresh</button>
                 <h4>List</h4>
                 <p>In this component, it displays all the information for every book currently in the database</p>
                 <table className="table">
@@ -45,7 +47,7 @@ class List extends Component {
                             this.state.booklist.map(item => {
                                 return (
                                     <tr>
-                                        <td>{item.RCID}</td>
+                                        <td>{item.rcid}</td>
                                         <td>{item.title}</td>
                                         <td>{item.author}</td>
                                     </tr>
@@ -54,20 +56,6 @@ class List extends Component {
                         }
                     </tbody>
                 </table>
-
-                {/* {
-                    this.state.books.map(book => {
-                        return (
-                            <div key={book._id} className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
-                                <Book
-                                    book={book}
-                                    removeBookFromUser={this.removeBookFromUser}
-                                />
-                            </div>
-                        )
-                    })
-                } */}
-
             </div>
         )
     }
