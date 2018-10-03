@@ -12,6 +12,7 @@ class List extends Component {
         // from the database and populate it into the 
         // book list array
         this.populateBookList()
+        bookManager.populateDevelopmentBooks()
     }
 
     populateBookList = () => {

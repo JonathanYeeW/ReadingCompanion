@@ -177,6 +177,14 @@ function likeBook(data) {
     })
 }
 
+// MARK: Function below is for development purposes
+// Use it to repopulate the Book Objects
+
+function populateDevelopmentBooks() {
+    console.log("## bookManager ## populateDevelopmentBooks() ##")
+}
+
+
 module.exports = {
     getAllBooks,
     getAllUserBooks,
@@ -190,4 +198,6 @@ module.exports = {
     getBooksByTitle,
     getBooksByAuthor,
     likeBook,
+    populateDevelopmentBooks,
 }
+
