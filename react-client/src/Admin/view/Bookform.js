@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import List from './List';
 const bookManager = require('../controller/bookManager')
 
 class Bookform extends Component {
@@ -37,7 +38,6 @@ class Bookform extends Component {
                                 <input type="text" className="form-control" />
                                 <button className="btn btn-secondary ml-2">Submit</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -111,6 +111,7 @@ class Bookform extends Component {
                         </div>
                     </div>
                 </form>
+                <List />
             </div>
         )
     }
