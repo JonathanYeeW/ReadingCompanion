@@ -199,6 +199,25 @@ function populateDevelopmentBooks() {
     }
 }
 
+// MARK: Function that finds book by rcid
+
+function findBookByRcid(data){
+    console.log("## bootManager ## findBookByRcid()")
+    console.log(data)
+    return new Promise((resolve, reject) => {
+        fetch('/books/bookrcid', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ rcid: data })
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
+            .catch(res => reject(res))
+    })
+}
+
 
 module.exports = {
     getAllBooks,
@@ -214,5 +233,6 @@ module.exports = {
     getBooksByAuthor,
     likeBook,
     populateDevelopmentBooks,
+    findBookByRcid,
 }
 

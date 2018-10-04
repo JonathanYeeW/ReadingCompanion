@@ -66,7 +66,6 @@ router.post('/usercollection', function (request, response) {
 
 // GET ALL BOOKS BY TITLE
 router.post('/booktitle', function (request, response) {
-    console.log()
     Book.find({ $text: { $search: request.body.title } }, function (err, books) {
         if (err) {
             console.log("error", err)
@@ -74,6 +73,17 @@ router.post('/booktitle', function (request, response) {
         } else {
             console.log("success", books)
             response.json({ message: "Success", error: false, books: books })
+        }
+    })
+})
+
+// GET SINGLE BOOK BY RCID
+router.post('/bookrcid', function (request, response){
+    Book.find({rcid: request.body.rcid}, function (err, book){
+        if (err) {
+            response.json({ message: "There was an error getting the book by rcid", error: true })
+        } else {
+            response.json({ message: "Success", error: false, book: book })
         }
     })
 })
