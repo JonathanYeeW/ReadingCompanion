@@ -39,7 +39,6 @@ class Bookform extends Component {
         bookManager.findBookByRcid(event.target.rcid.value)
             .then(res => {
                 let fetchedBook = res.book[0]
-                
                 if(fetchedBook !== undefined){
                     this.setState({
                         book: res.book[0]
@@ -49,7 +48,6 @@ class Bookform extends Component {
                         book: emptyBook
                     })
                 }
-                
             })
         .catch(console.log("There was an error findBookByRcid"))
     }
@@ -81,7 +79,7 @@ class Bookform extends Component {
                                     <div className="input-group-text">RCID#</div>
                                 </div>
                                 <input type="text" name="rcid" className="form-control" />
-                                <button className="btn btn-secondary ml-2">Submit</button>
+                                <button className="btn btn-secondary ml-2">Search</button>
                             </div>
                         </form>
                     </div>
